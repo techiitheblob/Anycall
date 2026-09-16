@@ -300,6 +300,16 @@ class DatabaseManager:
                 audio_hash   TEXT DEFAULT '',
                 threshold    REAL DEFAULT 0.0
             );
+
+            CREATE TABLE IF NOT EXISTS unidentified_sounds (
+                id           INTEGER PRIMARY KEY AUTOINCREMENT,
+                detected_at  TEXT NOT NULL,
+                embedding    BLOB NOT NULL,
+                best_match   TEXT DEFAULT '',
+                score        REAL NOT NULL,
+                audio_path   TEXT DEFAULT '',
+                cluster_id   TEXT DEFAULT NULL
+            );
         """)
         self._conn.commit()
 
@@ -367,6 +377,54 @@ class DatabaseManager:
 
     def get_detections(self, limit: int = 100) -> List[Dict[str, Any]]:
         return self.list_detections(limit=limit)
+
+    def save_unidentified(
+        self,
+        embedding: np.ndarray,
+        best_match: str = "",
+        score: float = 0.0,
+        audio_path: str = "",
+        detected_at: Optional[str] = None,
+    ) -> int:
+        now = detected_at or _utcnow()
+        emb_bytes = embedding.astype(np.float32).tobytes()
+        cursor = self._conn.execute(
+            """
+            INSERT INTO unidentified_sounds (detected_at, embedding, best_match, score, audio_path)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (now, emb_bytes, best_match, float(score), audio_path),
+        )
+        self._conn.commit()
+        return cursor.lastrowid
+
+    def get_unidentified(self, cluster_id: Optional[str] = None, limit: int = 500) -> List[Dict[str, Any]]:
+        if cluster_id is not None:
+            rows = self._conn.execute(
+                "SELECT * FROM unidentified_sounds WHERE cluster_id = ? ORDER BY id DESC LIMIT ?",
+                (cluster_id, limit),
+            ).fetchall()
+        else:
+            rows = self._conn.execute(
+                "SELECT * FROM unidentified_sounds ORDER BY id DESC LIMIT ?",
+                (limit,),
+            ).fetchall()
+        results = []
+        for r in rows:
+            d = dict(r)
+            d["embedding"] = np.frombuffer(d["embedding"], dtype=np.float32)
+            results.append(d)
+        return results
+
+    def assign_unidentified_cluster(self, sound_ids: List[int], cluster_id: str) -> None:
+        if not sound_ids:
+            return
+        placeholders = ",".join("?" * len(sound_ids))
+        self._conn.execute(
+            f"UPDATE unidentified_sounds SET cluster_id = ? WHERE id IN ({placeholders})",
+            [cluster_id] + sound_ids,
+        )
+        self._conn.commit()
 
     def close(self) -> None:
         DatabaseManager._instances.discard(self)
