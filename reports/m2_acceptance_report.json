@@ -1,0 +1,67 @@
+{
+  "wav_path": "data\\processed\\corvus_splendens\\1009327_seg000.wav",
+  "timestamp": "2026-09-16T14:32:49Z",
+  "strict": true,
+  "results": [
+    {
+      "backbone": "mock",
+      "class": "MockBackbone",
+      "status": "PASSED",
+      "expected_dim": 256,
+      "actual_dim": 256,
+      "target_sr": 48000,
+      "l2_norm": 1.0,
+      "l2_norm_error": 0.0,
+      "dtype": "float32",
+      "file_latency_ms": 1.47,
+      "array_latency_ms": 0.55,
+      "consistency_similarity": 1.0,
+      "error": null
+    },
+    {
+      "backbone": "birdnet",
+      "class": "BirdNetBackbone",
+      "status": "PASSED",
+      "expected_dim": 1024,
+      "actual_dim": 1024,
+      "target_sr": 48000,
+      "l2_norm": 1.0,
+      "l2_norm_error": 0.0,
+      "dtype": "float32",
+      "file_latency_ms": 51.77,
+      "array_latency_ms": 39.8,
+      "consistency_similarity": 1.0,
+      "error": null
+    },
+    {
+      "backbone": "perch",
+      "class": "PerchBackbone",
+      "status": "PASSED",
+      "expected_dim": 1280,
+      "actual_dim": 1280,
+      "target_sr": 32000,
+      "l2_norm": 0.9999999,
+      "l2_norm_error": 5.96e-08,
+      "dtype": "float32",
+      "file_latency_ms": 2922.46,
+      "array_latency_ms": 140.83,
+      "consistency_similarity": 1.0,
+      "error": null
+    },
+    {
+      "backbone": "panns",
+      "class": "PannsBackbone",
+      "status": "PASSED",
+      "expected_dim": 2048,
+      "actual_dim": 2048,
+      "target_sr": 32000,
+      "l2_norm": 1.0,
+      "l2_norm_error": 0.0,
+      "dtype": "float32",
+      "file_latency_ms": 129.24,
+      "array_latency_ms": 90.11,
+      "consistency_similarity": 1.0,
+      "error": null
+    }
+  ]
+}

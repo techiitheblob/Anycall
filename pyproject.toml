@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anycall"
+version = "0.1.0"
+description = "Open-set, few-shot, cross-taxa acoustic wildlife classifier for edge deployment"
+readme = "README.md"
+requires-python = ">=3.10, <3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "AnyCall Research Team" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "numpy>=1.26.0,<2.0.0",
+    "scipy>=1.11.0",
+    "soundfile>=0.12.1",
+    "requests>=2.31.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
+
+[project.scripts]
+anycall-harvester = "anycall.data.harvester:main"
+anycall-standardize = "anycall.audio.standardize:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["anycall*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

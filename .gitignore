@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+*.so
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Data (large files, re-downloadable)
+data/raw/
+data/processed/
+
+# ML model weights (re-downloadable)
+models/
+
+# Test cache
+.pytest_cache/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Agent workspaces
+.agents/
+
+# Jupyter
+.ipynb_checkpoints/

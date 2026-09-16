@@ -1,0 +1,8 @@
+# AnyCall Milestone 1 Core Requirements
+# Target Python: 3.11
+numpy>=1.26.4,<2.0.0
+scipy>=1.11.4
+soundfile>=0.12.1
+requests>=2.31.0
+tqdm>=4.66.2
+pytest>=7.4.4
