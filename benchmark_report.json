@@ -1,0 +1,2267 @@
+{
+  "exp1_birdnet_failure": [
+    {
+      "species_label": "acridotheres_tristis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -0.4655,
+      "anycall_score": 0.7754
+    },
+    {
+      "species_label": "acridotheres_tristis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -0.4655,
+      "anycall_score": 0.7947
+    },
+    {
+      "species_label": "acridotheres_tristis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -0.4655,
+      "anycall_score": 0.78
+    },
+    {
+      "species_label": "athene_brama",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 2.4642,
+      "anycall_score": 0.8587
+    },
+    {
+      "species_label": "athene_brama",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 2.4642,
+      "anycall_score": 0.7883
+    },
+    {
+      "species_label": "athene_brama",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 2.4642,
+      "anycall_score": 0.6307
+    },
+    {
+      "species_label": "canis_aureus",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5205",
+      "birdnet_score": -2.2,
+      "anycall_score": 0.7082
+    },
+    {
+      "species_label": "canis_aureus",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_5205",
+      "birdnet_score": -2.2,
+      "anycall_score": 0.8595
+    },
+    {
+      "species_label": "canis_aureus",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_5205",
+      "birdnet_score": -2.2,
+      "anycall_score": 0.9151
+    },
+    {
+      "species_label": "centropus_sinensis",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1073",
+      "birdnet_score": 2.2381,
+      "anycall_score": 0.8619
+    },
+    {
+      "species_label": "centropus_sinensis",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1073",
+      "birdnet_score": 2.2381,
+      "anycall_score": 0.6732
+    },
+    {
+      "species_label": "centropus_sinensis",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1073",
+      "birdnet_score": 2.2381,
+      "anycall_score": 0.6538
+    },
+    {
+      "species_label": "cinnyris_asiaticus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1343",
+      "birdnet_score": 0.0638,
+      "anycall_score": 0.6493
+    },
+    {
+      "species_label": "cinnyris_asiaticus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1343",
+      "birdnet_score": 0.0638,
+      "anycall_score": 0.6747
+    },
+    {
+      "species_label": "copsychus_fulicatus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -0.8938,
+      "anycall_score": 0.7727
+    },
+    {
+      "species_label": "copsychus_fulicatus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -0.8938,
+      "anycall_score": 0.8105
+    },
+    {
+      "species_label": "copsychus_fulicatus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -0.8938,
+      "anycall_score": 0.8167
+    },
+    {
+      "species_label": "copsychus_saularis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1276",
+      "birdnet_score": -1.1281,
+      "anycall_score": 0.9181
+    },
+    {
+      "species_label": "copsychus_saularis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1276",
+      "birdnet_score": -1.1281,
+      "anycall_score": 0.9414
+    },
+    {
+      "species_label": "copsychus_saularis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1276",
+      "birdnet_score": -1.1281,
+      "anycall_score": 0.9087
+    },
+    {
+      "species_label": "corvus_culminatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1590",
+      "birdnet_score": 3.2629,
+      "anycall_score": 0.9212
+    },
+    {
+      "species_label": "corvus_culminatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1590",
+      "birdnet_score": 3.2629,
+      "anycall_score": 0.9005
+    },
+    {
+      "species_label": "corvus_culminatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1590",
+      "birdnet_score": 3.2629,
+      "anycall_score": 0.9423
+    },
+    {
+      "species_label": "corvus_splendens",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 5.3246,
+      "anycall_score": 0.9216
+    },
+    {
+      "species_label": "corvus_splendens",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 5.3246,
+      "anycall_score": 0.8095
+    },
+    {
+      "species_label": "corvus_splendens",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 5.3246,
+      "anycall_score": 0.7709
+    },
+    {
+      "species_label": "cryptotympana_aguila",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5681",
+      "birdnet_score": -1.5766,
+      "anycall_score": 0.7426
+    },
+    {
+      "species_label": "cryptotympana_aguila",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5681",
+      "birdnet_score": -1.5766,
+      "anycall_score": 0.7809
+    },
+    {
+      "species_label": "cryptotympana_aguila",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_5681",
+      "birdnet_score": -1.5766,
+      "anycall_score": 0.7407
+    },
+    {
+      "species_label": "duttaphrynus_melanostictus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2948",
+      "birdnet_score": -1.07,
+      "anycall_score": 0.776
+    },
+    {
+      "species_label": "duttaphrynus_melanostictus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2948",
+      "birdnet_score": -1.07,
+      "anycall_score": 0.7863
+    },
+    {
+      "species_label": "duttaphrynus_melanostictus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2948",
+      "birdnet_score": -1.07,
+      "anycall_score": 0.7313
+    },
+    {
+      "species_label": "euconocephalus_varius",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4677",
+      "birdnet_score": 1.7259,
+      "anycall_score": 0.8367
+    },
+    {
+      "species_label": "euconocephalus_varius",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4677",
+      "birdnet_score": 1.7259,
+      "anycall_score": 0.8836
+    },
+    {
+      "species_label": "euconocephalus_varius",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4677",
+      "birdnet_score": 1.7259,
+      "anycall_score": 0.8626
+    },
+    {
+      "species_label": "eudynamys_scolopaceus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2209",
+      "birdnet_score": -1.2993,
+      "anycall_score": 0.6917
+    },
+    {
+      "species_label": "eudynamys_scolopaceus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2209",
+      "birdnet_score": -1.2993,
+      "anycall_score": 0.8572
+    },
+    {
+      "species_label": "eudynamys_scolopaceus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2209",
+      "birdnet_score": -1.2993,
+      "anycall_score": 0.8063
+    },
+    {
+      "species_label": "euphlyctis_cyanophlyctis",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1585",
+      "birdnet_score": 1.264,
+      "anycall_score": 0.8049
+    },
+    {
+      "species_label": "euphlyctis_cyanophlyctis",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1585",
+      "birdnet_score": 1.264,
+      "anycall_score": 0.8678
+    },
+    {
+      "species_label": "euphlyctis_cyanophlyctis",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1585",
+      "birdnet_score": 1.264,
+      "anycall_score": 0.8468
+    },
+    {
+      "species_label": "funambulus_palmarum",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2420",
+      "birdnet_score": -1.8011,
+      "anycall_score": 0.6108
+    },
+    {
+      "species_label": "funambulus_palmarum",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2420",
+      "birdnet_score": -1.8011,
+      "anycall_score": 0.6135
+    },
+    {
+      "species_label": "funambulus_palmarum",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2420",
+      "birdnet_score": -1.8011,
+      "anycall_score": 0.6157
+    },
+    {
+      "species_label": "gryllotalpa_orientalis",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5336",
+      "birdnet_score": 4.779,
+      "anycall_score": 0.8795
+    },
+    {
+      "species_label": "gryllotalpa_orientalis",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5336",
+      "birdnet_score": 4.779,
+      "anycall_score": 0.8514
+    },
+    {
+      "species_label": "gryllotalpa_orientalis",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5336",
+      "birdnet_score": 4.779,
+      "anycall_score": 0.7648
+    },
+    {
+      "species_label": "gryllus_bimaculatus",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_6315",
+      "birdnet_score": -4.1744,
+      "anycall_score": 0.8268
+    },
+    {
+      "species_label": "gryllus_bimaculatus",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_6315",
+      "birdnet_score": -4.1744,
+      "anycall_score": 0.8243
+    },
+    {
+      "species_label": "gryllus_bimaculatus",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_6315",
+      "birdnet_score": -4.1744,
+      "anycall_score": 0.8166
+    },
+    {
+      "species_label": "halcyon_smyrnensis",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 4.1157,
+      "anycall_score": 0.9346
+    },
+    {
+      "species_label": "halcyon_smyrnensis",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 4.1157,
+      "anycall_score": 0.9214
+    },
+    {
+      "species_label": "halcyon_smyrnensis",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 4.1157,
+      "anycall_score": 0.8881
+    },
+    {
+      "species_label": "hoplobatrachus_tigerinus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1730",
+      "birdnet_score": -2.6183,
+      "anycall_score": 0.7992
+    },
+    {
+      "species_label": "hoplobatrachus_tigerinus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1730",
+      "birdnet_score": -2.6183,
+      "anycall_score": 0.8885
+    },
+    {
+      "species_label": "hoplobatrachus_tigerinus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1730",
+      "birdnet_score": -2.6183,
+      "anycall_score": 0.6923
+    },
+    {
+      "species_label": "hydrophylax_bahuvistara",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1435",
+      "birdnet_score": 8.0728,
+      "anycall_score": 0.8037
+    },
+    {
+      "species_label": "hydrophylax_bahuvistara",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1435",
+      "birdnet_score": 8.0728,
+      "anycall_score": 0.7921
+    },
+    {
+      "species_label": "hydrophylax_bahuvistara",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1435",
+      "birdnet_score": 8.0728,
+      "anycall_score": 0.8139
+    },
+    {
+      "species_label": "macaca_mulatta",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_306",
+      "birdnet_score": 1.7348,
+      "anycall_score": 0.6759
+    },
+    {
+      "species_label": "macaca_mulatta",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_306",
+      "birdnet_score": 1.7348,
+      "anycall_score": 0.6616
+    },
+    {
+      "species_label": "macaca_mulatta",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_306",
+      "birdnet_score": 1.7348,
+      "anycall_score": 0.6336
+    },
+    {
+      "species_label": "mecopoda_elongata",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_3307",
+      "birdnet_score": 4.747,
+      "anycall_score": 0.7276
+    },
+    {
+      "species_label": "mecopoda_elongata",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_3307",
+      "birdnet_score": 4.747,
+      "anycall_score": 0.8016
+    },
+    {
+      "species_label": "mecopoda_elongata",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_3307",
+      "birdnet_score": 4.747,
+      "anycall_score": 0.7041
+    },
+    {
+      "species_label": "milvus_migrans",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1876",
+      "birdnet_score": -2.6642,
+      "anycall_score": 0.8007
+    },
+    {
+      "species_label": "milvus_migrans",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1876",
+      "birdnet_score": -2.6642,
+      "anycall_score": 0.8599
+    },
+    {
+      "species_label": "milvus_migrans",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1876",
+      "birdnet_score": -2.6642,
+      "anycall_score": 0.7147
+    },
+    {
+      "species_label": "muntiacus_muntjak",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_5336",
+      "birdnet_score": 4.779,
+      "anycall_score": 0.8795
+    },
+    {
+      "species_label": "muntiacus_muntjak",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_5336",
+      "birdnet_score": 4.779,
+      "anycall_score": 0.8514
+    },
+    {
+      "species_label": "muntiacus_muntjak",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_5336",
+      "birdnet_score": 4.779,
+      "anycall_score": 0.7648
+    },
+    {
+      "species_label": "oecanthus_indicus",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_2112",
+      "birdnet_score": 4.4861,
+      "anycall_score": 0.6255
+    },
+    {
+      "species_label": "oecanthus_indicus",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_2112",
+      "birdnet_score": 4.4861,
+      "anycall_score": 0.5818
+    },
+    {
+      "species_label": "oecanthus_indicus",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_2112",
+      "birdnet_score": 4.4861,
+      "anycall_score": 0.6382
+    },
+    {
+      "species_label": "pavo_cristatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4320",
+      "birdnet_score": 5.1412,
+      "anycall_score": 0.8832
+    },
+    {
+      "species_label": "pavo_cristatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4320",
+      "birdnet_score": 5.1412,
+      "anycall_score": 0.862
+    },
+    {
+      "species_label": "pavo_cristatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_4320",
+      "birdnet_score": 5.1412,
+      "anycall_score": 0.6228
+    },
+    {
+      "species_label": "polypedates_maculatus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_339",
+      "birdnet_score": 2.255,
+      "anycall_score": 0.8254
+    },
+    {
+      "species_label": "polypedates_maculatus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_339",
+      "birdnet_score": 2.255,
+      "anycall_score": 0.6424
+    },
+    {
+      "species_label": "polypedates_maculatus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_339",
+      "birdnet_score": 2.255,
+      "anycall_score": 0.6585
+    },
+    {
+      "species_label": "psilopogon_haemacephalus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 0.4157,
+      "anycall_score": 0.8166
+    },
+    {
+      "species_label": "psilopogon_haemacephalus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 0.4157,
+      "anycall_score": 0.8667
+    },
+    {
+      "species_label": "psilopogon_haemacephalus",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 0.4157,
+      "anycall_score": 0.8197
+    },
+    {
+      "species_label": "psittacula_krameri",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 0.8937,
+      "anycall_score": 0.897
+    },
+    {
+      "species_label": "psittacula_krameri",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 0.8937,
+      "anycall_score": 0.8819
+    },
+    {
+      "species_label": "psittacula_krameri",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": 0.8937,
+      "anycall_score": 0.8398
+    },
+    {
+      "species_label": "purana_tigrina",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4572",
+      "birdnet_score": -2.558,
+      "anycall_score": 0.7461
+    },
+    {
+      "species_label": "purana_tigrina",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4572",
+      "birdnet_score": -2.558,
+      "anycall_score": 0.7002
+    },
+    {
+      "species_label": "purana_tigrina",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_4572",
+      "birdnet_score": -2.558,
+      "anycall_score": 0.7296
+    },
+    {
+      "species_label": "pycnonotus_cafer",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5136",
+      "birdnet_score": 1.2093,
+      "anycall_score": 0.8403
+    },
+    {
+      "species_label": "pycnonotus_cafer",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5136",
+      "birdnet_score": 1.2093,
+      "anycall_score": 0.8417
+    },
+    {
+      "species_label": "pycnonotus_cafer",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_5136",
+      "birdnet_score": 1.2093,
+      "anycall_score": 0.8584
+    },
+    {
+      "species_label": "semnopithecus_entellus",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_4572",
+      "birdnet_score": -2.558,
+      "anycall_score": 0.7461
+    },
+    {
+      "species_label": "semnopithecus_entellus",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_4572",
+      "birdnet_score": -2.558,
+      "anycall_score": 0.7002
+    },
+    {
+      "species_label": "semnopithecus_entellus",
+      "taxon": "mammalia",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_4572",
+      "birdnet_score": -2.558,
+      "anycall_score": 0.7296
+    },
+    {
+      "species_label": "teleogryllus_occipitalis",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1585",
+      "birdnet_score": -0.7405,
+      "anycall_score": 0.892
+    },
+    {
+      "species_label": "teleogryllus_occipitalis",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1585",
+      "birdnet_score": -0.7405,
+      "anycall_score": 0.8888
+    },
+    {
+      "species_label": "teleogryllus_occipitalis",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1585",
+      "birdnet_score": -0.7405,
+      "anycall_score": 0.8979
+    }
+  ],
+  "exp2_few_shot": [
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 0,
+      "top1_accuracy": 0.7008,
+      "n_queries": 127
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 1,
+      "top1_accuracy": 0.7087,
+      "n_queries": 127
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 2,
+      "top1_accuracy": 0.6693,
+      "n_queries": 127
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 3,
+      "top1_accuracy": 0.7244,
+      "n_queries": 127
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 4,
+      "top1_accuracy": 0.7638,
+      "n_queries": 127
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 0,
+      "top1_accuracy": 0.734,
+      "n_queries": 94
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 1,
+      "top1_accuracy": 0.7234,
+      "n_queries": 94
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 2,
+      "top1_accuracy": 0.7021,
+      "n_queries": 94
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 3,
+      "top1_accuracy": 0.8191,
+      "n_queries": 94
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 4,
+      "top1_accuracy": 0.7766,
+      "n_queries": 94
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 20,
+      "fold": 0,
+      "top1_accuracy": 0.8163,
+      "n_queries": 49
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 20,
+      "fold": 1,
+      "top1_accuracy": 0.7755,
+      "n_queries": 49
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 20,
+      "fold": 2,
+      "top1_accuracy": 0.7551,
+      "n_queries": 49
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 20,
+      "fold": 3,
+      "top1_accuracy": 0.7143,
+      "n_queries": 49
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 20,
+      "fold": 4,
+      "top1_accuracy": 0.8163,
+      "n_queries": 49
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 0,
+      "top1_accuracy": 0.7087,
+      "n_queries": 127
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 1,
+      "top1_accuracy": 0.6929,
+      "n_queries": 127
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 2,
+      "top1_accuracy": 0.7717,
+      "n_queries": 127
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 3,
+      "top1_accuracy": 0.7008,
+      "n_queries": 127
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 4,
+      "top1_accuracy": 0.7244,
+      "n_queries": 127
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 0,
+      "top1_accuracy": 0.7553,
+      "n_queries": 94
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 1,
+      "top1_accuracy": 0.8191,
+      "n_queries": 94
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 2,
+      "top1_accuracy": 0.766,
+      "n_queries": 94
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 3,
+      "top1_accuracy": 0.7872,
+      "n_queries": 94
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 4,
+      "top1_accuracy": 0.7128,
+      "n_queries": 94
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 20,
+      "fold": 0,
+      "top1_accuracy": 0.8367,
+      "n_queries": 49
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 20,
+      "fold": 1,
+      "top1_accuracy": 0.7755,
+      "n_queries": 49
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 20,
+      "fold": 2,
+      "top1_accuracy": 0.7551,
+      "n_queries": 49
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 20,
+      "fold": 3,
+      "top1_accuracy": 0.7959,
+      "n_queries": 49
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 20,
+      "fold": 4,
+      "top1_accuracy": 0.8163,
+      "n_queries": 49
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 5,
+      "fold": 0,
+      "top1_accuracy": 0.4646,
+      "n_queries": 127
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 5,
+      "fold": 1,
+      "top1_accuracy": 0.4803,
+      "n_queries": 127
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 5,
+      "fold": 2,
+      "top1_accuracy": 0.4961,
+      "n_queries": 127
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 5,
+      "fold": 3,
+      "top1_accuracy": 0.4961,
+      "n_queries": 127
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 5,
+      "fold": 4,
+      "top1_accuracy": 0.4803,
+      "n_queries": 127
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 10,
+      "fold": 0,
+      "top1_accuracy": 0.5426,
+      "n_queries": 94
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 10,
+      "fold": 1,
+      "top1_accuracy": 0.6064,
+      "n_queries": 94
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 10,
+      "fold": 2,
+      "top1_accuracy": 0.5106,
+      "n_queries": 94
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 10,
+      "fold": 3,
+      "top1_accuracy": 0.5319,
+      "n_queries": 94
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 10,
+      "fold": 4,
+      "top1_accuracy": 0.5851,
+      "n_queries": 94
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 20,
+      "fold": 0,
+      "top1_accuracy": 0.7551,
+      "n_queries": 49
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 20,
+      "fold": 1,
+      "top1_accuracy": 0.6531,
+      "n_queries": 49
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 20,
+      "fold": 2,
+      "top1_accuracy": 0.5306,
+      "n_queries": 49
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 20,
+      "fold": 3,
+      "top1_accuracy": 0.5306,
+      "n_queries": 49
+    },
+    {
+      "backbone": "panns",
+      "k_shots": 20,
+      "fold": 4,
+      "top1_accuracy": 0.5102,
+      "n_queries": 49
+    }
+  ],
+  "exp3_cross_taxa": [
+    {
+      "backbone": "birdnet",
+      "taxon": "aves",
+      "k_shots": 5,
+      "top1_accuracy": 0.7922,
+      "n_species": 15,
+      "n_queries": 308
+    },
+    {
+      "backbone": "birdnet",
+      "taxon": "mammalia",
+      "k_shots": 5,
+      "top1_accuracy": 0.8803,
+      "n_species": 5,
+      "n_queries": 117
+    },
+    {
+      "backbone": "birdnet",
+      "taxon": "insecta",
+      "k_shots": 5,
+      "top1_accuracy": 0.9349,
+      "n_species": 8,
+      "n_queries": 169
+    },
+    {
+      "backbone": "birdnet",
+      "taxon": "amphibia",
+      "k_shots": 5,
+      "top1_accuracy": 0.9327,
+      "n_species": 5,
+      "n_queries": 104
+    },
+    {
+      "backbone": "perch",
+      "taxon": "aves",
+      "k_shots": 5,
+      "top1_accuracy": 0.7857,
+      "n_species": 15,
+      "n_queries": 308
+    },
+    {
+      "backbone": "perch",
+      "taxon": "mammalia",
+      "k_shots": 5,
+      "top1_accuracy": 0.8376,
+      "n_species": 5,
+      "n_queries": 117
+    },
+    {
+      "backbone": "perch",
+      "taxon": "insecta",
+      "k_shots": 5,
+      "top1_accuracy": 0.8935,
+      "n_species": 8,
+      "n_queries": 169
+    },
+    {
+      "backbone": "perch",
+      "taxon": "amphibia",
+      "k_shots": 5,
+      "top1_accuracy": 0.875,
+      "n_species": 5,
+      "n_queries": 104
+    },
+    {
+      "backbone": "panns",
+      "taxon": "aves",
+      "k_shots": 5,
+      "top1_accuracy": 0.5552,
+      "n_species": 15,
+      "n_queries": 308
+    },
+    {
+      "backbone": "panns",
+      "taxon": "mammalia",
+      "k_shots": 5,
+      "top1_accuracy": 0.7692,
+      "n_species": 5,
+      "n_queries": 117
+    },
+    {
+      "backbone": "panns",
+      "taxon": "insecta",
+      "k_shots": 5,
+      "top1_accuracy": 0.716,
+      "n_species": 8,
+      "n_queries": 169
+    },
+    {
+      "backbone": "panns",
+      "taxon": "amphibia",
+      "k_shots": 5,
+      "top1_accuracy": 0.8365,
+      "n_species": 5,
+      "n_queries": 104
+    }
+  ],
+  "exp4_roc": [
+    {
+      "backbone": "birdnet",
+      "threshold": 0.0,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.02,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.04,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.06,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.08,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.1,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.12,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.14,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.16,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.18,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.2,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.22,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.24,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.26,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.28,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.3,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.32,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.34,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.36,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.38,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.4,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.42,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.44,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.46,
+      "far": 0.9972,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.48,
+      "far": 0.9521,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.5,
+      "far": 0.9127,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.52,
+      "far": 0.8845,
+      "tar": 0.9766
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.54,
+      "far": 0.8507,
+      "tar": 0.9696
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.56,
+      "far": 0.7493,
+      "tar": 0.9509
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.58,
+      "far": 0.6563,
+      "tar": 0.9136
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.6,
+      "far": 0.5577,
+      "tar": 0.8715
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.62,
+      "far": 0.4479,
+      "tar": 0.8364
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.64,
+      "far": 0.3437,
+      "tar": 0.7804
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.66,
+      "far": 0.2704,
+      "tar": 0.722
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.68,
+      "far": 0.231,
+      "tar": 0.6799
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.7,
+      "far": 0.2169,
+      "tar": 0.6472
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.72,
+      "far": 0.2028,
+      "tar": 0.6051
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.74,
+      "far": 0.1831,
+      "tar": 0.5397
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.76,
+      "far": 0.1606,
+      "tar": 0.4977
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.78,
+      "far": 0.1268,
+      "tar": 0.4369
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.8,
+      "far": 0.1014,
+      "tar": 0.3879
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.82,
+      "far": 0.0648,
+      "tar": 0.3107
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.84,
+      "far": 0.0479,
+      "tar": 0.2477
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.86,
+      "far": 0.0338,
+      "tar": 0.1706
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.88,
+      "far": 0.0254,
+      "tar": 0.0911
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.9,
+      "far": 0.0141,
+      "tar": 0.0491
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.92,
+      "far": 0.0,
+      "tar": 0.014
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.94,
+      "far": 0.0,
+      "tar": 0.007
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.96,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.98,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 1.0,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.0,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.02,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.04,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.06,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.08,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.1,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.12,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.14,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.16,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.18,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.2,
+      "far": 0.9944,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.22,
+      "far": 0.9887,
+      "tar": 0.9977
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.24,
+      "far": 0.9634,
+      "tar": 0.986
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.26,
+      "far": 0.8423,
+      "tar": 0.9603
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.28,
+      "far": 0.7352,
+      "tar": 0.9206
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.3,
+      "far": 0.5746,
+      "tar": 0.8785
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.32,
+      "far": 0.4563,
+      "tar": 0.8435
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.34,
+      "far": 0.3915,
+      "tar": 0.8107
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.36,
+      "far": 0.3465,
+      "tar": 0.785
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.38,
+      "far": 0.307,
+      "tar": 0.7523
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.4,
+      "far": 0.2789,
+      "tar": 0.729
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.42,
+      "far": 0.2507,
+      "tar": 0.6916
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.44,
+      "far": 0.2169,
+      "tar": 0.6332
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.46,
+      "far": 0.1915,
+      "tar": 0.6051
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.48,
+      "far": 0.1859,
+      "tar": 0.5561
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.5,
+      "far": 0.1775,
+      "tar": 0.5164
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.52,
+      "far": 0.169,
+      "tar": 0.486
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.54,
+      "far": 0.1577,
+      "tar": 0.4276
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.56,
+      "far": 0.1521,
+      "tar": 0.3762
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.58,
+      "far": 0.1408,
+      "tar": 0.3435
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.6,
+      "far": 0.107,
+      "tar": 0.2921
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.62,
+      "far": 0.0845,
+      "tar": 0.2453
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.64,
+      "far": 0.0704,
+      "tar": 0.2056
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.66,
+      "far": 0.0535,
+      "tar": 0.1472
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.68,
+      "far": 0.0423,
+      "tar": 0.1168
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.7,
+      "far": 0.031,
+      "tar": 0.1028
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.72,
+      "far": 0.0254,
+      "tar": 0.0841
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.74,
+      "far": 0.0254,
+      "tar": 0.0678
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.76,
+      "far": 0.0169,
+      "tar": 0.0514
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.78,
+      "far": 0.0141,
+      "tar": 0.0374
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.8,
+      "far": 0.0056,
+      "tar": 0.0234
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.82,
+      "far": 0.0056,
+      "tar": 0.014
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.84,
+      "far": 0.0,
+      "tar": 0.0117
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.86,
+      "far": 0.0,
+      "tar": 0.007
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.88,
+      "far": 0.0,
+      "tar": 0.0047
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.9,
+      "far": 0.0,
+      "tar": 0.0023
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.92,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.94,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.96,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.98,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 1.0,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.0,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.02,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.04,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.06,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.08,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.1,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.12,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.14,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.16,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.18,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.2,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.22,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.24,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.26,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.28,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.3,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.32,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.34,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.36,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.38,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.4,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.42,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.44,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.46,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.48,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.5,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.52,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.54,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.56,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.58,
+      "far": 0.9972,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.6,
+      "far": 0.9972,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.62,
+      "far": 0.9944,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.64,
+      "far": 0.9944,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.66,
+      "far": 0.9915,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.68,
+      "far": 0.9915,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.7,
+      "far": 0.9887,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.72,
+      "far": 0.9803,
+      "tar": 1.0
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.74,
+      "far": 0.9803,
+      "tar": 0.9977
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.76,
+      "far": 0.969,
+      "tar": 0.9977
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.78,
+      "far": 0.9437,
+      "tar": 0.9907
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.8,
+      "far": 0.907,
+      "tar": 0.965
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.82,
+      "far": 0.8563,
+      "tar": 0.9463
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.84,
+      "far": 0.8141,
+      "tar": 0.9089
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.86,
+      "far": 0.6845,
+      "tar": 0.8551
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.88,
+      "far": 0.5465,
+      "tar": 0.7477
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.9,
+      "far": 0.4169,
+      "tar": 0.6098
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.92,
+      "far": 0.2648,
+      "tar": 0.5304
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.94,
+      "far": 0.1718,
+      "tar": 0.3668
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.96,
+      "far": 0.1042,
+      "tar": 0.2079
+    },
+    {
+      "backbone": "panns",
+      "threshold": 0.98,
+      "far": 0.0028,
+      "tar": 0.0164
+    },
+    {
+      "backbone": "panns",
+      "threshold": 1.0,
+      "far": 0.0,
+      "tar": 0.0
+    }
+  ],
+  "exp5_latency": [
+    {
+      "backbone": "birdnet",
+      "mean_ms": 42.54,
+      "std_ms": 4.25,
+      "min_ms": 39.89,
+      "max_ms": 54.16,
+      "n_trials": 30,
+      "embedding_dim": 1024
+    },
+    {
+      "backbone": "perch",
+      "mean_ms": 127.18,
+      "std_ms": 13.74,
+      "min_ms": 106.85,
+      "max_ms": 170.68,
+      "n_trials": 30,
+      "embedding_dim": 1280
+    },
+    {
+      "backbone": "panns",
+      "mean_ms": 105.65,
+      "std_ms": 6.82,
+      "min_ms": 93.08,
+      "max_ms": 127.05,
+      "n_trials": 30,
+      "embedding_dim": 2048
+    }
+  ],
+  "summary": {
+    "birdnet_K5_mean_acc": 0.7134,
+    "birdnet_K10_mean_acc": 0.751,
+    "birdnet_K20_mean_acc": 0.7755,
+    "perch_K5_mean_acc": 0.7197,
+    "perch_K10_mean_acc": 0.7681,
+    "perch_K20_mean_acc": 0.7959,
+    "panns_K5_mean_acc": 0.4835,
+    "panns_K10_mean_acc": 0.5553,
+    "panns_K20_mean_acc": 0.5959,
+    "birdnet_latency_mean_ms": 42.54,
+    "perch_latency_mean_ms": 127.18,
+    "panns_latency_mean_ms": 105.65,
+    "exp1_birdnet_stock_accuracy": 0.2449,
+    "exp1_anycall_accuracy": 0.7245
+  },
+  "errors": []
+}

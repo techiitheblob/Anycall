@@ -384,26 +384,63 @@ class BenchmarkRunner:
         return results
 
     def _build_taxon_lookup(self, species_ids: List[str]) -> Dict[str, str]:
-        """Map species_id → taxon string by importing the species catalog."""
+        """Map species_id -> taxon string.
+
+        Priority:
+        1. SPECIES_CATALOG (main 33-species catalog)
+        2. supplementary_taxa.json (extra downloaded species)
+        3. Name-based heuristic fallback
+        """
+        lookup: Dict[str, str] = {}
+
+        # 1. Main catalog (SPECIES_CATALOG is {sp_id: SpeciesRecord})
         try:
             from anycall.data.species import SPECIES_CATALOG
-            lookup = {s.species_id: s.taxon.value for s in SPECIES_CATALOG}
-            return lookup
+            for sp_id, sp_rec in SPECIES_CATALOG.items():
+                lookup[sp_id] = sp_rec.taxon.value
         except Exception:
             pass
-        # Fallback heuristic
-        result = {}
+
+        # 2. Supplementary JSON (written by download_extra_species.py)
+        supp_path = Path("data/supplementary_taxa.json")
+        if supp_path.exists():
+            try:
+                import json
+                with open(supp_path) as f:
+                    supp = json.load(f)
+                lookup.update(supp)
+            except Exception:
+                pass
+
+        # 3. Heuristic fallback for anything still unmapped
+        insecta_keys  = ["gryllus", "teleogryllus", "oecanthus", "mecopoda",
+                         "cryptotympana", "purana", "euconocephalus", "gryllotalpa",
+                         "cicada", "cricket", "katydid", "locust", "acrid", "hierodula",
+                         "conocephalus", "homorocoryphus", "gampsocleis", "valanga",
+                         "hieroglyphus", "acheta", "schistocerca"]
+        amphibia_keys = ["hoplobatrachus", "duttaphrynus", "polypedates", "euphlyctis",
+                         "hydrophylax", "microhyla", "kaloula", "sphaerotheca",
+                         "fejervarya", "nyctibatrachus", "uperodon", "minervarya",
+                         "raorchestes", "indirana", "nasikabatrachus", "xanthophryne"]
+        mammalia_keys = ["funambulus", "macaca", "semnopithecus", "canis", "muntiacus",
+                         "elephas", "panthera", "axis", "vulpes", "sus", "boselaphus",
+                         "cervus", "rusa", "antilope", "bos", "bubalus", "herpestes",
+                         "viverra", "felis", "prionailurus", "melursus", "hystrix"]
+
         for sp in species_ids:
+            if sp in lookup:
+                continue
             low = sp.lower()
-            if any(k in low for k in ["frog", "microhyla", "dicroglossus", "fejer", "kalo"]):
-                result[sp] = "amphibia"
-            elif any(k in low for k in ["gryllus", "cricke", "cicada", "acrida", "hierodula"]):
-                result[sp] = "insecta"
-            elif any(k in low for k in ["rattus", "elephas", "manis", "loris", "cynopter"]):
-                result[sp] = "mammalia"
+            if any(k in low for k in amphibia_keys):
+                lookup[sp] = "amphibia"
+            elif any(k in low for k in insecta_keys):
+                lookup[sp] = "insecta"
+            elif any(k in low for k in mammalia_keys):
+                lookup[sp] = "mammalia"
             else:
-                result[sp] = "aves"
-        return result
+                lookup[sp] = "aves"
+
+        return lookup
 
     # ------------------------------------------------------------------
     # Exp 4: Rejection quality ROC

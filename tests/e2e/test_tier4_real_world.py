@@ -126,7 +126,12 @@ class TestFieldMonitoringContinuousStream(unittest.TestCase):
         self.db_path = self.tmp_path / "field_station.db"
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        if HAVE_STORAGE:
+            DatabaseManager.close_all()
+        try:
+            self.temp_dir.cleanup()
+        except Exception:
+            pass
 
     def test_continuous_audio_stream_field_monitoring_pipeline(self):
         """Simulates 12-second continuous audio:
@@ -307,7 +312,12 @@ class TestFieldMonitoringEdgeAndStressScenarios(unittest.TestCase):
         self.db_path = self.tmp_path / "stress_test.db"
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        if HAVE_STORAGE:
+            DatabaseManager.close_all()
+        try:
+            self.temp_dir.cleanup()
+        except Exception:
+            pass
 
     def test_saturated_clipped_call_pipeline_stability(self):
         """Hard clipped animal call must not produce NaNs, Infs, or pipeline crashes."""

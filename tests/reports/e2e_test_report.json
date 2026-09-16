@@ -1,0 +1,327 @@
+{
+  "timestamp": "2026-09-16T20:45:50Z",
+  "tier_selection": "all",
+  "total_elapsed_sec": 3.8713,
+  "success": true,
+  "tiers": {
+    "Tier 1": {
+      "total": 19,
+      "passed": 19,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "duration": 0.2130349000071874
+    },
+    "Tier 2": {
+      "total": 14,
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "duration": 1.0712471999868285
+    },
+    "Tier 3": {
+      "total": 15,
+      "passed": 15,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "duration": 0.24358290000236593
+    },
+    "Tier 4": {
+      "total": 9,
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "duration": 1.1157126000034623
+    }
+  },
+  "tests": [
+    {
+      "test_id": "test_tier1_features.TestAudioSlicingAndVADContract.test_slice_audio_segments_padding_short_audio",
+      "status": "PASSED",
+      "duration_sec": 0.0037
+    },
+    {
+      "test_id": "test_tier1_features.TestAudioSlicingAndVADContract.test_slice_audio_segments_uniform_shape",
+      "status": "PASSED",
+      "duration_sec": 0.0381
+    },
+    {
+      "test_id": "test_tier1_features.TestAudioSlicingAndVADContract.test_slice_audio_segments_vad_animal_call_retained",
+      "status": "PASSED",
+      "duration_sec": 0.0143
+    },
+    {
+      "test_id": "test_tier1_features.TestAudioSlicingAndVADContract.test_slice_audio_segments_vad_silence_discard",
+      "status": "PASSED",
+      "duration_sec": 0.0003
+    },
+    {
+      "test_id": "test_tier1_features.TestAudioStandardizationContract.test_standardize_audio_from_wav_file",
+      "status": "PASSED",
+      "duration_sec": 0.0236
+    },
+    {
+      "test_id": "test_tier1_features.TestAudioStandardizationContract.test_standardize_audio_output_path_saving",
+      "status": "PASSED",
+      "duration_sec": 0.0191
+    },
+    {
+      "test_id": "test_tier1_features.TestAudioStandardizationContract.test_standardize_audio_various_sample_rates",
+      "status": "PASSED",
+      "duration_sec": 0.0482
+    },
+    {
+      "test_id": "test_tier1_features.TestIndianSpeciesCatalogContract.test_species_catalog_completeness_33_species",
+      "status": "PASSED",
+      "duration_sec": 0.0
+    },
+    {
+      "test_id": "test_tier1_features.TestIndianSpeciesCatalogContract.test_species_catalog_fields_schema",
+      "status": "PASSED",
+      "duration_sec": 0.0
+    },
+    {
+      "test_id": "test_tier1_features.TestIndianSpeciesCatalogContract.test_species_catalog_includes_corvus_splendens",
+      "status": "PASSED",
+      "duration_sec": 0.0
+    },
+    {
+      "test_id": "test_tier1_features.TestIndianSpeciesCatalogContract.test_species_catalog_taxa_distribution",
+      "status": "PASSED",
+      "duration_sec": 0.0001
+    },
+    {
+      "test_id": "test_tier1_features.TestMockDataFixturesSelfVerification.test_mock_embeddings_unit_norm_and_clustering",
+      "status": "PASSED",
+      "duration_sec": 0.0004
+    },
+    {
+      "test_id": "test_tier1_features.TestMockDataFixturesSelfVerification.test_mock_xeno_canto_response_schema",
+      "status": "PASSED",
+      "duration_sec": 0.0001
+    },
+    {
+      "test_id": "test_tier1_features.TestSyntheticAudioFixturesSelfVerification.test_animal_call_all_taxa",
+      "status": "PASSED",
+      "duration_sec": 0.0404
+    },
+    {
+      "test_id": "test_tier1_features.TestSyntheticAudioFixturesSelfVerification.test_broadband_noise_determinism",
+      "status": "PASSED",
+      "duration_sec": 0.0022
+    },
+    {
+      "test_id": "test_tier1_features.TestSyntheticAudioFixturesSelfVerification.test_harmonic_chirp_properties",
+      "status": "PASSED",
+      "duration_sec": 0.009
+    },
+    {
+      "test_id": "test_tier1_features.TestSyntheticAudioFixturesSelfVerification.test_pure_tone_generation_properties",
+      "status": "PASSED",
+      "duration_sec": 0.0023
+    },
+    {
+      "test_id": "test_tier1_features.TestSyntheticAudioFixturesSelfVerification.test_transient_pulse_properties",
+      "status": "PASSED",
+      "duration_sec": 0.0018
+    },
+    {
+      "test_id": "test_tier1_features.TestSyntheticAudioFixturesSelfVerification.test_wav_roundtrip_fidelity",
+      "status": "PASSED",
+      "duration_sec": 0.0087
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestBoundaryFixturesSelfVerification.test_clipped_audio_fixture_saturation",
+      "status": "PASSED",
+      "duration_sec": 0.0014
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestBoundaryFixturesSelfVerification.test_corrupted_wav_generator_file_sizes",
+      "status": "PASSED",
+      "duration_sec": 0.006
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestBoundaryFixturesSelfVerification.test_dc_offset_fixture_mean",
+      "status": "PASSED",
+      "duration_sec": 0.0022
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestCorruptedAndDegenerateAudio.test_corrupted_header_non_wav_raises_error",
+      "status": "PASSED",
+      "duration_sec": 0.0026
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestCorruptedAndDegenerateAudio.test_empty_zero_byte_file_raises_error",
+      "status": "PASSED",
+      "duration_sec": 0.0017
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestCorruptedAndDegenerateAudio.test_invalid_magic_bytes_raises_error",
+      "status": "PASSED",
+      "duration_sec": 0.0025
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestCorruptedAndDegenerateAudio.test_random_binary_garbage_raises_error",
+      "status": "PASSED",
+      "duration_sec": 0.0025
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestCorruptedAndDegenerateAudio.test_truncated_wav_header_raises_error",
+      "status": "PASSED",
+      "duration_sec": 0.9973
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestExtremeAudioSignals.test_clipped_audio_overflow_no_nan_or_inf",
+      "status": "PASSED",
+      "duration_sec": 0.015
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestExtremeAudioSignals.test_dc_offset_audio_stability",
+      "status": "PASSED",
+      "duration_sec": 0.0116
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestExtremeAudioSignals.test_digital_silence_all_zeros_no_division_by_zero",
+      "status": "PASSED",
+      "duration_sec": 0.0008
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestExtremeAudioSignals.test_extreme_dynamic_range_inaudible_signal",
+      "status": "PASSED",
+      "duration_sec": 0.0026
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestExtremeAudioSignals.test_extreme_sample_rates_telephony_and_ultrasonic",
+      "status": "PASSED",
+      "duration_sec": 0.024
+    },
+    {
+      "test_id": "test_tier2_boundaries.TestExtremeAudioSignals.test_sub_frame_short_audio_length_safety",
+      "status": "PASSED",
+      "duration_sec": 0.0007
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestAudioToEmbeddingPipelineIntegration.test_backbone_file_path_and_array_parity",
+      "status": "PASSED",
+      "duration_sec": 0.0283
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestAudioToEmbeddingPipelineIntegration.test_slices_to_mock_backbone_embedding",
+      "status": "PASSED",
+      "duration_sec": 0.023
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestAudioToEmbeddingPipelineIntegration.test_wav_file_to_standardized_slices_pipeline",
+      "status": "PASSED",
+      "duration_sec": 0.0459
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestCrossFeatureMathematicalAndSchemaContracts.test_centroid_formula_algebraic_correctness",
+      "status": "PASSED",
+      "duration_sec": 0.0012
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestCrossFeatureMathematicalAndSchemaContracts.test_sqlite_schema_specification_contract",
+      "status": "PASSED",
+      "duration_sec": 0.016
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestEndToEndCrossFeatureIntegrationPipeline.test_full_cross_feature_lifecycle",
+      "status": "PASSED",
+      "duration_sec": 0.09
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestIncrementalPrototypeUpdate.test_incremental_prototype_update_mathematical_identity",
+      "status": "PASSED",
+      "duration_sec": 0.0011
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestIncrementalPrototypeUpdate.test_single_sample_incremental_update",
+      "status": "PASSED",
+      "duration_sec": 0.0005
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestPrototypicalClassificationEngineContract.test_multi_species_enrollment_and_classification",
+      "status": "PASSED",
+      "duration_sec": 0.0025
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestPrototypicalClassificationEngineContract.test_open_set_rejection_below_threshold",
+      "status": "PASSED",
+      "duration_sec": 0.0009
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestPrototypicalClassificationEngineContract.test_prototype_centroid_unit_normalization",
+      "status": "PASSED",
+      "duration_sec": 0.0008
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestPrototypicalClassificationEngineContract.test_tunable_rejection_threshold_sweep",
+      "status": "PASSED",
+      "duration_sec": 0.0009
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestSQLiteDatabasePersistencePipeline.test_log_detection_event_and_query",
+      "status": "PASSED",
+      "duration_sec": 0.0144
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestSQLiteDatabasePersistencePipeline.test_save_and_retrieve_prototype_blob_fidelity",
+      "status": "PASSED",
+      "duration_sec": 0.0152
+    },
+    {
+      "test_id": "test_tier3_cross_feature.TestSubPrototypeClustering.test_sub_prototype_clustering_multi_call_variance",
+      "status": "PASSED",
+      "duration_sec": 0.0023
+    },
+    {
+      "test_id": "test_tier4_real_world.TestCrossTaxaScenariosAllFourTaxa.test_all_four_taxa_enrollment_and_classification",
+      "status": "PASSED",
+      "duration_sec": 0.0038
+    },
+    {
+      "test_id": "test_tier4_real_world.TestCrossTaxaScenariosAllFourTaxa.test_cross_taxa_confusion_rejection",
+      "status": "PASSED",
+      "duration_sec": 0.0017
+    },
+    {
+      "test_id": "test_tier4_real_world.TestFieldMonitoringContinuousStream.test_continuous_audio_stream_field_monitoring_pipeline",
+      "status": "PASSED",
+      "duration_sec": 0.8123
+    },
+    {
+      "test_id": "test_tier4_real_world.TestFieldMonitoringEdgeAndStressScenarios.test_high_volume_rapid_detection_logging",
+      "status": "PASSED",
+      "duration_sec": 0.2284
+    },
+    {
+      "test_id": "test_tier4_real_world.TestFieldMonitoringEdgeAndStressScenarios.test_saturated_clipped_call_pipeline_stability",
+      "status": "PASSED",
+      "duration_sec": 0.0122
+    },
+    {
+      "test_id": "test_tier4_real_world.TestRealWorldFixturesAndSNRMathematics.test_all_taxa_animal_call_duration_and_rms_validity",
+      "status": "PASSED",
+      "duration_sec": 0.0417
+    },
+    {
+      "test_id": "test_tier4_real_world.TestRealWorldFixturesAndSNRMathematics.test_snr_mixing_mathematical_precision",
+      "status": "PASSED",
+      "duration_sec": 0.0121
+    },
+    {
+      "test_id": "test_tier4_real_world.TestUnknownSoundRejectionUnderRealisticSNR.test_rejection_of_broadband_environmental_noise",
+      "status": "PASSED",
+      "duration_sec": 0.0011
+    },
+    {
+      "test_id": "test_tier4_real_world.TestUnknownSoundRejectionUnderRealisticSNR.test_unknown_novel_wildlife_rejection",
+      "status": "PASSED",
+      "duration_sec": 0.0022
+    }
+  ]
+}

@@ -320,8 +320,8 @@ class TestSubPrototypeClustering(unittest.TestCase):
 
         # Generate bimodal embeddings: call type A vs call type B
         dim = 256
-        embs_call_a = generate_mock_batch_embeddings("sp_call_a", count=10, dim=dim, base_seed=10)
-        embs_call_b = generate_mock_batch_embeddings("sp_call_b", count=10, dim=dim, base_seed=20)
+        embs_call_a = generate_mock_batch_embeddings("sp_call_a", count=15, dim=dim, base_seed=10)
+        embs_call_b = generate_mock_batch_embeddings("sp_call_b", count=5, dim=dim, base_seed=20)
         mixed_embs = embs_call_a + embs_call_b
 
         # Measure cosine variance
@@ -347,7 +347,12 @@ class TestSQLiteDatabasePersistencePipeline(unittest.TestCase):
         self.db_path = Path(self.temp_dir.name) / "test_anycall.db"
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        if HAVE_STORAGE:
+            DatabaseManager.close_all()
+        try:
+            self.temp_dir.cleanup()
+        except Exception:
+            pass
 
     def test_save_and_retrieve_prototype_blob_fidelity(self):
         """Serialized BLOB prototype must restore with bitwise or float32 precision."""
@@ -510,7 +515,12 @@ class TestEndToEndCrossFeatureIntegrationPipeline(unittest.TestCase):
         self.db_path = self.tmp_path / "e2e_pipeline.db"
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        if HAVE_STORAGE:
+            DatabaseManager.close_all()
+        try:
+            self.temp_dir.cleanup()
+        except Exception:
+            pass
 
     def test_full_cross_feature_lifecycle(self):
         """Executes the full pipeline:

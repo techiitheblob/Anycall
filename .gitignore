@@ -32,5 +32,10 @@ Thumbs.db
 # Agent workspaces
 .agents/
 
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
 # Jupyter
 .ipynb_checkpoints/

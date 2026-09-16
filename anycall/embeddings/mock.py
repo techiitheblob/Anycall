@@ -46,6 +46,19 @@ class MockBackbone(BaseAudioEmbeddingBackbone):
         self._fixed_seed = seed
         self._sample_rate = int(sample_rate)
 
+        # Precompute deterministic spectral band projection
+        self._n_bands = 64
+        self._edges = np.geomspace(80.0, 14000.0, self._n_bands + 1, dtype=np.float32)
+        rng_proj = np.random.default_rng(42)
+        if self._dim >= self._n_bands:
+            w_raw = rng_proj.standard_normal((self._dim, self._n_bands)).astype(np.float32)
+            q, _ = np.linalg.qr(w_raw)
+            self._proj = q.T.astype(np.float32)
+        else:
+            w_raw = rng_proj.standard_normal((self._n_bands, self._dim)).astype(np.float32)
+            q, _ = np.linalg.qr(w_raw)
+            self._proj = q[: self._n_bands, : self._dim].astype(np.float32)
+
     @property
     def name(self) -> str:
         """Name identifier of the backbone."""
@@ -67,7 +80,7 @@ class MockBackbone(BaseAudioEmbeddingBackbone):
         return 3.0
 
     def _extract_impl(self, waveform: np.ndarray) -> np.ndarray:
-        """Deterministic feature generator using SHA-256 audio hashing.
+        """Deterministic feature generator using spectral band projection.
 
         Args:
             waveform: 1D float32 numpy array at target_sample_rate.
@@ -76,33 +89,46 @@ class MockBackbone(BaseAudioEmbeddingBackbone):
             1D float32 numpy array of shape (self.embedding_dim,) with unit L2 norm.
         """
         if self._fixed_seed is not None:
-            seed = self._fixed_seed
+            rng = np.random.default_rng(self._fixed_seed)
+            raw_vec = rng.standard_normal(self._dim).astype(np.float32)
+            norm = float(np.linalg.norm(raw_vec))
+            return (raw_vec / norm if norm > 1e-12 else raw_vec).astype(np.float32)
+
+        # Fast-path finite sanitization (avoids copy if already clean)
+        if not np.all(np.isfinite(waveform)):
+            clean_audio = np.nan_to_num(waveform, nan=0.0, posinf=1.0, neginf=-1.0)
         else:
-            # Fast-path finite sanitization (avoids copy if already clean)
-            if not np.all(np.isfinite(waveform)):
-                clean_audio = np.nan_to_num(waveform, nan=0.0, posinf=1.0, neginf=-1.0)
-            else:
-                clean_audio = waveform
+            clean_audio = waveform
 
-            # Ensure contiguous memory layout for hashing
-            audio_bytes = np.ascontiguousarray(clean_audio, dtype=np.float32).tobytes()
+        peak = float(np.max(np.abs(clean_audio)))
+        if peak < 1e-6:
+            vec = np.zeros(self._dim, dtype=np.float32)
+            vec[0] = np.float32(1.0)
+            return vec
 
-            # Deterministic SHA-256 digest
-            digest = hashlib.sha256(audio_bytes).digest()
+        sub = clean_audio[: min(len(clean_audio), 16384)]
+        fft_mag = np.abs(np.fft.rfft(sub))
+        freqs = np.fft.rfftfreq(len(sub), 1.0 / self._sample_rate)
 
-            # Derive 64-bit integer seed from initial 8 bytes of hash digest
-            seed = int.from_bytes(digest[:8], byteorder="little")
+        band_indices = np.digitize(freqs, self._edges) - 1
+        valid = (band_indices >= 0) & (band_indices < self._n_bands)
+        be = np.bincount(
+            band_indices[valid], weights=fft_mag[valid] ** 2, minlength=self._n_bands
+        ).astype(np.float32)
 
-        # Generate Gaussian pseudo-random vector from seed
-        rng = np.random.default_rng(seed)
-        raw_vec = rng.standard_normal(self._dim).astype(np.float32)
+        b_peak = float(np.max(be))
+        if b_peak > 1e-12:
+            be = np.where(be > 0.01 * b_peak, be, np.float32(0.0))
+            b_norm = float(np.linalg.norm(be))
+            if b_norm > 1e-12:
+                be = be / b_norm
 
-        # Enforce unit L2-normalization
-        norm = float(np.linalg.norm(raw_vec))
+        vec = be @ self._proj
+        norm = float(np.linalg.norm(vec))
         if norm > 1e-12:
-            norm_vec = raw_vec / norm
+            vec = vec / norm
         else:
-            norm_vec = np.zeros(self._dim, dtype=np.float32)
-            norm_vec[0] = np.float32(1.0)
+            vec = np.zeros(self._dim, dtype=np.float32)
+            vec[0] = np.float32(1.0)
 
-        return norm_vec.astype(np.float32)
+        return vec.astype(np.float32)

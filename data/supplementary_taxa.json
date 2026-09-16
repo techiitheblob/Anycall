@@ -1,0 +1,20 @@
+{
+  "hieroglyphus_banian": "insecta",
+  "homorocoryphus_nitidulus": "insecta",
+  "conocephalus_maculatus": "insecta",
+  "acheta_domesticus": "insecta",
+  "valanga_irregularis": "insecta",
+  "schistocerca_gregaria": "insecta",
+  "microhyla_ornata": "amphibia",
+  "fejervarya_limnocharis": "amphibia",
+  "kaloula_taprobanica": "amphibia",
+  "sphaerotheca_breviceps": "amphibia",
+  "uperodon_systoma": "amphibia",
+  "nyctibatrachus_major": "amphibia",
+  "elephas_maximus": "mammalia",
+  "panthera_tigris": "mammalia",
+  "axis_axis": "mammalia",
+  "vulpes_bengalensis": "mammalia",
+  "sus_scrofa": "mammalia",
+  "melursus_ursinus": "mammalia"
+}
