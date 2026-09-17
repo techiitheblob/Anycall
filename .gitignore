@@ -35,7 +35,6 @@ Thumbs.db
 .agents/
 
 # SQLite databases
-*.db
 *.sqlite
 *.sqlite3
 
