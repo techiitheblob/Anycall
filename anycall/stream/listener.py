@@ -45,6 +45,8 @@ class ContinuousMicrophoneListener:
         energy_threshold: float = 0.005,
         detections_dir: Union[str, Path] = "data/detections",
         rejection_threshold: Optional[float] = None,
+        ema_alpha: float = 0.55,
+        margin_threshold: float = 0.015,
     ):
         self.classifier = classifier
         self.backbone = backbone
@@ -57,11 +59,17 @@ class ContinuousMicrophoneListener:
         self.hop_samples = int(round(self.sample_rate * self.hop_seconds))
         self.energy_threshold = float(energy_threshold)
         self.rejection_threshold = rejection_threshold
+        self.ema_alpha = float(ema_alpha)
+        self.margin_threshold = float(margin_threshold)
 
         self.detections_dir = Path(detections_dir)
         self.detections_dir.mkdir(parents=True, exist_ok=True)
 
         self.vad = EnergyVAD(sr=self.sample_rate)
+
+        # Temporal EMA smoothing & Margin gating state
+        self._smoothed_scores: Dict[str, float] = {}
+        self._last_vocal_time: float = 0.0
 
         # Threading and buffers
         self._is_running = False
@@ -173,7 +181,7 @@ class ContinuousMicrophoneListener:
         logger.info("[ContinuousMic] Ingest worker thread terminated.")
 
     def _process_active_vocalization(self, audio_clip: np.ndarray):
-        """Performs embedding extraction, classification, logging, and quarantine."""
+        """Performs embedding extraction, EMA temporal smoothing, margin gating, and logging."""
         try:
             now_iso = datetime.now(timezone.utc).isoformat()
             ts_str = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:19]
@@ -192,20 +200,61 @@ class ContinuousMicrophoneListener:
                 else self.classifier.threshold
             )
 
-            pred: PredictionResult = self.classifier.predict(emb, threshold=theta)
+            raw_pred: PredictionResult = self.classifier.predict(emb, threshold=theta)
             audio_hash = hashlib.sha256(audio_clip.tobytes()).hexdigest()[:16]
+
+            # Temporal EMA Smoothing across stream hops
+            current_time = time.time()
+            if current_time - self._last_vocal_time > 3.5:
+                # Reset smoothed scores if silence/gap between vocalizations exceeds 3.5s
+                self._smoothed_scores.clear()
+            self._last_vocal_time = current_time
+
+            for sp, score in raw_pred.scores.items():
+                if sp in self._smoothed_scores:
+                    self._smoothed_scores[sp] = (
+                        self.ema_alpha * score + (1.0 - self.ema_alpha) * self._smoothed_scores[sp]
+                    )
+                else:
+                    self._smoothed_scores[sp] = score
+
+            # Sort candidate species by smoothed scores
+            sorted_candidates = sorted(
+                self._smoothed_scores.items(), key=lambda item: item[1], reverse=True
+            )
+
+            best_candidate_hint = "Unknown"
+            if sorted_candidates:
+                top1_sp, top1_score = sorted_candidates[0]
+                top2_score = sorted_candidates[1][1] if len(sorted_candidates) > 1 else 0.0
+                margin = top1_score - top2_score
+                best_candidate_hint = top1_sp
+
+                # Gating: Must meet both absolute threshold theta AND minimum top-1 separation margin
+                if top1_score >= theta and margin >= self.margin_threshold:
+                    predicted_label = top1_sp
+                    confidence = float(top1_score)
+                    is_known = True
+                else:
+                    predicted_label = "Unknown"
+                    confidence = float(top1_score)
+                    is_known = False
+            else:
+                predicted_label = "Unknown"
+                confidence = 0.0
+                is_known = False
 
             # Log to SQLite detections table
             self.db_mgr.log_detection(
-                species_id=pred.predicted_label,
-                confidence=pred.confidence,
+                species_id=predicted_label,
+                confidence=confidence,
                 audio_hash=audio_hash,
                 threshold=theta,
             )
             self._detections_logged += 1
 
-            # If rejected (< theta), quarantine to UnidentifiedSoundBank
-            if not pred.is_known:
+            # If rejected (< theta or insufficient margin), quarantine to UnidentifiedSoundBank
+            if not is_known:
                 self.sound_bank.add(
                     embedding=emb,
                     audio_path=str(save_path),
@@ -213,33 +262,31 @@ class ContinuousMicrophoneListener:
                 )
                 self.db_mgr.save_unidentified(
                     embedding=emb,
-                    best_match=pred.predicted_label,
-                    score=pred.confidence,
+                    best_match=best_candidate_hint,
+                    score=confidence,
                     audio_path=str(save_path),
                 )
 
             # Update latest detection telemetry
-            sorted_candidates = sorted(
-                pred.scores.items(), key=lambda item: item[1], reverse=True
-            )[:5]
+            top_candidates = sorted_candidates[:5] if sorted_candidates else []
 
             detection_event = {
                 "timestamp": now_iso,
-                "species_id": pred.predicted_label,
-                "confidence": round(pred.confidence, 4),
-                "is_known": pred.is_known,
+                "species_id": predicted_label,
+                "confidence": round(confidence, 4),
+                "is_known": is_known,
                 "audio_path": str(save_path.name),
                 "threshold": theta,
                 "candidates": [
-                    {"species": k, "score": round(v, 4)} for k, v in sorted_candidates
+                    {"species": k, "score": round(v, 4)} for k, v in top_candidates
                 ],
             }
             self._last_detection = detection_event
 
-            status_str = "KNOWN" if pred.is_known else "UNKNOWN (QUARANTINED)"
+            status_str = "KNOWN" if is_known else "UNKNOWN (QUARANTINED)"
             logger.info(
-                f"[ContinuousMic] Event detected: {pred.predicted_label} "
-                f"(conf: {pred.confidence:.3f}, status: {status_str})"
+                f"[ContinuousMic] Event detected: {predicted_label} "
+                f"(conf: {confidence:.3f}, status: {status_str}, margin: {(margin if sorted_candidates else 0.0):.4f})"
             )
 
         except Exception as ex:
@@ -258,6 +305,8 @@ class ContinuousMicrophoneListener:
         self._start_time = time.time()
         self._audio_buffer.clear()
         self._new_samples_count = 0
+        self._smoothed_scores.clear()
+        self._last_vocal_time = 0.0
 
         # Launch background audio stream
         self._stream = sd.InputStream(
@@ -286,6 +335,8 @@ class ContinuousMicrophoneListener:
             return
 
         self._is_running = False
+        self._smoothed_scores.clear()
+        self._last_vocal_time = 0.0
 
         if self._stream is not None:
             try:
@@ -330,7 +381,7 @@ def main():
     parser = argparse.ArgumentParser(description="AnyCall Continuous Microphone Stream Listener")
     parser.add_argument("--db", type=str, default="anycall.db", help="Path to SQLite database")
     parser.add_argument("--backbone", type=str, default="birdnet", help="Embedding backbone (birdnet, perch, panns, mock)")
-    parser.add_argument("--threshold", type=float, default=0.65, help="Rejection threshold theta")
+    parser.add_argument("--threshold", type=float, default=0.72, help="Rejection threshold theta (default: 0.72)")
     parser.add_argument("--device", type=int, default=None, help="Input device index (optional)")
     parser.add_argument("--list-devices", action="store_true", help="List audio input devices and exit")
     args = parser.parse_args()

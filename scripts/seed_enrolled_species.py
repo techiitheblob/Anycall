@@ -1,4 +1,4 @@
-﻿"""AnyCall Seed Enrolled Species Script.
+"""AnyCall Seed Enrolled Species Script.
 
 Extracts embeddings for all 33 curated resident Indian wildlife species
 from data/processed/ and enrolls their centroid prototypes into anycall.db.
@@ -20,7 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description="Seed AnyCall Database with Curated Species Prototypes")
     parser.add_argument("--db", type=str, default="anycall.db", help="Path to SQLite database")
     parser.add_argument("--data-dir", type=str, default="data/processed", help="Path to processed audio directory")
-    parser.add_argument("--max-samples", type=int, default=20, help="Maximum audio samples per species prototype")
+    parser.add_argument("--max-samples", type=int, default=100, help="Maximum audio samples per species prototype")
     args = parser.parse_args()
 
     processed_path = Path(args.data_dir)

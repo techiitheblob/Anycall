@@ -48,7 +48,7 @@ class PromoteClusterRequest(BaseModel):
 def create_app(
     db_path: str = "anycall.db",
     backbone_name: str = "birdnet",
-    default_threshold: float = 0.65,
+    default_threshold: float = 0.72,
     upload_dir: str = "data/uploads",
 ) -> FastAPI:
     """Factory creating and configuring the AnyCall Portal FastAPI application."""

@@ -14,7 +14,7 @@ def main():
     parser.add_argument("--port", type=int, default=8000, help="Port to bind (default: 8000)")
     parser.add_argument("--db", type=str, default="anycall.db", help="SQLite database path (default: anycall.db)")
     parser.add_argument("--backbone", type=str, default="birdnet", help="Active backbone (birdnet, perch, panns, mock)")
-    parser.add_argument("--threshold", type=float, default=0.65, help="Rejection threshold theta (default: 0.65)")
+    parser.add_argument("--threshold", type=float, default=0.72, help="Rejection threshold theta (default: 0.72)")
     parser.add_argument("--listen-mic", action="store_true", help="Start continuous live microphone listening on launch")
     parser.add_argument("--mic-device", type=int, default=None, help="Microphone device index (default: system default)")
     parser.add_argument("--reload", action="store_true", help="Enable auto-reload for local development")

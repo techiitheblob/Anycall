@@ -17,6 +17,8 @@ env/
 # Data (large files, re-downloadable)
 data/raw/
 data/processed/
+data/detections/
+data/uploads/
 
 # ML model weights (re-downloadable)
 models/
