@@ -201,9 +201,14 @@
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-            <select id="mic-device-select" class="form-select" style="width: auto; min-width: 240px; font-size: 0.82rem; padding: 0.45rem 0.65rem;">
+            <select id="mic-device-select" class="form-select" style="width: auto; min-width: 200px; font-size: 0.82rem; padding: 0.45rem 0.65rem;">
               <option value="">Default Input Device</option>
             </select>
+            <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(15, 23, 42, 0.7); padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+              <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 500;">Threshold (&theta;):</span>
+              <input type="range" id="mic-live-threshold" min="0.45" max="0.85" step="0.01" value="0.60" style="width: 100px; accent-color: var(--accent); cursor: pointer;" oninput="updateLiveThreshold(this.value)">
+              <span id="mic-live-threshold-val" style="font-size: 0.85rem; font-weight: 700; color: var(--accent); min-width: 35px;">0.60</span>
+            </div>
             <button id="btn-toggle-mic" class="btn" onclick="toggleContinuousMic()" style="padding: 0.55rem 1.15rem; font-weight: 700;">
               <span id="mic-btn-icon">🎙️</span> <span id="mic-btn-label">Start Listening</span>
             </button>
@@ -396,8 +401,8 @@
           </p>
 
           <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-            <input type="range" id="setting-threshold" min="0.50" max="0.90" step="0.01" value="0.72" style="flex: 1; accent-color: var(--accent);" oninput="document.getElementById('threshold-display').innerText = parseFloat(this.value).toFixed(2)">
-            <span id="threshold-display" style="font-size: 1.5rem; font-weight: 700; color: var(--accent); min-width: 50px;">0.72</span>
+            <input type="range" id="setting-threshold" min="0.45" max="0.85" step="0.01" value="0.60" style="flex: 1; accent-color: var(--accent);" oninput="document.getElementById('threshold-display').innerText = parseFloat(this.value).toFixed(2)">
+            <span id="threshold-display" style="font-size: 1.5rem; font-weight: 700; color: var(--accent); min-width: 50px;">0.60</span>
           </div>
 
           <button class="btn" onclick="saveThreshold()">💾 Save Threshold</button>
@@ -874,6 +879,32 @@
     }
 
     // Settings
+    let liveThresholdTimer = null;
+    function updateLiveThreshold(val) {
+      const num = parseFloat(val);
+      document.getElementById("mic-live-threshold-val").innerText = num.toFixed(2);
+      const setInput = document.getElementById("setting-threshold");
+      if (setInput) setInput.value = num.toFixed(2);
+      const dispSpan = document.getElementById("threshold-display");
+      if (dispSpan) dispSpan.innerText = num.toFixed(2);
+
+      clearTimeout(liveThresholdTimer);
+      liveThresholdTimer = setTimeout(async () => {
+        try {
+          const res = await fetch("/api/settings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ threshold: num })
+          });
+          if (res.ok) {
+            showToast(`Decision threshold &theta; set to ${num.toFixed(2)}`);
+          }
+        } catch (e) {
+          console.error("Failed auto-saving threshold", e);
+        }
+      }, 200);
+    }
+
     async function saveThreshold() {
       const val = parseFloat(document.getElementById("setting-threshold").value);
       try {
@@ -996,6 +1027,14 @@
           const spName = last.species_id ? last.species_id.replace(/_/g, " ").toUpperCase() : "Unknown";
           const conf = (last.confidence * 100).toFixed(1);
           document.getElementById("mic-last-detection").innerText = `${spName} (${conf}%)`;
+        }
+
+        if (data.rejection_threshold !== undefined) {
+          const liveThreshInput = document.getElementById("mic-live-threshold");
+          if (liveThreshInput && document.activeElement !== liveThreshInput) {
+            liveThreshInput.value = data.rejection_threshold;
+            document.getElementById("mic-live-threshold-val").innerText = parseFloat(data.rejection_threshold).toFixed(2);
+          }
         }
       } catch (e) {
         // quiet polling error during network hiccups

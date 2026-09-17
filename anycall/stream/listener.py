@@ -46,7 +46,7 @@ class ContinuousMicrophoneListener:
         detections_dir: Union[str, Path] = "data/detections",
         rejection_threshold: Optional[float] = None,
         ema_alpha: float = 0.55,
-        margin_threshold: float = 0.015,
+        margin_threshold: float = 0.008,
     ):
         self.classifier = classifier
         self.backbone = backbone
@@ -381,7 +381,7 @@ def main():
     parser = argparse.ArgumentParser(description="AnyCall Continuous Microphone Stream Listener")
     parser.add_argument("--db", type=str, default="anycall.db", help="Path to SQLite database")
     parser.add_argument("--backbone", type=str, default="birdnet", help="Embedding backbone (birdnet, perch, panns, mock)")
-    parser.add_argument("--threshold", type=float, default=0.72, help="Rejection threshold theta (default: 0.72)")
+    parser.add_argument("--threshold", type=float, default=0.60, help="Rejection threshold theta (default: 0.60)")
     parser.add_argument("--device", type=int, default=None, help="Input device index (optional)")
     parser.add_argument("--list-devices", action="store_true", help="List audio input devices and exit")
     args = parser.parse_args()
