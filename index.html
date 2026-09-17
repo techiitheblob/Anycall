@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnyCall — Bioacoustic Field Control Station</title>
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #131b2e;
+      --bg-card-hover: #1a253e;
+      --border: #23304d;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.2);
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --indigo: #6366f1;
+      --cyan: #06b6d4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Top Navigation */
+    header { background: #0c1322; border-bottom: 1px solid var(--border); padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
+    .logo-area { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon { width: 34px; height: 34px; background: linear-gradient(135deg, #10b981, #06b6d4); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800; color: #fff; }
+    .brand-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .brand-sub { font-size: 0.75rem; color: var(--text-muted); }
+    .top-status { display: flex; align-items: center; gap: 1rem; }
+    .status-pill { display: flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: rgba(16, 185, 129, 0.15); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+    /* Nav Tabs */
+    .tabs-bar { background: #0f172a; border-bottom: 1px solid var(--border); padding: 0 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; }
+    .tab-btn { background: transparent; border: none; color: var(--text-muted); padding: 0.85rem 1.2rem; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid transparent; transition: all 0.15s ease; }
+    .tab-btn:hover { color: var(--text-main); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .badge { background: #24324f; color: #cbd5e1; font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 9999px; }
+
+    /* Container */
+    main { flex: 1; padding: 1.5rem; max-width: 1440px; margin: 0 auto; width: 100%; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.2s ease-in; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Metric Cards Grid */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .metric-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; position: relative; overflow: hidden; }
+    .metric-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+    .metric-card.amber::before { background: var(--amber); }
+    .metric-card.indigo::before { background: var(--indigo); }
+    .metric-card.cyan::before { background: var(--cyan); }
+    .metric-title { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+    .metric-value { font-size: 1.9rem; font-weight: 700; margin-top: 0.35rem; }
+    .metric-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    /* Section Cards */
+    .section-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.75rem; }
+    .section-title { font-size: 1.15rem; font-weight: 700; }
+
+    /* Buttons */
+    .btn { background: var(--accent); color: #022c22; border: none; padding: 0.55rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.15s; }
+    .btn:hover { background: #34d399; }
+    .btn-secondary { background: #23304d; color: var(--text-main); }
+    .btn-secondary:hover { background: #304169; }
+    .btn-amber { background: var(--amber); color: #451a03; }
+    .btn-amber:hover { background: #fbbf24; }
+
+    /* Tables */
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+    th { padding: 0.75rem 1rem; color: var(--text-muted); border-bottom: 1px solid var(--border); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(35, 48, 77, 0.6); vertical-align: middle; }
+    tr:hover td { background: var(--bg-card-hover); }
+
+    /* Tag Pills */
+    .tag { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; }
+    .tag-aves { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .tag-insecta { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .tag-amphibia { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
+    .tag-mammalia { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+    .tag-unknown { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+
+    /* Audio Player */
+    audio { height: 28px; width: 180px; filter: invert(0.85) hue-rotate(180deg); }
+
+    /* Progress Bar */
+    .conf-bar { background: #1e293b; height: 8px; border-radius: 4px; width: 80px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 0.5rem; }
+    .conf-fill { height: 100%; background: var(--accent); }
+
+    /* Dropzone */
+    .dropzone { border: 2px dashed #2e3e63; border-radius: 12px; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.2s; background: rgba(19, 27, 46, 0.5); }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--accent); background: var(--accent-glow); }
+    .drop-icon { font-size: 2.5rem; margin-bottom: 0.75rem; color: var(--text-muted); }
+
+    /* Form Controls */
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .form-input, .form-select { width: 100%; background: #0c1322; border: 1px solid var(--border); color: var(--text-main); padding: 0.6rem 0.85rem; border-radius: 6px; font-size: 0.9rem; }
+    .form-input:focus, .form-select:focus { outline: none; border-color: var(--accent); }
+
+    /* Grid layout for columns */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 880px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* Mystery Cluster Card */
+    .cluster-card { background: #0f1627; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .cluster-head { display: flex; justify-content: space-between; align-items: center; }
+    .cluster-badge { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 6px; font-weight: 600; }
+    .cluster-samples { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+
+    /* Modal */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+    .modal.open { display: flex; }
+    .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; width: 90%; max-width: 520px; padding: 1.75rem; max-height: 90vh; overflow-y: auto; }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+    .close-btn { background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+
+    /* Toast */
+    #toast { position: fixed; bottom: 2rem; right: 2rem; background: #1e293b; color: #fff; padding: 0.8rem 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.5); transform: translateY(100px); opacity: 0; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 200; font-size: 0.88rem; font-weight: 500; }
+    #toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="logo-area">
+      <div class="logo-icon">📡</div>
+      <div>
+        <div class="brand-title">AnyCall <span style="font-weight:400; font-size:0.85rem; color:var(--text-muted)">Field Station</span></div>
+        <div class="brand-sub">Open-Set Bioacoustic Wildlife Classifier</div>
+      </div>
+    </div>
+    <div class="top-status">
+      <div class="status-pill">
+        <div class="status-dot"></div>
+        <span>EDGE STATION ACTIVE</span>
+      </div>
+      <button class="btn btn-secondary" onclick="loadAllData()" title="Refresh Dashboard">🔄 Refresh</button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tabs-bar">
+    <button class="tab-btn active" onclick="switchTab('tab-dashboard')">📊 Detections Feed</button>
+    <button class="tab-btn" onclick="switchTab('tab-classify')">🎙️ Live Audio Tester</button>
+    <button class="tab-btn" onclick="switchTab('tab-species')">🧬 Enrolled Species <span class="badge" id="badge-species">0</span></button>
+    <button class="tab-btn" onclick="switchTab('tab-clusters')">🔍 Mystery Sounds <span class="badge" id="badge-clusters">0</span></button>
+    <button class="tab-btn" onclick="switchTab('tab-settings')">⚙️ Field Controls</button>
+  </nav>
+
+  <!-- Main Container -->
+  <main>
+
+    <!-- Top Telemetry Metrics -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-title">Total Detections Logged</div>
+        <div class="metric-value" id="stat-detections">--</div>
+        <div class="metric-sub">SQLite Autonomous Field Log</div>
+      </div>
+      <div class="metric-card cyan">
+        <div class="metric-title">Enrolled Species</div>
+        <div class="metric-value" id="stat-species">--</div>
+        <div class="metric-sub">Prototypical Hypersphere Bank</div>
+      </div>
+      <div class="metric-card amber">
+        <div class="metric-title">Quarantined Unknowns</div>
+        <div class="metric-value" id="stat-unidentified">--</div>
+        <div class="metric-sub">Buffered Out-of-Bank Sounds</div>
+      </div>
+      <div class="metric-card indigo">
+        <div class="metric-title">Candidate Novel Clusters</div>
+        <div class="metric-value" id="stat-clusters">--</div>
+        <div class="metric-sub">Mutual Cosine Sim &ge; 0.70</div>
+      </div>
+    </section>
+
+    <!-- TAB 1: Detections Feed -->
+    <div id="tab-dashboard" class="tab-panel active">
+
+      <!-- Continuous Microphone Stream Monitor -->
+      <div class="section-card" style="background: linear-gradient(135deg, #131b2e 0%, #0d1a33 100%); border-color: #2b3e6b; margin-bottom: 1.25rem;">
+        <div class="section-head" style="margin-bottom: 0.85rem;">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div id="mic-led" style="width: 12px; height: 12px; border-radius: 50%; background: #64748b; transition: all 0.3s ease;"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem;">
+                Continuous Field Microphone Streamer
+                <span id="mic-pill" style="font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 9999px; background: #1e293b; color: #94a3b8; font-weight: 600;">IDLE</span>
+              </div>
+              <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 0.15rem;" id="mic-status-text">
+                Real-time 24/7 acoustic listening with adaptive energy VAD gating.
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <select id="mic-device-select" class="form-select" style="width: auto; min-width: 200px; font-size: 0.82rem; padding: 0.45rem 0.65rem;">
+              <option value="">Default Input Device</option>
+            </select>
+            <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(15, 23, 42, 0.7); padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+              <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 500;">Threshold (&theta;):</span>
+              <input type="range" id="mic-live-threshold" min="0.45" max="0.85" step="0.01" value="0.60" style="width: 100px; accent-color: var(--accent); cursor: pointer;" oninput="updateLiveThreshold(this.value)">
+              <span id="mic-live-threshold-val" style="font-size: 0.85rem; font-weight: 700; color: var(--accent); min-width: 35px;">0.60</span>
+            </div>
+            <button id="btn-toggle-mic" class="btn" onclick="toggleContinuousMic()" style="padding: 0.55rem 1.15rem; font-weight: 700;">
+              <span id="mic-btn-icon">🎙️</span> <span id="mic-btn-label">Start Listening</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; padding-top: 0.75rem; border-top: 1px solid rgba(43, 62, 107, 0.6);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.35rem;">
+              <span>Real-Time Mic VU Level: <strong id="mic-rms-val" style="color: var(--text-main); font-family: monospace;">0.0000</strong></span>
+              <span id="mic-vad-indicator" style="font-weight: 600; color: #64748b;">[ AMBIENT NOISE FLOOR ]</span>
+            </div>
+            <div style="background: #090d16; height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--border);">
+              <div id="mic-vu-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #f59e0b 80%, #f43f5e 100%); transition: width 0.08s ease;"></div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.25rem; font-size: 0.8rem; color: var(--text-muted); text-align: right;">
+            <div>Vocal Events: <strong id="mic-vocal-count" style="color: var(--accent); font-size: 0.95rem;">0</strong></div>
+            <div>Clips Evaluated: <strong id="mic-clips-count" style="color: var(--text-main); font-size: 0.95rem;">0</strong></div>
+            <div>Latest: <strong id="mic-last-detection" style="color: #38bdf8; font-size: 0.9rem;">None</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-title">Real-Time Acoustic Detection Stream</div>
+          <div style="display: flex; gap: 0.65rem; align-items: center;">
+            <select id="filter-taxon" class="form-select" style="width: auto;" onchange="filterDetections()">
+              <option value="">All Taxa</option>
+              <option value="Aves">Aves (Birds)</option>
+              <option value="Insecta">Insecta (Insects)</option>
+              <option value="Amphibia">Amphibia (Frogs)</option>
+              <option value="Mammalia">Mammalia (Mammals)</option>
+              <option value="Unknown">Unknown (Rejected)</option>
+            </select>
+            <button class="btn btn-secondary" onclick="confirmClearDetections()" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3);" title="Clear all logged detection events">
+              🗑️ Clear Feed
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Timestamp (UTC)</th>
+                <th>Predicted Species</th>
+                <th>Taxon</th>
+                <th>Confidence</th>
+                <th>Threshold</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="detections-tbody">
+              <tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading detection stream...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Live Audio Classifier / Tester -->
+    <div id="tab-classify" class="tab-panel">
+      <div class="two-col">
+        <div>
+          <div class="section-card">
+            <div class="section-head" style="margin-bottom: 0.85rem;">
+              <div class="section-title">Upload Field Audio For Instant Inference</div>
+              <button class="btn btn-secondary" onclick="clearAudioTester()" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+                🔄 Reset / Clear
+              </button>
+            </div>
+            <div class="dropzone" id="classify-dropzone" onclick="document.getElementById('classify-file').click()">
+              <div class="drop-icon">🎵</div>
+              <p style="font-weight: 600; margin-bottom: 0.25rem;">Click or Drag & Drop audio file</p>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Supports WAV, MP3, FLAC, OGG (auto-resampled to 48kHz mono)</p>
+              <input type="file" id="classify-file" accept="audio/*" style="display: none;" onchange="handleClassifyFile(this.files[0])">
+            </div>
+
+            <div style="margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Selected: <strong id="classify-filename" style="color: var(--text-main);">None</strong></span>
+              <button class="btn" id="btn-run-classify" onclick="submitClassify()" disabled>⚡ Run Classification</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-card" id="classify-results-card" style="display: none;">
+            <div class="section-title" style="margin-bottom: 1rem;">Classification Results</div>
+            <div style="padding: 1rem; background: #0c1322; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Top-1 Predicted Species</div>
+                  <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.2rem;" id="res-species">--</div>
+                </div>
+                <div id="res-badge"></div>
+              </div>
+
+              <div style="margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.35rem;">
+                  <span>Cosine Confidence</span>
+                  <span id="res-conf-text" style="font-weight: 700;">--</span>
+                </div>
+                <div style="background: #1e293b; height: 10px; border-radius: 5px; overflow: hidden;">
+                  <div id="res-conf-bar" style="height: 100%; width: 0%; background: var(--accent); transition: width 0.4s ease;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.75rem;">Top Candidate Rankings</div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Candidate Species</th>
+                    <th>Cosine Similarity</th>
+                  </tr>
+                </thead>
+                <tbody id="res-candidates-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Enrolled Species Manager -->
+    <div id="tab-species" class="tab-panel">
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Enrolled Species Prototypes</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">All prototypes stored on unit hypersphere &middot; Zero retraining required</p>
+          </div>
+          <button class="btn" onclick="openModal('modal-enroll')">+ Enroll New Species</button>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Species ID</th>
+                <th>Common Name</th>
+                <th>Taxon</th>
+                <th>Exemplars Used</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="species-tbody">
+              <tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading enrolled species...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: Mystery Sounds & Novel Clusters -->
+    <div id="tab-clusters" class="tab-panel">
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Unidentified Sound Quarantine & Candidate Novel Species</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+              Out-of-bank sounds with similarity &lt; &theta; are quarantined. Recurring calls are clustered and can be named into known species with 1 click.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.65rem; align-items: center;">
+            <button class="btn btn-secondary" onclick="loadClusters()">🔍 Re-Scan Clusters</button>
+            <button class="btn btn-secondary" onclick="confirmClearMysterySounds()" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3);" title="Clear all quarantined mystery sounds">
+              🗑️ Clear Unknowns
+            </button>
+          </div>
+        </div>
+
+        <div id="clusters-container">
+          <p style="color: var(--text-muted); text-align: center; padding: 2rem;">Searching for recurring novel sound patterns...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: Field Settings & Edge Controls -->
+    <div id="tab-settings" class="tab-panel">
+      <div class="two-col">
+        <div class="section-card">
+          <div class="section-title" style="margin-bottom: 1rem;">Classifier Decision Threshold (&theta;)</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Queries scoring below &theta; are rejected as <em>"Unknown"</em> and quarantined to the mystery sound bank. Higher &theta; eliminates false positives; lower &theta; maximizes recall.
+          </p>
+
+          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <input type="range" id="setting-threshold" min="0.45" max="0.85" step="0.01" value="0.60" style="flex: 1; accent-color: var(--accent);" oninput="document.getElementById('threshold-display').innerText = parseFloat(this.value).toFixed(2)">
+            <span id="threshold-display" style="font-size: 1.5rem; font-weight: 700; color: var(--accent); min-width: 50px;">0.60</span>
+          </div>
+
+          <button class="btn" onclick="saveThreshold()">💾 Save Threshold</button>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title" style="margin-bottom: 1rem;">Active Embedding Backbone</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Switch the active feature extractor on edge hardware.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Backbone Model</label>
+            <select id="setting-backbone" class="form-select">
+              <option value="birdnet">BirdNET (EfficientNet-B0, 42ms latency, best overall)</option>
+              <option value="perch">Google Perch (1280-d, 127ms latency)</option>
+              <option value="panns">PANNs CNN14 (2048-d, 105ms latency)</option>
+              <option value="mock">Fast Mock Backbone (Sub-millisecond test mode)</option>
+            </select>
+          </div>
+
+          <button class="btn btn-secondary" onclick="saveBackbone()">🔄 Switch Model</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: Enroll New Species -->
+  <div class="modal" id="modal-enroll">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h3 style="font-size: 1.15rem;">Enroll New Species (Zero Retraining)</h3>
+        <button class="close-btn" onclick="closeModal('modal-enroll')">&times;</button>
+      </div>
+
+      <form id="form-enroll" onsubmit="submitEnroll(event)">
+        <div class="form-group">
+          <label class="form-label">Species ID (e.g. corvus_splendens)</label>
+          <input type="text" id="enroll-sp-id" class="form-input" required placeholder="scientific_name_lowercase">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Common Name (e.g. House Crow)</label>
+          <input type="text" id="enroll-common-name" class="form-input" required placeholder="Display Name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Taxon</label>
+          <select id="enroll-taxon" class="form-select">
+            <option value="Aves">Aves (Bird)</option>
+            <option value="Insecta">Insecta (Insect)</option>
+            <option value="Amphibia">Amphibia (Frog/Toad)</option>
+            <option value="Mammalia">Mammalia (Mammal)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Enrollment Audio Files (1–20 recordings)</label>
+          <input type="file" id="enroll-files" class="form-input" multiple accept="audio/*" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-enroll')">Cancel</button>
+          <button type="submit" class="btn">Enroll Species</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Promote Novel Cluster -->
+  <div class="modal" id="modal-promote">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h3 style="font-size: 1.15rem;">Name & Promote Discovered Cluster</h3>
+        <button class="close-btn" onclick="closeModal('modal-promote')">&times;</button>
+      </div>
+
+      <form id="form-promote" onsubmit="submitPromote(event)">
+        <input type="hidden" id="promote-cluster-id">
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Promoting <strong id="promote-cluster-name" style="color: var(--amber);">--</strong> directly into the active classifier prototype bank.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Species Identifier</label>
+          <input type="text" id="promote-sp-id" class="form-input" required placeholder="e.g. unknown_cricket_sp1">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Common Name</label>
+          <input type="text" id="promote-common-name" class="form-input" required placeholder="e.g. Green Tree Cricket" list="species-datalist" oninput="autofillSpecies()">
+          <datalist id="species-datalist"></datalist>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Taxon</label>
+          <select id="promote-taxon" class="form-select">
+            <option value="Insecta">Insecta</option>
+            <option value="Aves">Aves</option>
+            <option value="Amphibia">Amphibia</option>
+            <option value="Mammalia">Mammalia</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-promote')">Cancel</button>
+          <button type="submit" class="btn btn-amber">Promote to Known Species</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast">Operation completed successfully.</div>
+
+  <script>
+    let currentDetections = [];
+    let selectedClassifyFile = null;
+
+    function showToast(msg, isError = false) {
+      const t = document.getElementById("toast");
+      t.innerText = msg;
+      t.style.borderLeftColor = isError ? "var(--rose)" : "var(--accent)";
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3200);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      event.currentTarget.classList.add("active");
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add("open"); }
+    function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+
+    async function loadAllData() {
+      await Promise.all([loadStats(), loadDetections(), loadSpecies(), loadClusters()]);
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch("/api/stats");
+        const data = await res.json();
+        document.getElementById("stat-detections").innerText = data.total_detections || 0;
+        document.getElementById("stat-species").innerText = data.total_enrolled_species || 0;
+        document.getElementById("stat-unidentified").innerText = data.total_unidentified || 0;
+        document.getElementById("stat-clusters").innerText = data.candidate_novel_clusters || 0;
+
+        document.getElementById("badge-species").innerText = data.total_enrolled_species || 0;
+        document.getElementById("badge-clusters").innerText = data.candidate_novel_clusters || 0;
+
+        document.getElementById("setting-threshold").value = data.threshold;
+        document.getElementById("threshold-display").innerText = parseFloat(data.threshold).toFixed(2);
+        document.getElementById("setting-backbone").value = data.active_backbone;
+      } catch (e) {
+        console.error("Stats load failed", e);
+      }
+    }
+
+    async function loadDetections() {
+      try {
+        const res = await fetch("/api/detections?limit=50");
+        const data = await res.json();
+        currentDetections = data.detections || [];
+        renderDetections(currentDetections);
+      } catch (e) {
+        console.error("Detections load failed", e);
+      }
+    }
+
+    function renderDetections(list) {
+      const tbody = document.getElementById("detections-tbody");
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No detections recorded yet. Use the Live Audio Tester to analyze sound.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(d => {
+        const isKnown = d.is_known && d.species_id.toLowerCase() !== "unknown";
+        const badgeClass = isKnown ? "tag-aves" : "tag-unknown";
+        const statusText = isKnown ? "MATCH" : "QUARANTINED";
+
+        let taxon = d.taxon || "Unknown";
+        if (!isKnown) taxon = "Unknown";
+        let display_name = d.common_name || d.species_id.replace(/_/g, " ").toUpperCase();
+        if (!isKnown) display_name = "Unknown";
+
+        return `
+          <tr>
+            <td style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">${d.timestamp.replace("T", " ").substring(0, 19)}</td>
+            <td style="font-weight: 600;">${display_name}</td>
+            <td><span class="tag tag-${taxon.toLowerCase()}">${taxon}</span></td>
+            <td>
+              <div class="conf-bar"><div class="conf-fill" style="width: ${Math.round(d.confidence * 100)}%;"></div></div>
+              <strong>${(d.confidence * 100).toFixed(1)}%</strong>
+            </td>
+            <td style="color: var(--text-muted);">${d.threshold.toFixed(2)}</td>
+            <td><span class="tag ${badgeClass}">${statusText}</span></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function filterDetections() {
+      const taxon = document.getElementById("filter-taxon").value;
+      if (!taxon) {
+        renderDetections(currentDetections);
+        return;
+      }
+      if (taxon === "Unknown") {
+        renderDetections(currentDetections.filter(d => !d.is_known));
+      } else {
+        renderDetections(currentDetections.filter(d => d.is_known));
+      }
+    }
+    let enrolledSpeciesData = [];
+    
+    function autofillSpecies() {
+      const val = document.getElementById("promote-common-name").value;
+      const match = enrolledSpeciesData.find(s => s.common_name === val);
+      if (match) {
+        document.getElementById("promote-sp-id").value = match.species_id;
+        const taxonSelect = document.getElementById("promote-taxon");
+        if (taxonSelect) {
+          const targetTaxon = match.taxon || 'Aves';
+          for (let i = 0; i < taxonSelect.options.length; i++) {
+            if (taxonSelect.options[i].value === targetTaxon) {
+              taxonSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    async function loadSpecies() {
+      try {
+        const res = await fetch("/api/species");
+        const data = await res.json();
+        
+        enrolledSpeciesData = data.species || [];
+        const dl = document.getElementById("species-datalist");
+        if (dl) {
+          dl.innerHTML = enrolledSpeciesData.map(s => `<option value="${s.common_name}"></option>`).join("");
+        }
+
+        const tbody = document.getElementById("species-tbody");
+        if (!enrolledSpeciesData.length) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No species enrolled yet.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = enrolledSpeciesData.map(s => `
+          <tr>
+            <td style="font-family: monospace; font-size: 0.85rem;">${s.species_id}</td>
+            <td style="font-weight: 600;">${s.common_name}</td>
+            <td><span class="tag tag-${(s.taxon || 'aves').toLowerCase()}">${s.taxon || 'Aves'}</span></td>
+            <td><strong>${s.sample_count}</strong> audio clips</td>
+            <td><span class="tag tag-aves">LIVE PROTOTYPE</span></td>
+            <td>
+              <button class="btn btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="promptAddSamples('${s.species_id}')">+ Add Audio</button>
+            </td>
+          </tr>
+        `).join("");
+      } catch (e) {
+        console.error("Species load failed", e);
+      }
+    }
+
+    async function loadClusters() {
+      try {
+        const res = await fetch("/api/unidentified/clusters");
+        const data = await res.json();
+        const container = document.getElementById("clusters-container");
+
+        if (!data.clusters || !data.clusters.length) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+              <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">No Recurring Mystery Sound Clusters Found</p>
+              <p style="font-size: 0.85rem;">When unknown animal calls appear repeatedly (&ge; 2 times with cosine similarity &ge; 0.70), they will be automatically grouped here.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = data.clusters.map(c => `
+          <div class="cluster-card">
+            <div class="cluster-head">
+              <div>
+                <span class="cluster-badge">DISCOVERED CANDIDATE NOVEL SPECIES</span>
+                <h4 style="margin-top: 0.4rem; font-size: 1.1rem;">${c.cluster_id}</h4>
+              </div>
+              <button class="btn btn-amber" onclick="openPromoteModal('${c.cluster_id}')">🏷️ Name & Promote Species</button>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 1.5rem;">
+              <span>Recurrences: <strong style="color: var(--text-main);">${c.occurrences} audio calls</strong></span>
+              <span>Cluster Cohesion: <strong style="color: var(--accent);">${(c.cohesion_score * 100).toFixed(1)}%</strong></span>
+            </div>
+
+            ${c.audio_urls.length ? `
+              <div class="cluster-samples" style="margin-top: 0.5rem;">
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Audio Recordings:</span>
+                ${c.audio_urls.map(url => `<audio controls src="${url}" preload="none"></audio>`).join("")}
+              </div>
+            ` : ""}
+          </div>
+        `).join("");
+      } catch (e) {
+        console.error("Clusters load failed", e);
+      }
+    }
+
+    // Classify Tab Handling
+    function handleClassifyFile(file) {
+      if (!file) return;
+      selectedClassifyFile = file;
+      document.getElementById("classify-filename").innerText = file.name;
+      document.getElementById("btn-run-classify").disabled = false;
+    }
+
+    async function submitClassify() {
+      if (!selectedClassifyFile) return;
+      const btn = document.getElementById("btn-run-classify");
+      btn.disabled = true;
+      btn.innerText = "Analyzing...";
+
+      const formData = new FormData();
+      formData.append("file", selectedClassifyFile);
+
+      try {
+        const res = await fetch("/api/classify", { method: "POST", body: formData });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || "Classification failed");
+
+        // Display results
+        const card = document.getElementById("classify-results-card");
+        card.style.display = "block";
+
+        document.getElementById("res-species").innerText = data.predicted_label.replace(/_/g, " ").toUpperCase();
+        document.getElementById("res-conf-text").innerText = (data.confidence * 100).toFixed(1) + "%";
+        document.getElementById("res-conf-bar").style.width = Math.min(100, Math.round(data.confidence * 100)) + "%";
+
+        const badge = document.getElementById("res-badge");
+        if (data.is_known) {
+          badge.innerHTML = `<span class="tag tag-aves" style="font-size: 0.85rem; padding: 0.3rem 0.75rem;">KNOWN SPECIES</span>`;
+          document.getElementById("res-conf-bar").style.background = "var(--accent)";
+        } else {
+          badge.innerHTML = `<span class="tag tag-unknown" style="font-size: 0.85rem; padding: 0.3rem 0.75rem;">QUARANTINED (< &theta;)</span>`;
+          document.getElementById("res-conf-bar").style.background = "var(--rose)";
+        }
+
+        const candTbody = document.getElementById("res-candidates-tbody");
+        const topSeg = data.segments[0];
+        candTbody.innerHTML = (topSeg.candidates || []).map(c => `
+          <tr>
+            <td style="font-weight: 500;">${c.species.replace(/_/g, " ")}</td>
+            <td><strong>${(c.score * 100).toFixed(1)}%</strong></td>
+          </tr>
+        `).join("");
+
+        showToast(`Analyzed ${data.segments_analyzed} audio segments.`);
+        loadAllData();
+      } catch (err) {
+        showToast(err.message, true);
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "⚡ Run Classification";
+      }
+    }
+
+    function clearAudioTester() {
+      selectedClassifyFile = null;
+      const fileInput = document.getElementById("classify-file");
+      if (fileInput) fileInput.value = "";
+      document.getElementById("classify-filename").innerText = "None";
+      const runBtn = document.getElementById("btn-run-classify");
+      if (runBtn) {
+        runBtn.disabled = true;
+        runBtn.innerText = "⚡ Run Classification";
+      }
+      const resultsCard = document.getElementById("classify-results-card");
+      if (resultsCard) resultsCard.style.display = "none";
+      showToast("Audio tester reset.");
+    }
+
+    async function confirmClearDetections() {
+      if (!confirm("Are you sure you want to clear all recorded detection events?")) return;
+      try {
+        const res = await fetch("/api/detections/clear", { method: "POST" });
+        const data = await res.json();
+        showToast(data.message);
+        await loadDetections();
+        await loadStats();
+      } catch (e) {
+        showToast("Failed to clear detections", true);
+      }
+    }
+
+    async function confirmClearMysterySounds() {
+      if (!confirm("Are you sure you want to clear all quarantined mystery sounds?")) return;
+      try {
+        const res = await fetch("/api/unidentified/clear", { method: "POST" });
+        const data = await res.json();
+        showToast(data.message);
+        await loadClusters();
+        await loadStats();
+      } catch (e) {
+        showToast("Failed to clear mystery sounds", true);
+      }
+    }
+
+    // Enrollment Form
+    async function submitEnroll(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("species_id", document.getElementById("enroll-sp-id").value);
+      formData.append("common_name", document.getElementById("enroll-common-name").value);
+      formData.append("taxon", document.getElementById("enroll-taxon").value);
+
+      const files = document.getElementById("enroll-files").files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
+
+      try {
+        const res = await fetch("/api/species/enroll", { method: "POST", body: formData });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || "Enrollment failed");
+        showToast(data.message);
+        closeModal("modal-enroll");
+        document.getElementById("form-enroll").reset();
+        loadAllData();
+      } catch (err) {
+        showToast(err.message, true);
+      }
+    }
+
+    // Add Samples to existing species
+    function promptAddSamples(speciesId) {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.multiple = true;
+      input.accept = "audio/*";
+      input.onchange = async () => {
+        if (!input.files.length) return;
+        const formData = new FormData();
+        for (let i = 0; i < input.files.length; i++) {
+          formData.append("files", input.files[i]);
+        }
+        try {
+          const res = await fetch(`/api/species/${speciesId}/add-samples`, { method: "POST", body: formData });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || "Update failed");
+          showToast(data.message);
+          loadSpecies();
+        } catch (e) {
+          showToast(e.message, true);
+        }
+      };
+      input.click();
+    }
+
+    // Novel Cluster Promotion
+    function openPromoteModal(clusterId) {
+      document.getElementById("promote-cluster-id").value = clusterId;
+      document.getElementById("promote-cluster-name").innerText = clusterId;
+      document.getElementById("promote-sp-id").value = clusterId.toLowerCase();
+      document.getElementById("promote-common-name").value = "";
+      openModal("modal-promote");
+    }
+
+    async function submitPromote(e) {
+      e.preventDefault();
+      const payload = {
+        cluster_id: document.getElementById("promote-cluster-id").value,
+        species_id: document.getElementById("promote-sp-id").value,
+        common_name: document.getElementById("promote-common-name").value,
+        taxon: document.getElementById("promote-taxon").value,
+      };
+
+      try {
+        const res = await fetch("/api/unidentified/promote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || "Promotion failed");
+        showToast(data.message);
+        closeModal("modal-promote");
+        loadAllData();
+      } catch (err) {
+        showToast(err.message, true);
+      }
+    }
+
+    // Settings
+    let liveThresholdTimer = null;
+    function updateLiveThreshold(val) {
+      const num = parseFloat(val);
+      document.getElementById("mic-live-threshold-val").innerText = num.toFixed(2);
+      const setInput = document.getElementById("setting-threshold");
+      if (setInput) setInput.value = num.toFixed(2);
+      const dispSpan = document.getElementById("threshold-display");
+      if (dispSpan) dispSpan.innerText = num.toFixed(2);
+
+      clearTimeout(liveThresholdTimer);
+      liveThresholdTimer = setTimeout(async () => {
+        try {
+          const res = await fetch("/api/settings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ threshold: num })
+          });
+          if (res.ok) {
+            showToast(`Decision threshold &theta; set to ${num.toFixed(2)}`);
+          }
+        } catch (e) {
+          console.error("Failed auto-saving threshold", e);
+        }
+      }, 200);
+    }
+
+    async function saveThreshold() {
+      const val = parseFloat(document.getElementById("setting-threshold").value);
+      try {
+        const res = await fetch("/api/settings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ threshold: val })
+        });
+        const data = await res.json();
+        showToast(data.message);
+      } catch (e) {
+        showToast("Failed to save threshold", true);
+      }
+    }
+
+    async function saveBackbone() {
+      const val = document.getElementById("setting-backbone").value;
+      try {
+        const res = await fetch("/api/settings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ backbone: val })
+        });
+        const data = await res.json();
+        showToast(data.message);
+        loadStats();
+      } catch (e) {
+        showToast("Failed to switch backbone", true);
+      }
+    }
+
+    // Continuous Microphone Ingestion Logic
+    let isMicRunning = false;
+    let lastDetectionsCount = -1;
+
+    async function loadMicDevices() {
+      try {
+        const res = await fetch("/api/mic/devices");
+        const data = await res.json();
+        const sel = document.getElementById("mic-device-select");
+        if (!data.devices || !data.devices.length) {
+          sel.innerHTML = `<option value="">No Physical Mic Found</option>`;
+          return;
+        }
+        sel.innerHTML = data.devices.map(d => `
+          <option value="${d.index}" ${d.is_default ? "selected" : ""}>
+            ${d.name} (${d.channels}ch, ${d.default_samplerate}Hz)${d.is_default ? " ★" : ""}
+          </option>
+        `).join("");
+      } catch (e) {
+        console.error("Failed loading mic devices", e);
+      }
+    }
+
+    async function pollMicStatus() {
+      try {
+        const res = await fetch("/api/mic/status");
+        const data = await res.json();
+        isMicRunning = !!data.is_running;
+
+        const led = document.getElementById("mic-led");
+        const pill = document.getElementById("mic-pill");
+        const btnLabel = document.getElementById("mic-btn-label");
+        const btnIcon = document.getElementById("mic-btn-icon");
+        const statusText = document.getElementById("mic-status-text");
+        const toggleBtn = document.getElementById("btn-toggle-mic");
+
+        if (isMicRunning) {
+          led.style.background = "#10b981";
+          led.style.boxShadow = "0 0 12px #10b981";
+          pill.style.background = "rgba(16, 185, 129, 0.2)";
+          pill.style.color = "#10b981";
+          pill.innerText = "LISTENING 24/7";
+          btnLabel.innerText = "Stop Listening";
+          btnIcon.innerText = "⏹️";
+          toggleBtn.className = "btn btn-secondary";
+          statusText.innerText = `Actively listening • Uptime: ${data.uptime_seconds}s • Gated by EnergyVAD`;
+
+          if (data.detections_logged > 0 && data.detections_logged !== lastDetectionsCount) {
+            lastDetectionsCount = data.detections_logged;
+            loadDetections();
+            loadStats();
+          }
+        } else {
+          led.style.background = "#64748b";
+          led.style.boxShadow = "none";
+          pill.style.background = "#1e293b";
+          pill.style.color = "#94a3b8";
+          pill.innerText = "IDLE";
+          btnLabel.innerText = "Start Listening";
+          btnIcon.innerText = "🎙️";
+          toggleBtn.className = "btn";
+          statusText.innerText = "Real-time 24/7 acoustic listening with adaptive energy VAD gating.";
+        }
+
+        const rms = data.current_rms || 0.0;
+        document.getElementById("mic-rms-val").innerText = rms.toFixed(5);
+        const vuPercent = Math.min(100, Math.round((rms / 0.035) * 100));
+        document.getElementById("mic-vu-bar").style.width = isMicRunning ? `${vuPercent}%` : "0%";
+
+        const vadIndicator = document.getElementById("mic-vad-indicator");
+        if (isMicRunning) {
+          if (rms > 0.006) {
+            vadIndicator.innerText = "[ VOCALIZATION ACTIVITY DETECTED ]";
+            vadIndicator.style.color = "#10b981";
+          } else {
+            vadIndicator.innerText = "[ AMBIENT NOISE FLOOR ]";
+            vadIndicator.style.color = "#64748b";
+          }
+        } else {
+          vadIndicator.innerText = "[ MIC OFF ]";
+          vadIndicator.style.color = "#64748b";
+        }
+
+        document.getElementById("mic-vocal-count").innerText = data.clips_with_activity || 0;
+        document.getElementById("mic-clips-count").innerText = data.clips_evaluated || 0;
+
+        const last = data.last_detection;
+        if (last) {
+          const spName = last.is_known ? (last.common_name || last.species_id.replace(/_/g, " ").toUpperCase()) : "Unknown";
+          const conf = (last.confidence * 100).toFixed(1);
+          document.getElementById("mic-last-detection").innerText = `${spName} (${conf}%)`;
+        }
+
+        if (data.rejection_threshold !== undefined) {
+          const liveThreshInput = document.getElementById("mic-live-threshold");
+          if (liveThreshInput && document.activeElement !== liveThreshInput) {
+            liveThreshInput.value = data.rejection_threshold;
+            document.getElementById("mic-live-threshold-val").innerText = parseFloat(data.rejection_threshold).toFixed(2);
+          }
+        }
+      } catch (e) {
+        // quiet polling error during network hiccups
+      }
+    }
+
+    async function toggleContinuousMic() {
+      const btn = document.getElementById("btn-toggle-mic");
+      btn.disabled = true;
+
+      try {
+        if (isMicRunning) {
+          const res = await fetch("/api/mic/stop", { method: "POST" });
+          const data = await res.json();
+          showToast("Microphone stream stopped.");
+        } else {
+          const selVal = document.getElementById("mic-device-select").value;
+          const devIdx = selVal !== "" ? parseInt(selVal, 10) : null;
+          const res = await fetch("/api/mic/start", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ device: devIdx })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || "Failed to start mic");
+          showToast("Continuous microphone monitoring started!");
+        }
+        await pollMicStatus();
+      } catch (err) {
+        showToast(err.message, true);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // Init
+    window.addEventListener("DOMContentLoaded", async () => {
+      await loadAllData();
+      await loadMicDevices();
+      await pollMicStatus();
+      // Poll mic VU meter & status every 500ms
+      setInterval(pollMicStatus, 500);
+    });
+  </script>
+</body>
+</html>
