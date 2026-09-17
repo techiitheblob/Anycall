@@ -26,6 +26,11 @@ from anycall.classifier.engine import (
 )
 from anycall.embeddings import get_backbone
 from anycall.storage.db import DatabaseManager
+from anycall.stream.listener import ContinuousMicrophoneListener
+
+
+class MicStartRequest(BaseModel):
+    device: Optional[int] = None
 
 
 class SettingUpdateRequest(BaseModel):
@@ -103,6 +108,20 @@ def create_app(
     except Exception as e:
         print(f"[Portal] Note: No existing unidentified sounds loaded: {e}")
 
+    # Continuous Microphone Stream Listener
+    mic_listener = ContinuousMicrophoneListener(
+        classifier=classifier,
+        backbone=backbone,
+        db_mgr=db_mgr,
+        sound_bank=sound_bank,
+        rejection_threshold=default_threshold,
+    )
+    app.state.mic_listener = mic_listener
+
+    @app.on_event("shutdown")
+    def shutdown_listener():
+        mic_listener.stop()
+
     # Mount static assets
     static_dir = Path(__file__).resolve().parent / "static"
     if static_dir.exists():
@@ -114,6 +133,36 @@ def create_app(
         if index_file.exists():
             return FileResponse(str(index_file))
         return {"message": "AnyCall Field Station API is active. Static UI not found."}
+
+    # ----------------------------------------------------------------------
+    # Continuous Microphone Monitoring
+    # ----------------------------------------------------------------------
+
+    @app.get("/api/mic/status")
+    def get_mic_status():
+        """Retrieve real-time telemetry and running state of continuous mic listener."""
+        return mic_listener.get_status()
+
+    @app.get("/api/mic/devices")
+    def get_mic_devices():
+        """List available physical audio input devices."""
+        return {"devices": ContinuousMicrophoneListener.list_input_devices()}
+
+    @app.post("/api/mic/start")
+    def start_mic(req: Optional[MicStartRequest] = None):
+        """Start continuous microphone monitoring."""
+        dev = req.device if req else None
+        try:
+            mic_listener.start(device=dev)
+            return {"status": "started", "details": mic_listener.get_status()}
+        except Exception as ex:
+            raise HTTPException(status_code=500, detail=f"Failed to start microphone: {ex}")
+
+    @app.post("/api/mic/stop")
+    def stop_mic():
+        """Stop continuous microphone monitoring."""
+        mic_listener.stop()
+        return {"status": "stopped", "details": mic_listener.get_status()}
 
     # ----------------------------------------------------------------------
     # System Stats & Metadata
@@ -504,6 +553,7 @@ def create_app(
             if not 0.0 <= req.threshold <= 1.0:
                 raise HTTPException(status_code=400, detail="Threshold must be between 0.0 and 1.0")
             classifier.threshold = float(req.threshold)
+            mic_listener.rejection_threshold = classifier.threshold
             changes.append(f"threshold set to {classifier.threshold:.2f}")
 
         if req.backbone is not None and req.backbone != current_backbone_name:
@@ -511,6 +561,7 @@ def create_app(
                 new_bb = get_backbone(req.backbone)
                 backbone = new_bb
                 current_backbone_name = req.backbone
+                mic_listener.backbone = backbone
                 changes.append(f"active backbone switched to {current_backbone_name}")
             except Exception as e:
                 raise HTTPException(status_code=400, detail=f"Failed switching backbone: {e}")
@@ -527,12 +578,16 @@ def create_app(
         """Stream an audio file for in-browser playback."""
         target = uploads_path / filename
         if not target.exists():
-            # Search in processed data as fallback
-            processed_match = list(Path("data/processed").glob(f"**/{filename}"))
-            if processed_match:
-                target = processed_match[0]
+            detections_match = Path("data/detections") / filename
+            if detections_match.exists():
+                target = detections_match
             else:
-                raise HTTPException(status_code=404, detail=f"Audio file '{filename}' not found.")
+                # Search in processed data as fallback
+                processed_match = list(Path("data/processed").glob(f"**/{filename}"))
+                if processed_match:
+                    target = processed_match[0]
+                else:
+                    raise HTTPException(status_code=404, detail=f"Audio file '{filename}' not found.")
 
         media_type = "audio/wav" if target.suffix.lower() == ".wav" else "audio/mpeg"
         return FileResponse(str(target), media_type=media_type)

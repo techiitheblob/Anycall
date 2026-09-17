@@ -184,6 +184,50 @@
 
     <!-- TAB 1: Detections Feed -->
     <div id="tab-dashboard" class="tab-panel active">
+
+      <!-- Continuous Microphone Stream Monitor -->
+      <div class="section-card" style="background: linear-gradient(135deg, #131b2e 0%, #0d1a33 100%); border-color: #2b3e6b; margin-bottom: 1.25rem;">
+        <div class="section-head" style="margin-bottom: 0.85rem;">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div id="mic-led" style="width: 12px; height: 12px; border-radius: 50%; background: #64748b; transition: all 0.3s ease;"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem;">
+                Continuous Field Microphone Streamer
+                <span id="mic-pill" style="font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 9999px; background: #1e293b; color: #94a3b8; font-weight: 600;">IDLE</span>
+              </div>
+              <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 0.15rem;" id="mic-status-text">
+                Real-time 24/7 acoustic listening with adaptive energy VAD gating.
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <select id="mic-device-select" class="form-select" style="width: auto; min-width: 240px; font-size: 0.82rem; padding: 0.45rem 0.65rem;">
+              <option value="">Default Input Device</option>
+            </select>
+            <button id="btn-toggle-mic" class="btn" onclick="toggleContinuousMic()" style="padding: 0.55rem 1.15rem; font-weight: 700;">
+              <span id="mic-btn-icon">🎙️</span> <span id="mic-btn-label">Start Listening</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; padding-top: 0.75rem; border-top: 1px solid rgba(43, 62, 107, 0.6);">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.35rem;">
+              <span>Real-Time Mic VU Level: <strong id="mic-rms-val" style="color: var(--text-main); font-family: monospace;">0.0000</strong></span>
+              <span id="mic-vad-indicator" style="font-weight: 600; color: #64748b;">[ AMBIENT NOISE FLOOR ]</span>
+            </div>
+            <div style="background: #090d16; height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--border);">
+              <div id="mic-vu-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #f59e0b 80%, #f43f5e 100%); transition: width 0.08s ease;"></div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.25rem; font-size: 0.8rem; color: var(--text-muted); text-align: right;">
+            <div>Vocal Events: <strong id="mic-vocal-count" style="color: var(--accent); font-size: 0.95rem;">0</strong></div>
+            <div>Clips Evaluated: <strong id="mic-clips-count" style="color: var(--text-main); font-size: 0.95rem;">0</strong></div>
+            <div>Latest: <strong id="mic-last-detection" style="color: #38bdf8; font-size: 0.9rem;">None</strong></div>
+          </div>
+        </div>
+      </div>
+
       <div class="section-card">
         <div class="section-head">
           <div class="section-title">Real-Time Acoustic Detection Stream</div>
@@ -807,8 +851,140 @@
       }
     }
 
+    // Continuous Microphone Ingestion Logic
+    let isMicRunning = false;
+    let lastDetectionsCount = -1;
+
+    async function loadMicDevices() {
+      try {
+        const res = await fetch("/api/mic/devices");
+        const data = await res.json();
+        const sel = document.getElementById("mic-device-select");
+        if (!data.devices || !data.devices.length) {
+          sel.innerHTML = `<option value="">No Physical Mic Found</option>`;
+          return;
+        }
+        sel.innerHTML = data.devices.map(d => `
+          <option value="${d.index}" ${d.is_default ? "selected" : ""}>
+            ${d.name} (${d.channels}ch, ${d.default_samplerate}Hz)${d.is_default ? " ★" : ""}
+          </option>
+        `).join("");
+      } catch (e) {
+        console.error("Failed loading mic devices", e);
+      }
+    }
+
+    async function pollMicStatus() {
+      try {
+        const res = await fetch("/api/mic/status");
+        const data = await res.json();
+        isMicRunning = !!data.is_running;
+
+        const led = document.getElementById("mic-led");
+        const pill = document.getElementById("mic-pill");
+        const btnLabel = document.getElementById("mic-btn-label");
+        const btnIcon = document.getElementById("mic-btn-icon");
+        const statusText = document.getElementById("mic-status-text");
+        const toggleBtn = document.getElementById("btn-toggle-mic");
+
+        if (isMicRunning) {
+          led.style.background = "#10b981";
+          led.style.boxShadow = "0 0 12px #10b981";
+          pill.style.background = "rgba(16, 185, 129, 0.2)";
+          pill.style.color = "#10b981";
+          pill.innerText = "LISTENING 24/7";
+          btnLabel.innerText = "Stop Listening";
+          btnIcon.innerText = "⏹️";
+          toggleBtn.className = "btn btn-secondary";
+          statusText.innerText = `Actively listening • Uptime: ${data.uptime_seconds}s • Gated by EnergyVAD`;
+
+          if (data.detections_logged > 0 && data.detections_logged !== lastDetectionsCount) {
+            lastDetectionsCount = data.detections_logged;
+            loadDetections();
+            loadStats();
+          }
+        } else {
+          led.style.background = "#64748b";
+          led.style.boxShadow = "none";
+          pill.style.background = "#1e293b";
+          pill.style.color = "#94a3b8";
+          pill.innerText = "IDLE";
+          btnLabel.innerText = "Start Listening";
+          btnIcon.innerText = "🎙️";
+          toggleBtn.className = "btn";
+          statusText.innerText = "Real-time 24/7 acoustic listening with adaptive energy VAD gating.";
+        }
+
+        const rms = data.current_rms || 0.0;
+        document.getElementById("mic-rms-val").innerText = rms.toFixed(5);
+        const vuPercent = Math.min(100, Math.round((rms / 0.035) * 100));
+        document.getElementById("mic-vu-bar").style.width = isMicRunning ? `${vuPercent}%` : "0%";
+
+        const vadIndicator = document.getElementById("mic-vad-indicator");
+        if (isMicRunning) {
+          if (rms > 0.006) {
+            vadIndicator.innerText = "[ VOCALIZATION ACTIVITY DETECTED ]";
+            vadIndicator.style.color = "#10b981";
+          } else {
+            vadIndicator.innerText = "[ AMBIENT NOISE FLOOR ]";
+            vadIndicator.style.color = "#64748b";
+          }
+        } else {
+          vadIndicator.innerText = "[ MIC OFF ]";
+          vadIndicator.style.color = "#64748b";
+        }
+
+        document.getElementById("mic-vocal-count").innerText = data.clips_with_activity || 0;
+        document.getElementById("mic-clips-count").innerText = data.clips_evaluated || 0;
+
+        const last = data.last_detection;
+        if (last) {
+          const spName = last.species_id ? last.species_id.replace(/_/g, " ").toUpperCase() : "Unknown";
+          const conf = (last.confidence * 100).toFixed(1);
+          document.getElementById("mic-last-detection").innerText = `${spName} (${conf}%)`;
+        }
+      } catch (e) {
+        // quiet polling error during network hiccups
+      }
+    }
+
+    async function toggleContinuousMic() {
+      const btn = document.getElementById("btn-toggle-mic");
+      btn.disabled = true;
+
+      try {
+        if (isMicRunning) {
+          const res = await fetch("/api/mic/stop", { method: "POST" });
+          const data = await res.json();
+          showToast("Microphone stream stopped.");
+        } else {
+          const selVal = document.getElementById("mic-device-select").value;
+          const devIdx = selVal !== "" ? parseInt(selVal, 10) : null;
+          const res = await fetch("/api/mic/start", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ device: devIdx })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || "Failed to start mic");
+          showToast("Continuous microphone monitoring started!");
+        }
+        await pollMicStatus();
+      } catch (err) {
+        showToast(err.message, true);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
     // Init
-    window.addEventListener("DOMContentLoaded", loadAllData);
+    window.addEventListener("DOMContentLoaded", async () => {
+      await loadAllData();
+      await loadMicDevices();
+      await pollMicStatus();
+      // Poll mic VU meter & status every 500ms
+      setInterval(pollMicStatus, 500);
+    });
   </script>
 </body>
 </html>

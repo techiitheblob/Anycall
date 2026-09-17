@@ -201,3 +201,37 @@ def test_portal_settings_update(portal_client):
     # Invalid threshold rejected
     bad_res = portal_client.post("/api/settings", json={"threshold": 1.5})
     assert bad_res.status_code == 400
+
+
+def test_portal_mic_devices_endpoint(portal_client):
+    """Tests querying available audio input devices via /api/mic/devices."""
+    res = portal_client.get("/api/mic/devices")
+    assert res.status_code == 200
+    data = res.json()
+    assert "devices" in data
+    assert isinstance(data["devices"], list)
+
+
+def test_portal_mic_status_and_lifecycle(portal_client):
+    """Tests starting, checking status, and stopping the continuous mic listener."""
+    # Check initial status
+    res = portal_client.get("/api/mic/status")
+    assert res.status_code == 200
+    status = res.json()
+    assert "is_running" in status
+    assert "current_rms" in status
+
+    # Start mic
+    start_res = portal_client.post("/api/mic/start", json={})
+    assert start_res.status_code == 200
+    start_data = start_res.json()
+    assert start_data["status"] == "started"
+    assert start_data["details"]["is_running"] is True
+
+    # Stop mic
+    stop_res = portal_client.post("/api/mic/stop")
+    assert stop_res.status_code == 200
+    stop_data = stop_res.json()
+    assert stop_data["status"] == "stopped"
+    assert stop_data["details"]["is_running"] is False
+
