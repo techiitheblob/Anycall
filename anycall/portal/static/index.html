@@ -231,7 +231,7 @@
       <div class="section-card">
         <div class="section-head">
           <div class="section-title">Real-Time Acoustic Detection Stream</div>
-          <div style="display: flex; gap: 0.5rem;">
+          <div style="display: flex; gap: 0.65rem; align-items: center;">
             <select id="filter-taxon" class="form-select" style="width: auto;" onchange="filterDetections()">
               <option value="">All Taxa</option>
               <option value="Aves">Aves (Birds)</option>
@@ -240,6 +240,9 @@
               <option value="Mammalia">Mammalia (Mammals)</option>
               <option value="Unknown">Unknown (Rejected)</option>
             </select>
+            <button class="btn btn-secondary" onclick="confirmClearDetections()" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3);" title="Clear all logged detection events">
+              🗑️ Clear Feed
+            </button>
           </div>
         </div>
 
@@ -268,7 +271,12 @@
       <div class="two-col">
         <div>
           <div class="section-card">
-            <div class="section-title" style="margin-bottom: 1rem;">Upload Field Audio For Instant Inference</div>
+            <div class="section-head" style="margin-bottom: 0.85rem;">
+              <div class="section-title">Upload Field Audio For Instant Inference</div>
+              <button class="btn btn-secondary" onclick="clearAudioTester()" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+                🔄 Reset / Clear
+              </button>
+            </div>
             <div class="dropzone" id="classify-dropzone" onclick="document.getElementById('classify-file').click()">
               <div class="drop-icon">🎵</div>
               <p style="font-weight: 600; margin-bottom: 0.25rem;">Click or Drag & Drop audio file</p>
@@ -364,7 +372,12 @@
               Out-of-bank sounds with similarity &lt; &theta; are quarantined. Recurring calls are clustered and can be named into known species with 1 click.
             </p>
           </div>
-          <button class="btn btn-secondary" onclick="loadClusters()">🔍 Re-Scan Clusters</button>
+          <div style="display: flex; gap: 0.65rem; align-items: center;">
+            <button class="btn btn-secondary" onclick="loadClusters()">🔍 Re-Scan Clusters</button>
+            <button class="btn btn-secondary" onclick="confirmClearMysterySounds()" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3);" title="Clear all quarantined mystery sounds">
+              🗑️ Clear Unknowns
+            </button>
+          </div>
         </div>
 
         <div id="clusters-container">
@@ -731,6 +744,47 @@
       } finally {
         btn.disabled = false;
         btn.innerText = "⚡ Run Classification";
+      }
+    }
+
+    function clearAudioTester() {
+      selectedClassifyFile = null;
+      const fileInput = document.getElementById("classify-file");
+      if (fileInput) fileInput.value = "";
+      document.getElementById("classify-filename").innerText = "None";
+      const runBtn = document.getElementById("btn-run-classify");
+      if (runBtn) {
+        runBtn.disabled = true;
+        runBtn.innerText = "⚡ Run Classification";
+      }
+      const resultsCard = document.getElementById("classify-results-card");
+      if (resultsCard) resultsCard.style.display = "none";
+      showToast("Audio tester reset.");
+    }
+
+    async function confirmClearDetections() {
+      if (!confirm("Are you sure you want to clear all recorded detection events?")) return;
+      try {
+        const res = await fetch("/api/detections/clear", { method: "POST" });
+        const data = await res.json();
+        showToast(data.message);
+        await loadDetections();
+        await loadStats();
+      } catch (e) {
+        showToast("Failed to clear detections", true);
+      }
+    }
+
+    async function confirmClearMysterySounds() {
+      if (!confirm("Are you sure you want to clear all quarantined mystery sounds?")) return;
+      try {
+        const res = await fetch("/api/unidentified/clear", { method: "POST" });
+        const data = await res.json();
+        showToast(data.message);
+        await loadClusters();
+        await loadStats();
+      } catch (e) {
+        showToast("Failed to clear mystery sounds", true);
       }
     }
 

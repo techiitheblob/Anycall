@@ -253,6 +253,17 @@ def create_app(
 
         return {"total": len(detections), "detections": detections}
 
+    @app.delete("/api/detections")
+    @app.post("/api/detections/clear")
+    def clear_detections():
+        """Clear all historical detection events from the database."""
+        count = db_mgr.clear_detections()
+        return {
+            "status": "success",
+            "message": f"Cleared {count} detection events.",
+            "cleared_count": count,
+        }
+
     # ----------------------------------------------------------------------
     # Species Management (Few-Shot Enrollment)
     # ----------------------------------------------------------------------
@@ -537,6 +548,18 @@ def create_app(
             "message": f"Successfully promoted {req.cluster_id} to '{clean_sp_id}' ({cluster.n_samples} exemplars).",
             "species_id": clean_sp_id,
             "sample_count": cluster.n_samples,
+        }
+
+    @app.delete("/api/unidentified")
+    @app.post("/api/unidentified/clear")
+    def clear_unidentified():
+        """Clear all quarantined mystery sounds and reset sound bank."""
+        count = db_mgr.clear_unidentified()
+        sound_bank.clear()
+        return {
+            "status": "success",
+            "message": f"Cleared {count} quarantined mystery sounds.",
+            "cleared_count": count,
         }
 
     # ----------------------------------------------------------------------

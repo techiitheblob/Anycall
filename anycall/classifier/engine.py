@@ -361,6 +361,13 @@ class UnidentifiedSoundBank:
     def total_unidentified(self) -> int:
         return len(self._embeddings)
 
+    def clear(self) -> None:
+        """Clear all buffered unidentified sounds and discovered clusters."""
+        self._embeddings.clear()
+        self._paths.clear()
+        self._timestamps.clear()
+        self._clusters.clear()
+
     def discover_clusters(self, min_cluster_size: int = 3) -> List[NovelCluster]:
         """Leader-clustering over unidentified embeddings to group recurring calls.
 

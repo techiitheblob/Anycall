@@ -235,3 +235,30 @@ def test_portal_mic_status_and_lifecycle(portal_client):
     assert stop_data["status"] == "stopped"
     assert stop_data["details"]["is_running"] is False
 
+
+def test_portal_clear_endpoints(portal_client):
+    """Tests clearing detections and mystery sounds."""
+    # Classify a sample to generate a detection
+    synth_wav = _synth_wav_bytes("aves", seed=123)
+    portal_client.post("/api/classify", files={"file": ("test.wav", synth_wav, "audio/wav")})
+
+    # Verify detection exists
+    det_res = portal_client.get("/api/detections")
+    assert det_res.status_code == 200
+    assert det_res.json()["total"] > 0
+
+    # Clear detections
+    clear_res = portal_client.post("/api/detections/clear")
+    assert clear_res.status_code == 200
+    assert clear_res.json()["status"] == "success"
+
+    # Verify detections are now empty
+    det_after = portal_client.get("/api/detections")
+    assert det_after.json()["total"] == 0
+
+    # Clear unidentified sounds
+    clear_unid = portal_client.post("/api/unidentified/clear")
+    assert clear_unid.status_code == 200
+    assert clear_unid.json()["status"] == "success"
+
+

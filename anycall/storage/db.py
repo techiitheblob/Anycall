@@ -185,6 +185,18 @@ class PrototypeStore:
             ).fetchall()
         return [dict(row) for row in rows]
 
+    def clear_detections(self) -> int:
+        """Purge all recorded detections from database."""
+        cur = self._conn.execute("DELETE FROM detections")
+        self._conn.commit()
+        return cur.rowcount
+
+    def clear_unidentified(self) -> int:
+        """Purge all quarantined unidentified sounds from database."""
+        cur = self._conn.execute("DELETE FROM unidentified_sounds")
+        self._conn.commit()
+        return cur.rowcount
+
     # ------------------------------------------------------------------
     # Unidentified Sounds CRUD
     # ------------------------------------------------------------------
@@ -425,6 +437,18 @@ class DatabaseManager:
             [cluster_id] + sound_ids,
         )
         self._conn.commit()
+
+    def clear_detections(self) -> int:
+        """Purge all recorded detections from database."""
+        cur = self._conn.execute("DELETE FROM detections")
+        self._conn.commit()
+        return cur.rowcount
+
+    def clear_unidentified(self) -> int:
+        """Purge all quarantined unidentified sounds from database."""
+        cur = self._conn.execute("DELETE FROM unidentified_sounds")
+        self._conn.commit()
+        return cur.rowcount
 
     def close(self) -> None:
         DatabaseManager._instances.discard(self)
