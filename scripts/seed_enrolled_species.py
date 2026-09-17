@@ -20,6 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description="Seed AnyCall Database with Curated Species Prototypes")
     parser.add_argument("--db", type=str, default="anycall.db", help="Path to SQLite database")
     parser.add_argument("--data-dir", type=str, default="data/processed", help="Path to processed audio directory")
+    parser.add_argument("--backbone", type=str, default="birdnet", choices=["birdnet", "perch", "panns"], help="Embedding backbone to use")
     parser.add_argument("--max-samples", type=int, default=100, help="Maximum audio samples per species prototype")
     args = parser.parse_args()
 
@@ -28,18 +29,21 @@ def main():
         print(f"Error: {processed_path} does not exist!")
         sys.exit(1)
 
+    from anycall.embeddings import get_backbone
+    bb = get_backbone(args.backbone)
+
     print("=" * 72)
     print("       AnyCall Species Prototypical Enrollment & Database Seeder     ")
     print("=" * 72)
     print(f"  • Database       : {args.db}")
     print(f"  • Data Directory : {args.data_dir}")
-    print(f"  • Backbone       : BirdNET EfficientNet-B0 (1024-dim, 48kHz)")
+    print(f"  • Backbone       : {bb.__class__.__name__}")
     print(f"  • Max Samples/Sp : {args.max_samples}")
     print("=" * 72)
 
     db_mgr = DatabaseManager(args.db)
-    print("[1/3] Initializing BirdNET backbone model...")
-    backbone = BirdNetBackbone()
+    print(f"[1/3] Initializing {bb.__class__.__name__} backbone model...")
+    backbone = bb
 
     species_dirs = sorted([d for d in processed_path.iterdir() if d.is_dir()])
     print(f"[2/3] Found {len(species_dirs)} species directories to enroll.\n")

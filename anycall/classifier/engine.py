@@ -189,7 +189,7 @@ class PrototypicalClassifier:
         return self._bank[label].centroid
 
     def predict(
-        self, query: np.ndarray, threshold: Optional[float] = None
+        self, query: np.ndarray, threshold: Optional[float] = None, use_mean_centering: bool = True
     ) -> PredictionResult:
         """Classify a query embedding using cosine nearest-centroid matching.
 
@@ -199,6 +199,9 @@ class PrototypicalClassifier:
             L2-normalized float32 vector of shape (D,).
         threshold : float, optional
             Optional threshold override for this prediction.
+        use_mean_centering : bool
+            If True, applies dynamic mean-centering to mathematically untangle
+            cross-taxa biases in frozen embedding spaces.
 
         Returns
         -------
@@ -210,12 +213,25 @@ class PrototypicalClassifier:
             return PredictionResult(self._unknown_label, 0.0, is_known=False)
 
         q = self._l2(query)
+        
+        # Apply dynamic mean-centering if enabled
+        global_mean = None
+        if use_mean_centering and len(self._bank) > 1:
+            all_protos = np.stack([p.centroid for p in self._bank.values()], axis=0)
+            global_mean = all_protos.mean(axis=0)
+            q = self._l2(q - global_mean)
+
         best_label = self._unknown_label
         best_score = -1.0
         scores: Dict[str, float] = {}
 
         for proto in self._bank.values():
-            score = self._max_cosine(q, proto)
+            if global_mean is not None:
+                centered_proto_centroid = self._l2(proto.centroid - global_mean)
+                score = float(np.dot(q, centered_proto_centroid))
+            else:
+                score = self._max_cosine(q, proto)
+            
             scores[proto.label] = float(score)
             if score > best_score:
                 best_score = score
@@ -376,7 +392,20 @@ class UnidentifiedSoundBank:
         if len(self._embeddings) < min_cluster_size:
             return []
 
-        stack = np.stack(self._embeddings, axis=0)  # (N, D)
+        raw_stack = np.stack(self._embeddings, axis=0)  # (N, D)
+        stack = raw_stack.copy()
+        
+        # Apply mean centering for robust cross-taxa clustering
+        if len(stack) > 1:
+            global_mean = stack.mean(axis=0)
+            stack = stack - global_mean
+            norms = np.linalg.norm(stack, axis=1, keepdims=True)
+            norms[norms < 1e-12] = 1.0
+            stack = stack / norms
+            effective_threshold = 0.50 # User requested at least 0.50
+        else:
+            effective_threshold = self.cluster_similarity
+
         assigned = np.full(len(stack), -1, dtype=int)
         clusters: List[NovelCluster] = []
         cluster_idx = 0
@@ -387,11 +416,12 @@ class UnidentifiedSoundBank:
 
             # Compute similarity to all unassigned samples
             sims = stack @ stack[i]  # cosine similarity
-            members = np.where((sims >= self.cluster_similarity) & (assigned == -1))[0]
+            members = np.where((sims >= effective_threshold) & (assigned == -1))[0]
 
             if len(members) >= min_cluster_size:
                 assigned[members] = cluster_idx
-                member_embs = stack[members]
+                # MUST use raw embeddings to calculate centroid for downstream promotion!
+                member_embs = raw_stack[members]
                 centroid = PrototypicalClassifier._l2(member_embs.mean(axis=0))
                 cohesion = float((member_embs @ centroid).mean())
 

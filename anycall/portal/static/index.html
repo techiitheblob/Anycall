@@ -495,7 +495,8 @@
 
         <div class="form-group">
           <label class="form-label">Common Name</label>
-          <input type="text" id="promote-common-name" class="form-input" required placeholder="e.g. Green Tree Cricket">
+          <input type="text" id="promote-common-name" class="form-input" required placeholder="e.g. Green Tree Cricket" list="species-datalist" oninput="autofillSpecies()">
+          <datalist id="species-datalist"></datalist>
         </div>
 
         <div class="form-group">
@@ -588,16 +589,15 @@
         const badgeClass = isKnown ? "tag-aves" : "tag-unknown";
         const statusText = isKnown ? "MATCH" : "QUARANTINED";
 
-        let taxon = "Aves";
-        if (d.species_id.includes("bullfrog") || d.species_id.includes("toad")) taxon = "Amphibia";
-        else if (d.species_id.includes("cricket") || d.species_id.includes("cicada")) taxon = "Insecta";
-        else if (d.species_id.includes("squirrel") || d.species_id.includes("jackal")) taxon = "Mammalia";
+        let taxon = d.taxon || "Unknown";
         if (!isKnown) taxon = "Unknown";
+        let display_name = d.common_name || d.species_id.replace(/_/g, " ").toUpperCase();
+        if (!isKnown) display_name = "Unknown";
 
         return `
           <tr>
             <td style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">${d.timestamp.replace("T", " ").substring(0, 19)}</td>
-            <td style="font-weight: 600;">${d.species_id.replace(/_/g, " ").toUpperCase()}</td>
+            <td style="font-weight: 600;">${display_name}</td>
             <td><span class="tag tag-${taxon.toLowerCase()}">${taxon}</span></td>
             <td>
               <div class="conf-bar"><div class="conf-fill" style="width: ${Math.round(d.confidence * 100)}%;"></div></div>
@@ -622,18 +622,44 @@
         renderDetections(currentDetections.filter(d => d.is_known));
       }
     }
+    let enrolledSpeciesData = [];
+    
+    function autofillSpecies() {
+      const val = document.getElementById("promote-common-name").value;
+      const match = enrolledSpeciesData.find(s => s.common_name === val);
+      if (match) {
+        document.getElementById("promote-sp-id").value = match.species_id;
+        const taxonSelect = document.getElementById("promote-taxon");
+        if (taxonSelect) {
+          const targetTaxon = match.taxon || 'Aves';
+          for (let i = 0; i < taxonSelect.options.length; i++) {
+            if (taxonSelect.options[i].value === targetTaxon) {
+              taxonSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+    }
 
     async function loadSpecies() {
       try {
         const res = await fetch("/api/species");
         const data = await res.json();
+        
+        enrolledSpeciesData = data.species || [];
+        const dl = document.getElementById("species-datalist");
+        if (dl) {
+          dl.innerHTML = enrolledSpeciesData.map(s => `<option value="${s.common_name}"></option>`).join("");
+        }
+
         const tbody = document.getElementById("species-tbody");
-        if (!data.species || !data.species.length) {
+        if (!enrolledSpeciesData.length) {
           tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No species enrolled yet.</td></tr>`;
           return;
         }
 
-        tbody.innerHTML = data.species.map(s => `
+        tbody.innerHTML = enrolledSpeciesData.map(s => `
           <tr>
             <td style="font-family: monospace; font-size: 0.85rem;">${s.species_id}</td>
             <td style="font-weight: 600;">${s.common_name}</td>
@@ -849,7 +875,7 @@
       document.getElementById("promote-cluster-id").value = clusterId;
       document.getElementById("promote-cluster-name").innerText = clusterId;
       document.getElementById("promote-sp-id").value = clusterId.toLowerCase();
-      document.getElementById("promote-common-name").value = "Novel Wildlife Sp.";
+      document.getElementById("promote-common-name").value = "";
       openModal("modal-promote");
     }
 
@@ -1024,7 +1050,7 @@
 
         const last = data.last_detection;
         if (last) {
-          const spName = last.species_id ? last.species_id.replace(/_/g, " ").toUpperCase() : "Unknown";
+          const spName = last.is_known ? (last.common_name || last.species_id.replace(/_/g, " ").toUpperCase()) : "Unknown";
           const conf = (last.confidence * 100).toFixed(1);
           document.getElementById("mic-last-detection").innerText = `${spName} (${conf}%)`;
         }

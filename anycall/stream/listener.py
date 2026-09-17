@@ -70,6 +70,8 @@ class ContinuousMicrophoneListener:
         # Temporal EMA smoothing & Margin gating state
         self._smoothed_scores: Dict[str, float] = {}
         self._last_vocal_time: float = 0.0
+        self._streak_species: Optional[str] = None
+        self._streak_counter: int = 0
 
         # Threading and buffers
         self._is_running = False
@@ -232,14 +234,36 @@ class ContinuousMicrophoneListener:
 
                 # Gating: Must meet both absolute threshold theta AND minimum top-1 separation margin
                 if top1_score >= theta and margin >= self.margin_threshold:
-                    predicted_label = top1_sp
+                    if top1_score >= 0.45:
+                        # High confidence override
+                        self._streak_species = top1_sp
+                        self._streak_counter = 2
+                        is_known = True
+                    else:
+                        # Streak building
+                        if self._streak_species == top1_sp:
+                            self._streak_counter += 1
+                        else:
+                            self._streak_species = top1_sp
+                            self._streak_counter = 1
+                            
+                        # Must detect at least 2 consecutive times if score < 0.80
+                        if self._streak_counter >= 2:
+                            is_known = True
+                        else:
+                            is_known = False
+                            
+                    predicted_label = top1_sp if is_known else "Unknown"
                     confidence = float(top1_score)
-                    is_known = True
                 else:
+                    self._streak_species = None
+                    self._streak_counter = 0
                     predicted_label = "Unknown"
                     confidence = float(top1_score)
                     is_known = False
             else:
+                self._streak_species = None
+                self._streak_counter = 0
                 predicted_label = "Unknown"
                 confidence = 0.0
                 is_known = False
@@ -270,9 +294,20 @@ class ContinuousMicrophoneListener:
             # Update latest detection telemetry
             top_candidates = sorted_candidates[:5] if sorted_candidates else []
 
+            # Fetch species details from DB for UI display
+            common_name = ""
+            taxon = ""
+            if is_known:
+                sp_info = self.db_mgr.get_prototype(predicted_label)
+                if sp_info:
+                    common_name = sp_info.get("common_name", "")
+                    taxon = sp_info.get("taxon", "")
+
             detection_event = {
                 "timestamp": now_iso,
                 "species_id": predicted_label,
+                "common_name": common_name,
+                "taxon": taxon,
                 "confidence": round(confidence, 4),
                 "is_known": is_known,
                 "audio_path": str(save_path.name),
