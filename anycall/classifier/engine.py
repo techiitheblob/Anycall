@@ -84,7 +84,7 @@ class PrototypicalClassifier:
     def __init__(
         self,
         threshold: float = 0.65,
-        n_subprototypes: int = 1,
+        n_subprototypes: int = 3,
         unknown_label: str = "Unknown",
     ) -> None:
         if not 0.0 <= threshold <= 1.0:
@@ -227,8 +227,12 @@ class PrototypicalClassifier:
 
         for proto in self._bank.values():
             if global_mean is not None:
-                centered_proto_centroid = self._l2(proto.centroid - global_mean)
-                score = float(np.dot(q, centered_proto_centroid))
+                if proto.sub_prototypes:
+                    sub_scores = [float(np.dot(q, self._l2(sp - global_mean))) for sp in proto.sub_prototypes]
+                    score = max(sub_scores)
+                else:
+                    centered_proto_centroid = self._l2(proto.centroid - global_mean)
+                    score = float(np.dot(q, centered_proto_centroid))
             else:
                 score = self._max_cosine(q, proto)
             
