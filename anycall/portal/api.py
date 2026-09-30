@@ -24,9 +24,11 @@ from anycall.classifier.engine import (
     PrototypicalClassifier,
     UnidentifiedSoundBank,
 )
+from anycall.data.species import SPECIES_CATALOG
 from anycall.embeddings import get_backbone
 from anycall.storage.db import DatabaseManager
-from anycall.stream.listener import ContinuousMicrophoneListener
+from anycall.stream.adaptive_listener import AdaptiveSpectrogramListener
+from anycall.stream.spectrogram import SpectrogramEventDetector
 
 
 class MicStartRequest(BaseModel):
@@ -48,7 +50,7 @@ class PromoteClusterRequest(BaseModel):
 def create_app(
     db_path: str = "anycall.db",
     backbone_name: str = "birdnet",
-    default_threshold: float = 0.60,
+    default_threshold: float = 0.70,
     upload_dir: str = "data/uploads",
 ) -> FastAPI:
     """Factory creating and configuring the AnyCall Portal FastAPI application."""
@@ -83,6 +85,53 @@ def create_app(
         current_backbone_name = "mock"
         backbone = get_backbone("mock")
 
+    # Shared HPSS detector — used by ALL enrollment and classify routes to guarantee
+    # that every embedding is extracted with the same pipeline as the live listener.
+    hpss_detector = SpectrogramEventDetector(sample_rate=backbone.target_sample_rate)
+
+    def hpss_extract_clips(audio: np.ndarray, sr: int) -> List[np.ndarray]:
+        """Run HPSS detection on audio and return a list of centered 3-second clips.
+
+        This is the single canonical preprocessing function for the entire system.
+        Both live microphone inference and file-upload enrollment/classify go through here,
+        ensuring no distribution mismatch between prototypes and queries.
+        """
+        import librosa
+        # Resample to target sr if needed
+        if sr != backbone.target_sample_rate:
+            audio = librosa.resample(audio, orig_sr=sr, target_sr=backbone.target_sample_rate)
+            sr = backbone.target_sample_rate
+
+        target_len = int(backbone.target_duration_seconds * sr)
+        events = hpss_detector.find_events(audio)
+
+        clips: List[np.ndarray] = []
+        for (start_t, end_t) in events:
+            center = (start_t + end_t) / 2.0
+            win_start = max(0.0, center - backbone.target_duration_seconds / 2)
+            win_end = win_start + backbone.target_duration_seconds
+            # Clamp to buffer
+            if win_end > len(audio) / sr:
+                win_end = len(audio) / sr
+                win_start = max(0.0, win_end - backbone.target_duration_seconds)
+
+            s_idx = int(win_start * sr)
+            e_idx = int(win_end * sr)
+            clip = audio[s_idx:e_idx]
+            if len(clip) < target_len:
+                clip = np.pad(clip, (0, target_len - len(clip)), "constant")
+            clips.append(clip.astype(np.float32))
+
+        if not clips:
+            # No events detected — treat the whole file as one clip (center-crop/pad)
+            if len(audio) >= target_len:
+                start = (len(audio) - target_len) // 2
+                clips = [audio[start: start + target_len].astype(np.float32)]
+            else:
+                clips = [np.pad(audio, (0, target_len - len(audio)), "constant").astype(np.float32)]
+
+        return clips
+
     # Load existing prototypes into classifier
     try:
         existing_rows = db_mgr._conn.execute("SELECT * FROM species").fetchall()
@@ -109,14 +158,15 @@ def create_app(
         print(f"[Portal] Note: No existing unidentified sounds loaded: {e}")
 
     # Continuous Microphone Stream Listener
-    mic_listener = ContinuousMicrophoneListener(
+    mic_listener = AdaptiveSpectrogramListener(
         classifier=classifier,
         backbone=backbone,
         db_mgr=db_mgr,
         sound_bank=sound_bank,
-        rejection_threshold=default_threshold,
+        multi_label_threshold=default_threshold,
     )
     app.state.mic_listener = mic_listener
+
 
     @app.on_event("shutdown")
     def shutdown_listener():
@@ -144,9 +194,22 @@ def create_app(
         return mic_listener.get_status()
 
     @app.get("/api/mic/devices")
-    def get_mic_devices():
-        """List available physical audio input devices."""
-        return {"devices": ContinuousMicrophoneListener.list_input_devices()}
+    def list_devices():
+        """List available input devices (if sounddevice is installed)."""
+        import sounddevice as sd
+        devices = sd.query_devices()
+        default_input = sd.default.device[0]
+        input_devices = []
+        for idx, dev in enumerate(devices):
+            if dev.get("max_input_channels", 0) > 0:
+                input_devices.append({
+                    "index": idx,
+                    "name": dev.get("name", f"Device #{idx}"),
+                    "channels": dev.get("max_input_channels", 1),
+                    "default_samplerate": int(dev.get("default_samplerate", 48000)),
+                    "is_default": (idx == default_input),
+                })
+        return {"devices": input_devices}
 
     @app.post("/api/mic/start")
     def start_mic(req: Optional[MicStartRequest] = None):
@@ -228,19 +291,23 @@ def create_app(
         species_id: Optional[str] = None,
         is_known: Optional[bool] = None,
     ):
-        """Fetch chronological log of detection events."""
-        query = "SELECT * FROM detections"
+        """Fetch chronological log of detection events with species common names."""
+        query = """
+            SELECT d.*, s.common_name as sp_common_name, s.taxon as sp_taxon 
+            FROM detections d 
+            LEFT JOIN species s ON d.species_id = s.species_id
+        """
         params: List[Any] = []
         where_clauses: List[str] = []
 
         if species_id:
-            where_clauses.append("species_id = ?")
+            where_clauses.append("d.species_id = ?")
             params.append(species_id)
 
         if where_clauses:
             query += " WHERE " + " AND ".join(where_clauses)
 
-        query += " ORDER BY id DESC LIMIT ?"
+        query += " ORDER BY d.id DESC LIMIT ?"
         params.append(limit)
 
         rows = db_mgr._conn.execute(query, params).fetchall()
@@ -249,6 +316,21 @@ def create_app(
             d = dict(r)
             d["confidence"] = round(float(d["confidence"]), 4)
             d["is_known"] = d["species_id"].lower() != "unknown"
+
+            # Resolve common_name and taxon
+            if d.get("sp_common_name"):
+                d["common_name"] = d["sp_common_name"]
+            else:
+                meta = SPECIES_CATALOG.get(d["species_id"])
+                if meta:
+                    d["common_name"] = meta.common_name
+                    d["taxon"] = meta.taxon.value.capitalize() if hasattr(meta.taxon, "value") else str(meta.taxon).capitalize()
+                else:
+                    d["common_name"] = d["species_id"].replace("_", " ").title()
+
+            if d.get("sp_taxon"):
+                d["taxon"] = str(d["sp_taxon"]).capitalize()
+
             detections.append(d)
 
         return {"total": len(detections), "detections": detections}
@@ -284,10 +366,15 @@ def create_app(
         taxon: str = Form("Aves"),
         files: List[UploadFile] = File(...),
     ):
-        """Enroll a new species prototype using few-shot audio exemplars without retraining."""
+        """Enroll a new species prototype using few-shot audio exemplars without retraining.
+        
+        Uses the same HPSS preprocessing pipeline as the live microphone listener so that
+        enrolled prototypes and live queries occupy the same embedding distribution.
+        """
         if not files:
             raise HTTPException(status_code=400, detail="At least one audio file must be uploaded.")
 
+        import soundfile as sf
         clean_sp_id = species_id.lower().strip().replace(" ", "_")
         sp_upload_dir = uploads_path / clean_sp_id
         sp_upload_dir.mkdir(parents=True, exist_ok=True)
@@ -301,21 +388,16 @@ def create_app(
                 shutil.copyfileobj(f.file, buffer)
 
             try:
-                std_audio, sr = standardize_audio(file_path, target_sr=backbone.target_sample_rate)
-                slices = slice_audio_segments(
-                    std_audio,
-                    sr=sr,
-                    segment_duration=backbone.target_duration_seconds,
-                    vad_filter=True,
-                )
-                if not slices:
-                    # Fallback to unpadded slice if VAD discarded everything
-                    slices = [std_audio[: int(sr * backbone.target_duration_seconds)]]
-
-                for s in slices:
-                    emb = backbone.embed(s, sr=sr)
+                audio, sr = sf.read(str(file_path), dtype="float32")
+                if audio.ndim > 1:
+                    audio = np.mean(audio, axis=-1)
+                # Run HPSS-based clip extraction (same as live listener)
+                clips = hpss_extract_clips(audio, sr)
+                for clip in clips:
+                    emb = backbone.embed(clip, sr=backbone.target_sample_rate)
                     extracted_embeddings.append(emb)
                 processed_files.append(f.filename)
+                print(f"[Portal] Enrolled {len(clips)} HPSS clips from {f.filename}")
             except Exception as ex:
                 print(f"[Portal] Warning: failed processing {f.filename}: {ex}")
 
@@ -341,18 +423,23 @@ def create_app(
 
         return {
             "status": "success",
-            "message": f"Successfully enrolled '{clean_sp_id}' with {len(extracted_embeddings)} exemplars.",
+            "message": f"Successfully enrolled '{clean_sp_id}' with {len(extracted_embeddings)} HPSS exemplars.",
             "species_id": clean_sp_id,
             "sample_count": len(extracted_embeddings),
             "files_processed": processed_files,
         }
+
 
     @app.post("/api/species/{species_id}/add-samples")
     async def add_species_samples(
         species_id: str,
         files: List[UploadFile] = File(...),
     ):
-        """Incrementally update an existing species prototype with new exemplars."""
+        """Incrementally update an existing species prototype with new exemplars.
+        
+        Uses the same HPSS preprocessing pipeline as the live microphone listener.
+        """
+        import soundfile as sf
         clean_sp_id = species_id.lower().strip().replace(" ", "_")
         existing = db_mgr.get_prototype(clean_sp_id)
         if existing is None:
@@ -365,15 +452,12 @@ def create_app(
                 shutil.copyfileobj(f.file, buf)
 
             try:
-                std_audio, sr = standardize_audio(temp_path, target_sr=backbone.target_sample_rate)
-                slices = slice_audio_segments(
-                    std_audio,
-                    sr=sr,
-                    segment_duration=backbone.target_duration_seconds,
-                    vad_filter=True,
-                )
-                for s in slices:
-                    emb = backbone.embed(s, sr=sr)
+                audio, sr = sf.read(str(temp_path), dtype="float32")
+                if audio.ndim > 1:
+                    audio = np.mean(audio, axis=-1)
+                clips = hpss_extract_clips(audio, sr)
+                for clip in clips:
+                    emb = backbone.embed(clip, sr=backbone.target_sample_rate)
                     new_embeddings.append(emb)
             finally:
                 if temp_path.exists():
@@ -397,10 +481,11 @@ def create_app(
 
         return {
             "status": "success",
-            "message": f"Updated '{clean_sp_id}' prototype with {len(new_embeddings)} new exemplars (total: {new_count}).",
+            "message": f"Updated '{clean_sp_id}' prototype with {len(new_embeddings)} new HPSS exemplars (total: {new_count}).",
             "species_id": clean_sp_id,
             "new_sample_count": new_count,
         }
+
 
     # ----------------------------------------------------------------------
     # Live Audio Inference / Upload Classifier
@@ -411,7 +496,11 @@ def create_app(
         file: UploadFile = File(...),
         threshold: Optional[float] = Form(None),
     ):
-        """Classify an audio recording, logging known detections or quarantining unknowns."""
+        """Classify an audio recording using HPSS preprocessing + top-1 nearest-centroid matching.
+        
+        Uses identical preprocessing to the live listener so uploaded file results are comparable.
+        """
+        import soundfile as sf
         save_name = f"{datetime.now().strftime('%Y%m%d_%H%M%S')}_{file.filename}"
         saved_audio_path = uploads_path / save_name
 
@@ -419,37 +508,36 @@ def create_app(
             shutil.copyfileobj(file.file, buffer)
 
         try:
-            std_audio, sr = standardize_audio(saved_audio_path, target_sr=backbone.target_sample_rate)
-            slices = slice_audio_segments(
-                std_audio,
-                sr=sr,
-                segment_duration=backbone.target_duration_seconds,
-                vad_filter=True,
-            )
-            if not slices:
-                # Fallback if VAD rejects (e.g. faint call)
-                target_len = int(sr * backbone.target_duration_seconds)
-                slices = [std_audio[:target_len] if len(std_audio) >= target_len else np.pad(std_audio, (0, target_len - len(std_audio)))]
+            audio, sr = sf.read(str(saved_audio_path), dtype="float32")
+            if audio.ndim > 1:
+                audio = np.mean(audio, axis=-1)
 
+            clips = hpss_extract_clips(audio, sr)
             effective_theta = threshold if threshold is not None else classifier.threshold
+            MIN_MARGIN = 0.01
 
             segment_results = []
-            for idx, seg in enumerate(slices):
-                emb = backbone.embed(seg, sr=sr)
+            for idx, clip in enumerate(clips):
+                emb = backbone.embed(clip, sr=backbone.target_sample_rate)
                 pred: PredictionResult = classifier.predict(emb, threshold=effective_theta)
 
-                audio_hash = hashlib.sha256(seg.tobytes()).hexdigest()[:16]
+                sorted_scores = sorted(pred.scores.items(), key=lambda x: x[1], reverse=True)
+                best_label, best_score = sorted_scores[0] if sorted_scores else ("Unknown", 0.0)
+                second_score = sorted_scores[1][1] if len(sorted_scores) > 1 else 0.0
+                margin = best_score - second_score
 
-                # Log to detections table
+                is_match = pred.is_known and best_score >= effective_theta and margin >= MIN_MARGIN
+                final_label = best_label if is_match else "Unknown"
+                audio_hash = hashlib.sha256(clip.tobytes()).hexdigest()[:16]
+
                 db_mgr.log_detection(
-                    species_id=pred.predicted_label,
-                    confidence=pred.confidence,
+                    species_id=final_label,
+                    confidence=best_score,
                     audio_hash=audio_hash,
                     threshold=effective_theta,
                 )
 
-                # If unknown / rejected, quarantine to UnidentifiedSoundBank
-                if not pred.is_known:
+                if not is_match:
                     sound_bank.add(
                         embedding=emb,
                         audio_path=str(saved_audio_path),
@@ -457,34 +545,45 @@ def create_app(
                     )
                     db_mgr.save_unidentified(
                         embedding=emb,
-                        best_match=pred.predicted_label,
-                        score=pred.confidence,
+                        best_match=best_label,
+                        score=best_score,
                         audio_path=str(saved_audio_path),
                     )
 
-                # Sort candidates
-                sorted_scores = sorted(
-                    pred.scores.items(), key=lambda item: item[1], reverse=True
-                )[:5]
+                # Build candidate list with common names
+                cand_list = []
+                for k, v in sorted_scores[:5]:
+                    meta = SPECIES_CATALOG.get(k)
+                    sp_common = meta.common_name if meta else k.replace("_", " ").title()
+                    cand_list.append({
+                        "species": k,
+                        "common_name": sp_common,
+                        "score": round(v, 4)
+                    })
+
+                meta_final = SPECIES_CATALOG.get(final_label)
+                final_common = meta_final.common_name if meta_final else (final_label if final_label == "Unknown" else final_label.replace("_", " ").title())
 
                 segment_results.append({
                     "segment_index": idx,
-                    "predicted_label": pred.predicted_label,
-                    "confidence": round(pred.confidence, 4),
-                    "is_known": pred.is_known,
-                    "candidates": [
-                        {"species": k, "score": round(v, 4)} for k, v in sorted_scores
-                    ],
+                    "predicted_label": final_label,
+                    "common_name": final_common,
+                    "confidence": round(best_score, 4),
+                    "margin": round(margin, 4),
+                    "is_known": is_match,
+                    "candidates": cand_list,
                 })
 
-            # Headline prediction is segment with highest confidence
-            best_seg = max(segment_results, key=lambda x: x["confidence"])
+            # Headline: best-confidence confirmed match, or best candidate if all unknown
+            known = [s for s in segment_results if s["is_known"]]
+            best_seg = max(known or segment_results, key=lambda x: x["confidence"])
 
             return {
                 "filename": file.filename,
                 "audio_url": f"/api/audio/{save_name}",
-                "segments_analyzed": len(slices),
+                "segments_analyzed": len(clips),
                 "predicted_label": best_seg["predicted_label"],
+                "common_name": best_seg.get("common_name", best_seg["predicted_label"].replace("_", " ").title()),
                 "confidence": best_seg["confidence"],
                 "is_known": best_seg["is_known"],
                 "threshold_applied": effective_theta,
@@ -493,6 +592,7 @@ def create_app(
 
         except Exception as err:
             raise HTTPException(status_code=500, detail=f"Classification failed: {err}")
+
 
     # ----------------------------------------------------------------------
     # Mystery Sounds & Novel Clusters Explorer

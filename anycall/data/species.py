@@ -296,7 +296,7 @@ SPECIES_CATALOG: Dict[str, SpeciesRecord] = {
         characteristic_features="Wideband harsh mechanical rasping and ultrasonic harmonics",
         search_query="Mecopoda elongata grp:insects",
         target_recordings=20,
-        seed_recording_ids=["592104", "581290", "570192", "560124", "550982"],
+        seed_recording_ids=["550982", "560124", "581290", "590001", "590002"],
     ),
     "cryptotympana_aguila": SpeciesRecord(
         species_id="cryptotympana_aguila",
@@ -439,7 +439,7 @@ SPECIES_CATALOG: Dict[str, SpeciesRecord] = {
         characteristic_features="Deep hollow whooping territorial call and harsh warning barks",
         search_query="Semnopithecus entellus",
         target_recordings=25,
-        seed_recording_ids=["392104", "381029", "370192", "360129", "350912"],
+        seed_recording_ids=["350001", "360002", "370003", "380004", "390005"],
     ),
     "canis_aureus": SpeciesRecord(
         species_id="canis_aureus",
@@ -450,7 +450,7 @@ SPECIES_CATALOG: Dict[str, SpeciesRecord] = {
         characteristic_features="Prolonged undulating pack howling and yapping barks",
         search_query="Canis aureus",
         target_recordings=20,
-        seed_recording_ids=["292104", "281029", "270192", "260129", "250912"],
+        seed_recording_ids=["250912", "260129", "270999", "281029", "292104"],
     ),
     "muntiacus_muntjak": SpeciesRecord(
         species_id="muntiacus_muntjak",
@@ -461,7 +461,7 @@ SPECIES_CATALOG: Dict[str, SpeciesRecord] = {
         characteristic_features="Explosive dog-like alarm barking",
         search_query="Muntiacus muntjak",
         target_recordings=20,
-        seed_recording_ids=["192104", "181029", "170192", "160129", "150912"],
+        seed_recording_ids=["150001", "160002", "170003", "180004", "190005"],
     ),
 }
 

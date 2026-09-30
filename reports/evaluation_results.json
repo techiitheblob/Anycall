@@ -1,0 +1,843 @@
+{
+  "exp1_birdnet_failure": [
+    {
+      "species_label": "acridotheres_tristis",
+      "taxon": "aves",
+      "birdnet_correct": false,
+      "anycall_correct": false,
+      "birdnet_top_prediction": "class_1600",
+      "birdnet_score": -1.5349,
+      "anycall_score": 0.3633
+    },
+    {
+      "species_label": "copsychus_fulicatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1544",
+      "birdnet_score": 6.4399,
+      "anycall_score": 0.7946
+    },
+    {
+      "species_label": "copsychus_fulicatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1544",
+      "birdnet_score": 6.4399,
+      "anycall_score": 0.8282
+    },
+    {
+      "species_label": "copsychus_fulicatus",
+      "taxon": "aves",
+      "birdnet_correct": true,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_1544",
+      "birdnet_score": 6.4399,
+      "anycall_score": 0.8197
+    },
+    {
+      "species_label": "duttaphrynus_melanostictus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2420",
+      "birdnet_score": -2.103,
+      "anycall_score": 0.7943
+    },
+    {
+      "species_label": "duttaphrynus_melanostictus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2420",
+      "birdnet_score": -2.103,
+      "anycall_score": 0.616
+    },
+    {
+      "species_label": "duttaphrynus_melanostictus",
+      "taxon": "amphibia",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_2420",
+      "birdnet_score": -2.103,
+      "anycall_score": 0.7315
+    },
+    {
+      "species_label": "euconocephalus_varius",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_140",
+      "birdnet_score": 5.4227,
+      "anycall_score": 0.7804
+    },
+    {
+      "species_label": "euconocephalus_varius",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_140",
+      "birdnet_score": 5.4227,
+      "anycall_score": 0.7688
+    },
+    {
+      "species_label": "euconocephalus_varius",
+      "taxon": "insecta",
+      "birdnet_correct": false,
+      "anycall_correct": true,
+      "birdnet_top_prediction": "class_140",
+      "birdnet_score": 5.4227,
+      "anycall_score": 0.7365
+    }
+  ],
+  "exp2_few_shot": [
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 0,
+      "top1_accuracy": 1.0,
+      "n_queries": 21
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 1,
+      "top1_accuracy": 1.0,
+      "n_queries": 21
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 5,
+      "fold": 2,
+      "top1_accuracy": 1.0,
+      "n_queries": 21
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 0,
+      "top1_accuracy": 1.0,
+      "n_queries": 14
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 1,
+      "top1_accuracy": 1.0,
+      "n_queries": 14
+    },
+    {
+      "backbone": "birdnet",
+      "k_shots": 10,
+      "fold": 2,
+      "top1_accuracy": 1.0,
+      "n_queries": 14
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 0,
+      "top1_accuracy": 1.0,
+      "n_queries": 21
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 1,
+      "top1_accuracy": 1.0,
+      "n_queries": 21
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 5,
+      "fold": 2,
+      "top1_accuracy": 0.9524,
+      "n_queries": 21
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 0,
+      "top1_accuracy": 1.0,
+      "n_queries": 14
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 1,
+      "top1_accuracy": 1.0,
+      "n_queries": 14
+    },
+    {
+      "backbone": "perch",
+      "k_shots": 10,
+      "fold": 2,
+      "top1_accuracy": 1.0,
+      "n_queries": 14
+    }
+  ],
+  "exp3_cross_taxa": [
+    {
+      "backbone": "birdnet",
+      "taxon": "aves",
+      "k_shots": 5,
+      "top1_accuracy": 1.0,
+      "n_species": 2,
+      "n_queries": 26
+    },
+    {
+      "backbone": "perch",
+      "taxon": "aves",
+      "k_shots": 5,
+      "top1_accuracy": 0.8846,
+      "n_species": 2,
+      "n_queries": 26
+    }
+  ],
+  "exp4_roc": [
+    {
+      "backbone": "birdnet",
+      "threshold": 0.0,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.02,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.04,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.06,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.08,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.1,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.12,
+      "far": 1.0,
+      "tar": 0.8846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.14,
+      "far": 1.0,
+      "tar": 0.6923
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.16,
+      "far": 1.0,
+      "tar": 0.6154
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.18,
+      "far": 0.9574,
+      "tar": 0.6154
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.2,
+      "far": 0.7021,
+      "tar": 0.5385
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.22,
+      "far": 0.4894,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.24,
+      "far": 0.1915,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.26,
+      "far": 0.0426,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.28,
+      "far": 0.0,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.3,
+      "far": 0.0,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.32,
+      "far": 0.0,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.34,
+      "far": 0.0,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.36,
+      "far": 0.0,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.38,
+      "far": 0.0,
+      "tar": 0.5
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.4,
+      "far": 0.0,
+      "tar": 0.4231
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.42,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.44,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.46,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.48,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.5,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.52,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.54,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.56,
+      "far": 0.0,
+      "tar": 0.3462
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.58,
+      "far": 0.0,
+      "tar": 0.3462
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.6,
+      "far": 0.0,
+      "tar": 0.3077
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.62,
+      "far": 0.0,
+      "tar": 0.3077
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.64,
+      "far": 0.0,
+      "tar": 0.2308
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.66,
+      "far": 0.0,
+      "tar": 0.1923
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.68,
+      "far": 0.0,
+      "tar": 0.1923
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.7,
+      "far": 0.0,
+      "tar": 0.1154
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.72,
+      "far": 0.0,
+      "tar": 0.0385
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.74,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.76,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.78,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.8,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.82,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.84,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.86,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.88,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.9,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.92,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.94,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.96,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 0.98,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "birdnet",
+      "threshold": 1.0,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.0,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.02,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.04,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.06,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.08,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.1,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.12,
+      "far": 1.0,
+      "tar": 1.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.14,
+      "far": 1.0,
+      "tar": 0.9615
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.16,
+      "far": 1.0,
+      "tar": 0.8462
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.18,
+      "far": 0.9574,
+      "tar": 0.6923
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.2,
+      "far": 0.5745,
+      "tar": 0.6538
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.22,
+      "far": 0.3617,
+      "tar": 0.6538
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.24,
+      "far": 0.1915,
+      "tar": 0.5385
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.26,
+      "far": 0.0638,
+      "tar": 0.5
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.28,
+      "far": 0.0,
+      "tar": 0.4615
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.3,
+      "far": 0.0,
+      "tar": 0.4615
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.32,
+      "far": 0.0,
+      "tar": 0.4615
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.34,
+      "far": 0.0,
+      "tar": 0.4615
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.36,
+      "far": 0.0,
+      "tar": 0.4231
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.38,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.4,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.42,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.44,
+      "far": 0.0,
+      "tar": 0.3846
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.46,
+      "far": 0.0,
+      "tar": 0.3462
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.48,
+      "far": 0.0,
+      "tar": 0.3462
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.5,
+      "far": 0.0,
+      "tar": 0.3077
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.52,
+      "far": 0.0,
+      "tar": 0.2692
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.54,
+      "far": 0.0,
+      "tar": 0.2308
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.56,
+      "far": 0.0,
+      "tar": 0.0385
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.58,
+      "far": 0.0,
+      "tar": 0.0385
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.6,
+      "far": 0.0,
+      "tar": 0.0385
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.62,
+      "far": 0.0,
+      "tar": 0.0385
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.64,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.66,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.68,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.7,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.72,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.74,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.76,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.78,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.8,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.82,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.84,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.86,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.88,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.9,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.92,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.94,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.96,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 0.98,
+      "far": 0.0,
+      "tar": 0.0
+    },
+    {
+      "backbone": "perch",
+      "threshold": 1.0,
+      "far": 0.0,
+      "tar": 0.0
+    }
+  ],
+  "exp5_latency": [
+    {
+      "backbone": "birdnet",
+      "mean_ms": 112.58,
+      "std_ms": 7.68,
+      "min_ms": 91.15,
+      "max_ms": 120.51,
+      "n_trials": 20,
+      "embedding_dim": 1024
+    },
+    {
+      "backbone": "perch",
+      "mean_ms": 330.98,
+      "std_ms": 26.05,
+      "min_ms": 289.81,
+      "max_ms": 375.2,
+      "n_trials": 20,
+      "embedding_dim": 1280
+    }
+  ],
+  "summary": {
+    "birdnet_K5_mean_acc": 1.0,
+    "birdnet_K10_mean_acc": 1.0,
+    "perch_K5_mean_acc": 0.9841,
+    "perch_K10_mean_acc": 1.0,
+    "birdnet_latency_mean_ms": 112.58,
+    "perch_latency_mean_ms": 330.98,
+    "exp1_birdnet_stock_accuracy": 0.3,
+    "exp1_anycall_accuracy": 0.9
+  },
+  "errors": []
+}

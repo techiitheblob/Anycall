@@ -1,0 +1,13 @@
+backbone,k_shots,fold,top1_accuracy,n_queries
+birdnet,5,0,1.0,21
+birdnet,5,1,1.0,21
+birdnet,5,2,1.0,21
+birdnet,10,0,1.0,14
+birdnet,10,1,1.0,14
+birdnet,10,2,1.0,14
+perch,5,0,1.0,21
+perch,5,1,1.0,21
+perch,5,2,0.9524,21
+perch,10,0,1.0,14
+perch,10,1,1.0,14
+perch,10,2,1.0,14

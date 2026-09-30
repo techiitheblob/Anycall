@@ -236,7 +236,11 @@
       <div class="section-card">
         <div class="section-head">
           <div class="section-title">Real-Time Acoustic Detection Stream</div>
-          <div style="display: flex; gap: 0.65rem; align-items: center;">
+          <div style="display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap;">
+            <label class="toggle-switch" style="display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: var(--text-muted); cursor: pointer; user-select: none; background: #0c1322; padding: 0.45rem 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+              <input type="checkbox" id="toggle-hide-unknowns" onchange="filterDetections()" style="accent-color: var(--accent); cursor: pointer;">
+              <span>Hide Unknowns</span>
+            </label>
             <select id="filter-taxon" class="form-select" style="width: auto;" onchange="filterDetections()">
               <option value="">All Taxa</option>
               <option value="Aves">Aves (Birds)</option>
@@ -571,7 +575,7 @@
         const res = await fetch("/api/detections?limit=50");
         const data = await res.json();
         currentDetections = data.detections || [];
-        renderDetections(currentDetections);
+        filterDetections();
       } catch (e) {
         console.error("Detections load failed", e);
       }
@@ -580,7 +584,7 @@
     function renderDetections(list) {
       const tbody = document.getElementById("detections-tbody");
       if (!list.length) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No detections recorded yet. Use the Live Audio Tester to analyze sound.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No detections match current filter criteria.</td></tr>`;
         return;
       }
 
@@ -591,7 +595,7 @@
 
         let taxon = d.taxon || "Unknown";
         if (!isKnown) taxon = "Unknown";
-        let display_name = d.common_name || d.species_id.replace(/_/g, " ").toUpperCase();
+        let display_name = d.common_name || (d.species_id ? d.species_id.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "Unknown");
         if (!isKnown) display_name = "Unknown";
 
         return `
@@ -612,15 +616,23 @@
 
     function filterDetections() {
       const taxon = document.getElementById("filter-taxon").value;
-      if (!taxon) {
-        renderDetections(currentDetections);
-        return;
+      const hideUnknowns = document.getElementById("toggle-hide-unknowns")?.checked;
+
+      let filtered = currentDetections;
+
+      if (hideUnknowns) {
+        filtered = filtered.filter(d => d.is_known && d.species_id.toLowerCase() !== "unknown");
       }
-      if (taxon === "Unknown") {
-        renderDetections(currentDetections.filter(d => !d.is_known));
-      } else {
-        renderDetections(currentDetections.filter(d => d.is_known));
+
+      if (taxon) {
+        if (taxon === "Unknown") {
+          filtered = filtered.filter(d => !d.is_known || d.species_id.toLowerCase() === "unknown");
+        } else {
+          filtered = filtered.filter(d => d.is_known && (d.taxon === taxon || (d.taxon && d.taxon.toLowerCase() === taxon.toLowerCase())));
+        }
       }
+
+      renderDetections(filtered);
     }
     let enrolledSpeciesData = [];
     
@@ -746,7 +758,8 @@
         const card = document.getElementById("classify-results-card");
         card.style.display = "block";
 
-        document.getElementById("res-species").innerText = data.predicted_label.replace(/_/g, " ").toUpperCase();
+        const speciesTitle = data.common_name || (data.predicted_label ? data.predicted_label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "Unknown");
+        document.getElementById("res-species").innerText = speciesTitle;
         document.getElementById("res-conf-text").innerText = (data.confidence * 100).toFixed(1) + "%";
         document.getElementById("res-conf-bar").style.width = Math.min(100, Math.round(data.confidence * 100)) + "%";
 
@@ -763,7 +776,7 @@
         const topSeg = data.segments[0];
         candTbody.innerHTML = (topSeg.candidates || []).map(c => `
           <tr>
-            <td style="font-weight: 500;">${c.species.replace(/_/g, " ")}</td>
+            <td style="font-weight: 500;">${c.common_name || (c.species ? c.species.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "Unknown")}</td>
             <td><strong>${(c.score * 100).toFixed(1)}%</strong></td>
           </tr>
         `).join("");
