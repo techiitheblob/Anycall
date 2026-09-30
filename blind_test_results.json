@@ -1,0 +1,166 @@
+{
+  "in_domain_accuracy": 31.25,
+  "in_domain_correct": 5,
+  "in_domain_total": 16,
+  "open_set_rejection_rate": 100.0,
+  "open_set_correct": 1,
+  "open_set_total": 1,
+  "false_acceptance_rate": 0.0,
+  "in_domain_details": [
+    {
+      "file": "994893.mp3",
+      "category": "in_domain",
+      "true_label": "duttaphrynus_melanostictus",
+      "predicted_label": "duttaphrynus_melanostictus",
+      "confidence": 0.7048,
+      "is_known": true,
+      "correct": true
+    },
+    {
+      "file": "1138237.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6539,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1138238.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6664,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1138239.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "corvus_splendens",
+      "confidence": 0.8127,
+      "is_known": true,
+      "correct": true
+    },
+    {
+      "file": "1138240.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "corvus_splendens",
+      "confidence": 0.7584,
+      "is_known": true,
+      "correct": true
+    },
+    {
+      "file": "1149869.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6163,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1151974.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.7772,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1151975.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6418,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1151977.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6809,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1151978.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "corvus_splendens",
+      "confidence": 0.8277,
+      "is_known": true,
+      "correct": true
+    },
+    {
+      "file": "1155834.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6655,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1157333.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6687,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1169641.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.6838,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "1169643.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.7076,
+      "is_known": false,
+      "correct": false
+    },
+    {
+      "file": "983684.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "corvus_splendens",
+      "confidence": 0.7781,
+      "is_known": true,
+      "correct": true
+    },
+    {
+      "file": "991526.mp3",
+      "category": "in_domain",
+      "true_label": "corvus_splendens",
+      "predicted_label": "Unknown",
+      "confidence": 0.7666,
+      "is_known": false,
+      "correct": false
+    }
+  ],
+  "out_bank_details": [
+    {
+      "file": "XC149562.mp3",
+      "category": "out_of_bank",
+      "true_label": "Unknown",
+      "predicted_label": "Unknown",
+      "confidence": 0.662,
+      "is_known": false,
+      "correct": true
+    }
+  ]
+}

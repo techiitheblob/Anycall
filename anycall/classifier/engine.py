@@ -189,7 +189,7 @@ class PrototypicalClassifier:
         return self._bank[label].centroid
 
     def predict(
-        self, query: np.ndarray, threshold: Optional[float] = None, use_mean_centering: bool = True
+        self, query: np.ndarray, threshold: Optional[float] = None, use_mean_centering: bool = False
     ) -> PredictionResult:
         """Classify a query embedding using cosine nearest-centroid matching.
 

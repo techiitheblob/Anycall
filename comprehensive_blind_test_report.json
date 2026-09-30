@@ -1,0 +1,2446 @@
+{
+  "overall_in_domain_accuracy": 32.69,
+  "in_domain_correct": 101,
+  "in_domain_total": 309,
+  "open_set_rejection_rate": 92.31,
+  "false_acceptance_rate": 7.69,
+  "per_species_accuracy": {
+    "acridotheres_tristis": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "athene_brama": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 4,
+      "avg_confidence": 0.0
+    },
+    "canis_aureus": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "centropus_sinensis": {
+      "accuracy": 70.0,
+      "correct": 7,
+      "total": 10,
+      "avg_confidence": 0.746
+    },
+    "cinnyris_asiaticus": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 5,
+      "avg_confidence": 0.0
+    },
+    "copsychus_fulicatus": {
+      "accuracy": 50.0,
+      "correct": 5,
+      "total": 10,
+      "avg_confidence": 0.792
+    },
+    "copsychus_saularis": {
+      "accuracy": 100.0,
+      "correct": 10,
+      "total": 10,
+      "avg_confidence": 0.845
+    },
+    "corvus_culminatus": {
+      "accuracy": 90.0,
+      "correct": 9,
+      "total": 10,
+      "avg_confidence": 0.759
+    },
+    "corvus_splendens": {
+      "accuracy": 70.0,
+      "correct": 7,
+      "total": 10,
+      "avg_confidence": 0.821
+    },
+    "cryptotympana_aguila": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "euconocephalus_varius": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "eudynamys_scolopaceus": {
+      "accuracy": 60.0,
+      "correct": 6,
+      "total": 10,
+      "avg_confidence": 0.77
+    },
+    "euphlyctis_cyanophlyctis": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "funambulus_palmarum": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "gryllotalpa_orientalis": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "gryllus_bimaculatus": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "halcyon_smyrnensis": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "hoplobatrachus_tigerinus": {
+      "accuracy": 60.0,
+      "correct": 6,
+      "total": 10,
+      "avg_confidence": 0.722
+    },
+    "hydrophylax_bahuvistara": {
+      "accuracy": 60.0,
+      "correct": 6,
+      "total": 10,
+      "avg_confidence": 0.762
+    },
+    "macaca_mulatta": {
+      "accuracy": 40.0,
+      "correct": 4,
+      "total": 10,
+      "avg_confidence": 0.746
+    },
+    "mecopoda_elongata": {
+      "accuracy": 20.0,
+      "correct": 2,
+      "total": 10,
+      "avg_confidence": 0.704
+    },
+    "milvus_migrans": {
+      "accuracy": 80.0,
+      "correct": 8,
+      "total": 10,
+      "avg_confidence": 0.728
+    },
+    "muntiacus_muntjak": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "oecanthus_indicus": {
+      "accuracy": 10.0,
+      "correct": 1,
+      "total": 10,
+      "avg_confidence": 0.754
+    },
+    "pavo_cristatus": {
+      "accuracy": 50.0,
+      "correct": 5,
+      "total": 10,
+      "avg_confidence": 0.732
+    },
+    "polypedates_maculatus": {
+      "accuracy": 50.0,
+      "correct": 5,
+      "total": 10,
+      "avg_confidence": 0.736
+    },
+    "psilopogon_haemacephalus": {
+      "accuracy": 100.0,
+      "correct": 10,
+      "total": 10,
+      "avg_confidence": 0.776
+    },
+    "psittacula_krameri": {
+      "accuracy": 80.0,
+      "correct": 8,
+      "total": 10,
+      "avg_confidence": 0.787
+    },
+    "purana_tigrina": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "pycnonotus_cafer": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "semnopithecus_entellus": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10,
+      "avg_confidence": 0.0
+    },
+    "teleogryllus_occipitalis": {
+      "accuracy": 20.0,
+      "correct": 2,
+      "total": 10,
+      "avg_confidence": 0.726
+    }
+  },
+  "in_domain_results": [
+    {
+      "file": "clean_myna_002.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7158,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_003.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.661,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_004.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6519,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_005.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6938,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_006.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6771,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_007.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6869,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_008.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6362,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_009.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7131,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_010.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7065,
+      "is_match": false
+    },
+    {
+      "file": "clean_myna_011.wav",
+      "true_species": "acridotheres_tristis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7249,
+      "is_match": false
+    },
+    {
+      "file": "1077499_seg001.wav",
+      "true_species": "athene_brama",
+      "predicted_species": "Unknown",
+      "confidence": 0.6544,
+      "is_match": false
+    },
+    {
+      "file": "1077499_seg002.wav",
+      "true_species": "athene_brama",
+      "predicted_species": "Unknown",
+      "confidence": 0.6986,
+      "is_match": false
+    },
+    {
+      "file": "1077499_seg003.wav",
+      "true_species": "athene_brama",
+      "predicted_species": "Unknown",
+      "confidence": 0.6796,
+      "is_match": false
+    },
+    {
+      "file": "1174939_seg000.wav",
+      "true_species": "athene_brama",
+      "predicted_species": "Unknown",
+      "confidence": 0.7532,
+      "is_match": false
+    },
+    {
+      "file": "260129_seg002.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6403,
+      "is_match": false
+    },
+    {
+      "file": "260129_seg003.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.5954,
+      "is_match": false
+    },
+    {
+      "file": "260129_seg004.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6835,
+      "is_match": false
+    },
+    {
+      "file": "260129_seg005.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6273,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg000.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.7982,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg001.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.8926,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg002.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.8578,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg003.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.8337,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg004.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.8551,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg005.wav",
+      "true_species": "canis_aureus",
+      "predicted_species": "Unknown",
+      "confidence": 0.7945,
+      "is_match": false
+    },
+    {
+      "file": "1011992_seg003.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6895,
+      "is_match": false
+    },
+    {
+      "file": "1026108_seg000.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7599,
+      "is_match": true
+    },
+    {
+      "file": "1026108_seg001.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7069,
+      "is_match": true
+    },
+    {
+      "file": "1026108_seg005.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7288,
+      "is_match": true
+    },
+    {
+      "file": "1026108_seg008.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.688,
+      "is_match": false
+    },
+    {
+      "file": "1026108_seg009.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6721,
+      "is_match": false
+    },
+    {
+      "file": "1027879_seg001.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7583,
+      "is_match": true
+    },
+    {
+      "file": "1027879_seg005.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7939,
+      "is_match": true
+    },
+    {
+      "file": "1027879_seg009.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7302,
+      "is_match": true
+    },
+    {
+      "file": "1036738_seg001.wav",
+      "true_species": "centropus_sinensis",
+      "predicted_species": "centropus_sinensis",
+      "confidence": 0.7466,
+      "is_match": true
+    },
+    {
+      "file": "XC149562_seg002.wav",
+      "true_species": "cinnyris_asiaticus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6571,
+      "is_match": false
+    },
+    {
+      "file": "XC149562_seg003.wav",
+      "true_species": "cinnyris_asiaticus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6859,
+      "is_match": false
+    },
+    {
+      "file": "XC149562_seg004.wav",
+      "true_species": "cinnyris_asiaticus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6731,
+      "is_match": false
+    },
+    {
+      "file": "XC685137_seg000.wav",
+      "true_species": "cinnyris_asiaticus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6395,
+      "is_match": false
+    },
+    {
+      "file": "XC74154_seg000.wav",
+      "true_species": "cinnyris_asiaticus",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7206,
+      "is_match": false
+    },
+    {
+      "file": "1030518_seg002.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "copsychus_fulicatus",
+      "confidence": 0.7553,
+      "is_match": true
+    },
+    {
+      "file": "1030518_seg003.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "copsychus_fulicatus",
+      "confidence": 0.8132,
+      "is_match": true
+    },
+    {
+      "file": "1030518_seg004.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "copsychus_fulicatus",
+      "confidence": 0.8134,
+      "is_match": true
+    },
+    {
+      "file": "1030518_seg005.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "copsychus_fulicatus",
+      "confidence": 0.784,
+      "is_match": true
+    },
+    {
+      "file": "1030518_seg006.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "copsychus_fulicatus",
+      "confidence": 0.7955,
+      "is_match": true
+    },
+    {
+      "file": "1030520_seg000.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6736,
+      "is_match": false
+    },
+    {
+      "file": "1049787_seg000.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6684,
+      "is_match": false
+    },
+    {
+      "file": "1049787_seg001.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6993,
+      "is_match": false
+    },
+    {
+      "file": "1049787_seg002.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6672,
+      "is_match": false
+    },
+    {
+      "file": "1049787_seg003.wav",
+      "true_species": "copsychus_fulicatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6539,
+      "is_match": false
+    },
+    {
+      "file": "690877_seg002.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.855,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg003.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8169,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg004.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8455,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg005.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8311,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg006.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8557,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg007.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8461,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg008.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8441,
+      "is_match": true
+    },
+    {
+      "file": "690877_seg009.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8308,
+      "is_match": true
+    },
+    {
+      "file": "727677_seg000.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8754,
+      "is_match": true
+    },
+    {
+      "file": "727677_seg001.wav",
+      "true_species": "copsychus_saularis",
+      "predicted_species": "copsychus_saularis",
+      "confidence": 0.8492,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg002.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7672,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg003.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7498,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg004.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7909,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg005.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7351,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg006.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7965,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg007.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7528,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg008.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7513,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg009.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7276,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg010.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "corvus_culminatus",
+      "confidence": 0.7563,
+      "is_match": true
+    },
+    {
+      "file": "473617_seg011.wav",
+      "true_species": "corvus_culminatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6952,
+      "is_match": false
+    },
+    {
+      "file": "1046832_seg000.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "Unknown",
+      "confidence": 0.8043,
+      "is_match": false
+    },
+    {
+      "file": "1046832_seg001.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7695,
+      "is_match": true
+    },
+    {
+      "file": "1046832_seg002.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "Unknown",
+      "confidence": 0.7339,
+      "is_match": false
+    },
+    {
+      "file": "1046832_seg003.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.756,
+      "is_match": true
+    },
+    {
+      "file": "1094670_seg000.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.8383,
+      "is_match": true
+    },
+    {
+      "file": "1094670_seg001.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.8167,
+      "is_match": true
+    },
+    {
+      "file": "1094670_seg002.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.8043,
+      "is_match": true
+    },
+    {
+      "file": "1094670_seg003.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.8485,
+      "is_match": true
+    },
+    {
+      "file": "1096409_seg000.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "Unknown",
+      "confidence": 0.6908,
+      "is_match": false
+    },
+    {
+      "file": "1104270_seg000.wav",
+      "true_species": "corvus_splendens",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.9109,
+      "is_match": true
+    },
+    {
+      "file": "460192_seg000.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6709,
+      "is_match": false
+    },
+    {
+      "file": "460192_seg001.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6482,
+      "is_match": false
+    },
+    {
+      "file": "460192_seg002.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.688,
+      "is_match": false
+    },
+    {
+      "file": "460192_seg003.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6455,
+      "is_match": false
+    },
+    {
+      "file": "460192_seg004.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6559,
+      "is_match": false
+    },
+    {
+      "file": "471029_seg000.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.7635,
+      "is_match": false
+    },
+    {
+      "file": "471029_seg001.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6747,
+      "is_match": false
+    },
+    {
+      "file": "471029_seg002.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6102,
+      "is_match": false
+    },
+    {
+      "file": "471029_seg003.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.6994,
+      "is_match": false
+    },
+    {
+      "file": "471029_seg004.wav",
+      "true_species": "cryptotympana_aguila",
+      "predicted_species": "Unknown",
+      "confidence": 0.7269,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg002.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8578,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg003.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8337,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg004.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8551,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg005.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.7945,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg006.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8651,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg007.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8152,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg008.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8437,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg009.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8573,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg010.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8339,
+      "is_match": false
+    },
+    {
+      "file": "270192_seg011.wav",
+      "true_species": "euconocephalus_varius",
+      "predicted_species": "Unknown",
+      "confidence": 0.8191,
+      "is_match": false
+    },
+    {
+      "file": "565559_seg002.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6936,
+      "is_match": false
+    },
+    {
+      "file": "565559_seg003.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.7203,
+      "is_match": false
+    },
+    {
+      "file": "565559_seg004.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "eudynamys_scolopaceus",
+      "confidence": 0.7945,
+      "is_match": true
+    },
+    {
+      "file": "565559_seg005.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6434,
+      "is_match": false
+    },
+    {
+      "file": "565559_seg006.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "eudynamys_scolopaceus",
+      "confidence": 0.7795,
+      "is_match": true
+    },
+    {
+      "file": "565559_seg007.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "eudynamys_scolopaceus",
+      "confidence": 0.7315,
+      "is_match": true
+    },
+    {
+      "file": "735665_seg000.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6367,
+      "is_match": false
+    },
+    {
+      "file": "735665_seg001.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "eudynamys_scolopaceus",
+      "confidence": 0.7806,
+      "is_match": true
+    },
+    {
+      "file": "735665_seg002.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "eudynamys_scolopaceus",
+      "confidence": 0.7425,
+      "is_match": true
+    },
+    {
+      "file": "735665_seg003.wav",
+      "true_species": "eudynamys_scolopaceus",
+      "predicted_species": "eudynamys_scolopaceus",
+      "confidence": 0.7937,
+      "is_match": true
+    },
+    {
+      "file": "770192_seg001.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7137,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg002.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6989,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg003.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7063,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg004.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6975,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg005.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7513,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg006.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7224,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg007.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6816,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg008.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.674,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg009.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6795,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg010.wav",
+      "true_species": "euphlyctis_cyanophlyctis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6565,
+      "is_match": false
+    },
+    {
+      "file": "1048912_seg002.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6741,
+      "is_match": false
+    },
+    {
+      "file": "560129_seg000.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6764,
+      "is_match": false
+    },
+    {
+      "file": "560129_seg001.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.674,
+      "is_match": false
+    },
+    {
+      "file": "560129_seg002.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6635,
+      "is_match": false
+    },
+    {
+      "file": "560129_seg003.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6333,
+      "is_match": false
+    },
+    {
+      "file": "560129_seg004.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6896,
+      "is_match": false
+    },
+    {
+      "file": "570192_seg000.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.563,
+      "is_match": false
+    },
+    {
+      "file": "570192_seg001.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6561,
+      "is_match": false
+    },
+    {
+      "file": "570192_seg002.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6644,
+      "is_match": false
+    },
+    {
+      "file": "581029_seg000.wav",
+      "true_species": "funambulus_palmarum",
+      "predicted_species": "Unknown",
+      "confidence": 0.6864,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg002.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7335,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg003.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7032,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg004.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.673,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg005.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7355,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg006.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6966,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg007.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6378,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg008.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.704,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg009.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7335,
+      "is_match": false
+    },
+    {
+      "file": "160129_seg000.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6809,
+      "is_match": false
+    },
+    {
+      "file": "160129_seg001.wav",
+      "true_species": "gryllotalpa_orientalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6857,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg000.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6385,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg001.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6343,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg002.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6275,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg003.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6408,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg004.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6441,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg005.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6302,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg006.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6375,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg007.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.624,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg008.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6399,
+      "is_match": false
+    },
+    {
+      "file": "874102_seg009.wav",
+      "true_species": "gryllus_bimaculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6177,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_002.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6805,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_003.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6509,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_004.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6434,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_005.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6837,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_006.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6908,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_007.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6082,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_008.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6661,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_009.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.667,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_010.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6014,
+      "is_match": false
+    },
+    {
+      "file": "clean_kf_011.wav",
+      "true_species": "halcyon_smyrnensis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6459,
+      "is_match": false
+    },
+    {
+      "file": "910129_seg002.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6048,
+      "is_match": false
+    },
+    {
+      "file": "910129_seg003.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7414,
+      "is_match": true
+    },
+    {
+      "file": "910129_seg004.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7379,
+      "is_match": true
+    },
+    {
+      "file": "910129_seg005.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7107,
+      "is_match": true
+    },
+    {
+      "file": "910129_seg006.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7169,
+      "is_match": true
+    },
+    {
+      "file": "942104_seg000.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6933,
+      "is_match": false
+    },
+    {
+      "file": "942104_seg001.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7185,
+      "is_match": true
+    },
+    {
+      "file": "942104_seg002.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6871,
+      "is_match": false
+    },
+    {
+      "file": "942104_seg003.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7059,
+      "is_match": true
+    },
+    {
+      "file": "942104_seg004.wav",
+      "true_species": "hoplobatrachus_tigerinus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6897,
+      "is_match": false
+    },
+    {
+      "file": "681029_seg000.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "oecanthus_indicus",
+      "confidence": 0.718,
+      "is_match": false
+    },
+    {
+      "file": "681029_seg001.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "Unknown",
+      "confidence": 0.7028,
+      "is_match": false
+    },
+    {
+      "file": "681029_seg002.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hydrophylax_bahuvistara",
+      "confidence": 0.7678,
+      "is_match": true
+    },
+    {
+      "file": "681029_seg003.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hydrophylax_bahuvistara",
+      "confidence": 0.7854,
+      "is_match": true
+    },
+    {
+      "file": "681029_seg004.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hydrophylax_bahuvistara",
+      "confidence": 0.7807,
+      "is_match": true
+    },
+    {
+      "file": "681029_seg005.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hydrophylax_bahuvistara",
+      "confidence": 0.7865,
+      "is_match": true
+    },
+    {
+      "file": "681029_seg006.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hydrophylax_bahuvistara",
+      "confidence": 0.7498,
+      "is_match": true
+    },
+    {
+      "file": "681029_seg007.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "Unknown",
+      "confidence": 0.7402,
+      "is_match": false
+    },
+    {
+      "file": "681029_seg008.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hoplobatrachus_tigerinus",
+      "confidence": 0.7075,
+      "is_match": false
+    },
+    {
+      "file": "692104_seg000.wav",
+      "true_species": "hydrophylax_bahuvistara",
+      "predicted_species": "hydrophylax_bahuvistara",
+      "confidence": 0.7017,
+      "is_match": true
+    },
+    {
+      "file": "460129_seg002.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "Unknown",
+      "confidence": 0.6524,
+      "is_match": false
+    },
+    {
+      "file": "460129_seg003.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "Unknown",
+      "confidence": 0.649,
+      "is_match": false
+    },
+    {
+      "file": "470192_seg000.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "oecanthus_indicus",
+      "confidence": 0.7525,
+      "is_match": false
+    },
+    {
+      "file": "470192_seg001.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "Unknown",
+      "confidence": 0.707,
+      "is_match": false
+    },
+    {
+      "file": "470192_seg002.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "macaca_mulatta",
+      "confidence": 0.7182,
+      "is_match": true
+    },
+    {
+      "file": "470192_seg003.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "macaca_mulatta",
+      "confidence": 0.7314,
+      "is_match": true
+    },
+    {
+      "file": "470192_seg004.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "macaca_mulatta",
+      "confidence": 0.7708,
+      "is_match": true
+    },
+    {
+      "file": "470192_seg005.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "macaca_mulatta",
+      "confidence": 0.7648,
+      "is_match": true
+    },
+    {
+      "file": "492104_seg000.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "Unknown",
+      "confidence": 0.6873,
+      "is_match": false
+    },
+    {
+      "file": "492104_seg001.wav",
+      "true_species": "macaca_mulatta",
+      "predicted_species": "Unknown",
+      "confidence": 0.6482,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg000.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "oecanthus_indicus",
+      "confidence": 0.7109,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg001.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6635,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg002.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6752,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg003.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6152,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg004.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6952,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg005.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "mecopoda_elongata",
+      "confidence": 0.708,
+      "is_match": true
+    },
+    {
+      "file": "560124_seg006.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6759,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg007.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6967,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg008.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "Unknown",
+      "confidence": 0.6875,
+      "is_match": false
+    },
+    {
+      "file": "560124_seg009.wav",
+      "true_species": "mecopoda_elongata",
+      "predicted_species": "mecopoda_elongata",
+      "confidence": 0.7003,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg001.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7518,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg002.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7178,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg003.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7049,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg004.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "Unknown",
+      "confidence": 0.6659,
+      "is_match": false
+    },
+    {
+      "file": "1106035_seg005.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "Unknown",
+      "confidence": 0.7017,
+      "is_match": false
+    },
+    {
+      "file": "1106035_seg006.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7417,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg007.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7144,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg008.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7028,
+      "is_match": true
+    },
+    {
+      "file": "1106035_seg009.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7365,
+      "is_match": true
+    },
+    {
+      "file": "1138382_seg000.wav",
+      "true_species": "milvus_migrans",
+      "predicted_species": "milvus_migrans",
+      "confidence": 0.7515,
+      "is_match": true
+    },
+    {
+      "file": "150912_seg002.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.7335,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg003.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.7032,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg004.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.673,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg005.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.7355,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg006.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.6966,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg007.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.6378,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg008.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.704,
+      "is_match": false
+    },
+    {
+      "file": "150912_seg009.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.7335,
+      "is_match": false
+    },
+    {
+      "file": "160129_seg000.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.6809,
+      "is_match": false
+    },
+    {
+      "file": "160129_seg001.wav",
+      "true_species": "muntiacus_muntjak",
+      "predicted_species": "Unknown",
+      "confidence": 0.6857,
+      "is_match": false
+    },
+    {
+      "file": "650981_seg002.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6778,
+      "is_match": false
+    },
+    {
+      "file": "650981_seg003.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6348,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg000.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "oecanthus_indicus",
+      "confidence": 0.7536,
+      "is_match": true
+    },
+    {
+      "file": "661042_seg001.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6427,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg002.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6016,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg003.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6596,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg004.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6568,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg005.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6539,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg006.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6137,
+      "is_match": false
+    },
+    {
+      "file": "661042_seg007.wav",
+      "true_species": "oecanthus_indicus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6335,
+      "is_match": false
+    },
+    {
+      "file": "121368_seg002.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6361,
+      "is_match": false
+    },
+    {
+      "file": "121368_seg003.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6886,
+      "is_match": false
+    },
+    {
+      "file": "121368_seg004.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "pavo_cristatus",
+      "confidence": 0.7465,
+      "is_match": true
+    },
+    {
+      "file": "121368_seg005.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6357,
+      "is_match": false
+    },
+    {
+      "file": "121368_seg006.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6098,
+      "is_match": false
+    },
+    {
+      "file": "208327_seg000.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "pavo_cristatus",
+      "confidence": 0.7083,
+      "is_match": true
+    },
+    {
+      "file": "208327_seg001.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "pavo_cristatus",
+      "confidence": 0.7568,
+      "is_match": true
+    },
+    {
+      "file": "208327_seg002.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6848,
+      "is_match": false
+    },
+    {
+      "file": "208916_seg000.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "pavo_cristatus",
+      "confidence": 0.7153,
+      "is_match": true
+    },
+    {
+      "file": "208916_seg001.wav",
+      "true_species": "pavo_cristatus",
+      "predicted_species": "pavo_cristatus",
+      "confidence": 0.7346,
+      "is_match": true
+    },
+    {
+      "file": "860129_seg002.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6916,
+      "is_match": false
+    },
+    {
+      "file": "860129_seg003.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "polypedates_maculatus",
+      "confidence": 0.735,
+      "is_match": true
+    },
+    {
+      "file": "860129_seg004.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6539,
+      "is_match": false
+    },
+    {
+      "file": "860129_seg005.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6603,
+      "is_match": false
+    },
+    {
+      "file": "870192_seg000.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "polypedates_maculatus",
+      "confidence": 0.7618,
+      "is_match": true
+    },
+    {
+      "file": "870192_seg001.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "polypedates_maculatus",
+      "confidence": 0.7716,
+      "is_match": true
+    },
+    {
+      "file": "881029_seg000.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6807,
+      "is_match": false
+    },
+    {
+      "file": "881029_seg001.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "polypedates_maculatus",
+      "confidence": 0.7087,
+      "is_match": true
+    },
+    {
+      "file": "881029_seg002.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "polypedates_maculatus",
+      "confidence": 0.7036,
+      "is_match": true
+    },
+    {
+      "file": "881029_seg003.wav",
+      "true_species": "polypedates_maculatus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6733,
+      "is_match": false
+    },
+    {
+      "file": "1002981_seg002.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7899,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg003.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7986,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg004.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7628,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg005.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7505,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg006.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7808,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg007.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7261,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg008.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7305,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg009.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.7788,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg010.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.8316,
+      "is_match": true
+    },
+    {
+      "file": "1002981_seg011.wav",
+      "true_species": "psilopogon_haemacephalus",
+      "predicted_species": "psilopogon_haemacephalus",
+      "confidence": 0.8149,
+      "is_match": true
+    },
+    {
+      "file": "1097321_seg002.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.8199,
+      "is_match": true
+    },
+    {
+      "file": "1102375_seg000.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.8314,
+      "is_match": true
+    },
+    {
+      "file": "1103812_seg000.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.8531,
+      "is_match": true
+    },
+    {
+      "file": "1103813_seg000.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.8398,
+      "is_match": true
+    },
+    {
+      "file": "1105525_seg000.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.734,
+      "is_match": true
+    },
+    {
+      "file": "1105525_seg001.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.7156,
+      "is_match": true
+    },
+    {
+      "file": "1105526_seg000.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.7862,
+      "is_match": true
+    },
+    {
+      "file": "1105526_seg001.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "Unknown",
+      "confidence": 0.6689,
+      "is_match": false
+    },
+    {
+      "file": "1105526_seg002.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.716,
+      "is_match": true
+    },
+    {
+      "file": "1105526_seg003.wav",
+      "true_species": "psittacula_krameri",
+      "predicted_species": "Unknown",
+      "confidence": 0.5827,
+      "is_match": false
+    },
+    {
+      "file": "370192_seg001.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "oecanthus_indicus",
+      "confidence": 0.7189,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg000.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.701,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg001.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.6898,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg002.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.6941,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg003.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.7103,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg004.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.7746,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg005.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.7292,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg006.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.6898,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg007.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.6941,
+      "is_match": false
+    },
+    {
+      "file": "392104_seg000.wav",
+      "true_species": "purana_tigrina",
+      "predicted_species": "Unknown",
+      "confidence": 0.7646,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg002.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.796,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg003.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7061,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg004.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "Unknown",
+      "confidence": 0.6096,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg005.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "Unknown",
+      "confidence": 0.6392,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg006.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "Unknown",
+      "confidence": 0.6652,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg007.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7078,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg008.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "Unknown",
+      "confidence": 0.6866,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg009.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "Unknown",
+      "confidence": 0.6939,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg010.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "corvus_splendens",
+      "confidence": 0.7158,
+      "is_match": false
+    },
+    {
+      "file": "bulbul_129368_seg011.wav",
+      "true_species": "pycnonotus_cafer",
+      "predicted_species": "Unknown",
+      "confidence": 0.6795,
+      "is_match": false
+    },
+    {
+      "file": "370192_seg001.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "oecanthus_indicus",
+      "confidence": 0.7189,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg000.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.701,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg001.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6898,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg002.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6941,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg003.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.7103,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg004.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.7746,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg005.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.7292,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg006.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6898,
+      "is_match": false
+    },
+    {
+      "file": "381029_seg007.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.6941,
+      "is_match": false
+    },
+    {
+      "file": "392104_seg000.wav",
+      "true_species": "semnopithecus_entellus",
+      "predicted_species": "Unknown",
+      "confidence": 0.7646,
+      "is_match": false
+    },
+    {
+      "file": "762310_seg002.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6796,
+      "is_match": false
+    },
+    {
+      "file": "762310_seg003.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "teleogryllus_occipitalis",
+      "confidence": 0.7123,
+      "is_match": true
+    },
+    {
+      "file": "770192_seg000.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "teleogryllus_occipitalis",
+      "confidence": 0.7388,
+      "is_match": true
+    },
+    {
+      "file": "770192_seg001.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7137,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg002.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6989,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg003.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7063,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg004.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6975,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg005.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7513,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg006.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.7224,
+      "is_match": false
+    },
+    {
+      "file": "770192_seg007.wav",
+      "true_species": "teleogryllus_occipitalis",
+      "predicted_species": "Unknown",
+      "confidence": 0.6816,
+      "is_match": false
+    }
+  ],
+  "out_of_bank_results": [
+    {
+      "file": "bulbul_129368.mp3",
+      "predicted_species": "Unknown",
+      "confidence": 0.684,
+      "is_rejected": true
+    },
+    {
+      "file": "milvus_301997.mp3",
+      "predicted_species": "Unknown",
+      "confidence": 0.5772,
+      "is_rejected": true
+    },
+    {
+      "file": "myna_129571.mp3",
+      "predicted_species": "psittacula_krameri",
+      "confidence": 0.7412,
+      "is_rejected": false
+    },
+    {
+      "file": "live_mic_20260917_103200_631.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6916,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103245_626.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.696,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103254_642.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6259,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103303_671.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6829,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103309_628.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.662,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103315_653.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6609,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103317_147.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6587,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103336_676.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6484,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103338_124.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.6793,
+      "is_rejected": true
+    },
+    {
+      "file": "live_mic_20260917_103341_137.wav",
+      "predicted_species": "Unknown",
+      "confidence": 0.686,
+      "is_rejected": true
+    }
+  ]
+}

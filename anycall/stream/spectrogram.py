@@ -12,7 +12,7 @@ class SpectrogramEventDetector:
         n_mels: int = 64,
         fmax: int = 12000,
         hop_length: int = 512,
-        energy_threshold: float = 0.85,
+        energy_threshold: float = 0.2,
         min_duration: float = 0.05,
     ):
         self.sample_rate = sample_rate
