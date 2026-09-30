@@ -187,21 +187,21 @@ def main():
     # Experiment 3: Threshold Sweep & AUROC / EER Curve
     # ----------------------------------------------------
     print("\n--- Running Exp 3: Decision Threshold Sweep (theta = 0.45 to 0.85) ---")
-    in_scores = [r["similarity"] for r in in_domain_results if r["correct"]]
+    all_target_clips = len(in_domain_results)
     
     sweep_data = []
     for theta in np.arange(0.45, 0.86, 0.02):
-        in_tp = sum(1 for s in in_scores if s >= theta)
-        in_fn = len(in_scores) - in_tp
-        tar = (in_tp / len(in_scores)) if in_scores else 0.0
+        # Overall Dataset Recall: True Positives out of ALL 148 target clips
+        in_tp = sum(1 for r in in_domain_results if r["predicted_species"] == r["species_id"] and r["similarity"] >= theta)
+        overall_recall = (in_tp / all_target_clips) if all_target_clips > 0 else 0.0
         
+        # False Acceptance Rate on Open-Set Out-of-Bank Noise
         out_fp = sum(1 for s in open_set_scores if s >= theta)
-        out_tn = len(open_set_scores) - out_fp
         far = (out_fp / len(open_set_scores)) if open_set_scores else 0.0
         
         sweep_data.append({
             "threshold": round(float(theta), 2),
-            "True_Acceptance_Rate": round(tar, 4),
+            "True_Acceptance_Rate": round(overall_recall, 4),
             "False_Acceptance_Rate": round(far, 4),
             "Specificity": round(1.0 - far, 4)
         })
