@@ -49,6 +49,6 @@ pavo_cristatus,Indian Peafowl,Aves,12,5,20.0,0.655,"Tonal call matches backbone,
 gryllus_bimaculatus,Two-spotted Cricket,Insecta,12,5,20.0,0.654,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
 cinnyris_asiaticus,Purple Sunbird,Aves,12,5,20.0,0.653,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
 funambulus_palmarum,Indian Palm Squirrel,Mammalia,12,5,20.0,0.643,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
-mecopoda_elongata,Short-winged Katydid,Insecta,3,5,20.0,0.643,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+mecopoda_elongata,Short-winged Katydid,Insecta,4,5,20.0,0.643,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
 hoplobatrachus_tigerinus,Indian Bullfrog,Amphibia,8,5,20.0,0.634,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
 cryptotympana_aguila,Clear-winged Cicada,Insecta,5,5,20.0,0.628,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.

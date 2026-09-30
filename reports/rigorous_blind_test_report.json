@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-30T23:14:59Z",
+  "timestamp": "2026-09-30T23:18:21Z",
   "total_enrolled_species": 53,
   "in_domain_clips_tested": 148,
-  "in_domain_recall": 47.2972972972973,
+  "in_domain_recall": 48.64864864864865,
   "open_set_specificity": 97.5,
   "threshold_sweep": [
     {
@@ -85,49 +85,49 @@
     },
     {
       "threshold": 0.71,
-      "True_Acceptance_Rate": 0.9714,
+      "True_Acceptance_Rate": 0.9722,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.73,
-      "True_Acceptance_Rate": 0.8286,
+      "True_Acceptance_Rate": 0.8194,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.75,
-      "True_Acceptance_Rate": 0.7,
+      "True_Acceptance_Rate": 0.6944,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.77,
-      "True_Acceptance_Rate": 0.5286,
+      "True_Acceptance_Rate": 0.5278,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.79,
-      "True_Acceptance_Rate": 0.3143,
+      "True_Acceptance_Rate": 0.3194,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.81,
-      "True_Acceptance_Rate": 0.2,
+      "True_Acceptance_Rate": 0.2222,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.83,
-      "True_Acceptance_Rate": 0.1143,
+      "True_Acceptance_Rate": 0.125,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     },
     {
       "threshold": 0.85,
-      "True_Acceptance_Rate": 0.0857,
+      "True_Acceptance_Rate": 0.0833,
       "False_Acceptance_Rate": 0.0,
       "Specificity": 1.0
     }
