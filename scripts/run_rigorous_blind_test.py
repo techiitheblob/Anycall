@@ -14,7 +14,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from anycall.embeddings import get_backbone
 import librosa
 
-def hpss_extract_clips(audio_path, target_sr=32000, clip_duration=3.0):
+def hpss_extract_clips(audio_path, target_sr=48000, clip_duration=3.0):
     try:
         y, sr = librosa.load(str(audio_path), sr=target_sr, mono=True)
         if len(y) < target_sr * 1.0:
@@ -32,7 +32,7 @@ def hpss_extract_clips(audio_path, target_sr=32000, clip_duration=3.0):
         for start in range(0, len(y_harmonic) - clip_samples + 1, hop_len):
             chunk = y_harmonic[start:start + clip_samples]
             rms = np.sqrt(np.mean(chunk**2))
-            if rms > 0.003:
+            if rms > 0.005:
                 clips.append((rms, chunk))
                 
         clips.sort(key=lambda x: x[0], reverse=True)
@@ -47,7 +47,7 @@ def main():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
-    # 1. Load enrolled prototypes from DB (single centroid)
+    # 1. Load enrolled prototypes from DB (single 1024-dim centroid)
     cursor.execute("SELECT species_id, common_name, taxon, prototype FROM species")
     rows = cursor.fetchall()
     
@@ -55,16 +55,16 @@ def main():
     species_info = {}
     for sp_id, c_name, taxon, proto_blob in rows:
         proto = np.frombuffer(proto_blob, dtype=np.float32)
-        if len(proto) == 2048: # Ensure 2048-dim PANNs centroid
+        if len(proto) == 1024: # Single BirdNET centroid
             species_prototypes[sp_id] = proto
             species_info[sp_id] = {"common_name": c_name, "taxon": taxon}
         
-    print(f"Loaded {len(species_prototypes)} valid PANNs 2048-dim species prototypes from anycall.db")
+    print(f"Loaded {len(species_prototypes)} species prototypes (single BirdNET centroids) from anycall.db")
     conn.close()
     
-    # Initialize PANNs Backbone
-    print("Initializing PANNs embedding backbone...")
-    backbone = get_backbone("panns")
+    # Initialize BirdNET Backbone
+    print("Initializing BirdNET embedding backbone...")
+    backbone = get_backbone("birdnet")
     
     # Test Datasets
     processed_dir = PROJECT_ROOT / "data" / "processed"
@@ -73,7 +73,7 @@ def main():
     # ----------------------------------------------------
     # Experiment 1: In-Domain Held-Out Species Test
     # ----------------------------------------------------
-    print("\n--- Running Exp 1: In-Domain Held-Out Evaluation (PANNs) ---")
+    print("\n--- Running Exp 1: In-Domain Held-Out Evaluation (BirdNET Single Centroids) ---")
     in_domain_results = []
     
     species_dirs = [d for d in processed_dir.iterdir() if d.is_dir()]
@@ -97,14 +97,14 @@ def main():
         scores = []
         
         for af in held_out_files:
-            clips = hpss_extract_clips(af, target_sr=32000)
+            clips = hpss_extract_clips(af, target_sr=48000)
             for clip in clips:
                 try:
-                    emb = backbone.embed(clip, sr=32000)
-                    if len(emb) != 2048:
+                    emb = backbone.embed(clip, sr=48000)
+                    if len(emb) != 1024:
                         continue
                     
-                    # Compute cosine similarity against all single 2048-dim prototypes
+                    # Compute cosine similarity against all single 1024-dim prototypes
                     best_sim = -1.0
                     best_sp = None
                     for candidate_id, proto in species_prototypes.items():
@@ -142,7 +142,7 @@ def main():
     
     # Generate ambient/synthetic noise & un-enrolled species signals
     np.random.seed(42)
-    sr = 32000
+    sr = 48000
     dur = 3.0
     num_samples = int(sr * dur)
     
@@ -166,7 +166,7 @@ def main():
             else:
                 signal = np.random.exponential(0.02, num_samples).astype(np.float32)
                 
-            emb = backbone.embed(signal, sr=32000)
+            emb = backbone.embed(signal, sr=48000)
             
             max_sim = max([float(np.dot(emb, proto)) for proto in species_prototypes.values()])
             open_set_scores.append(max_sim)
