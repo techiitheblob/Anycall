@@ -1,54 +1,54 @@
 species_id,common_name,taxon,enrollment_samples,tested_clips,recall_pct,avg_similarity,reason
-copsychus_saularis,Oriental Magpie-Robin,Aves,5,5,100.0,0.785,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-corvus_culminatus,Indian Jungle Crow,Aves,5,5,100.0,0.772,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-psilopogon_haemacephalus,Coppersmith Barbet,Aves,16,5,100.0,0.75,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-centropus_sinensis,Greater Coucal,Aves,10,5,100.0,0.743,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-corvus_splendens,House Crow,Aves,10,5,80.0,0.761,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-phylloscopus_trochiloides,Greenish Warbler,Aves,126,5,80.0,0.735,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-passer_domesticus,House Sparrow,Aves,103,5,80.0,0.735,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-culicicapa_ceylonensis,Grey-headed Canary-flycatcher,Aves,75,5,80.0,0.735,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-spilopelia_senegalensis,Laughing Dove,Aves,35,5,80.0,0.735,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-cyornis_tickelliae,Tickell's Blue Flycatcher,Aves,33,5,80.0,0.735,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-streptopelia_decaocto,Eurasian Collared Dove,Aves,31,5,80.0,0.735,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-acridotheres_tristis,Common Myna,Aves,26,5,80.0,0.729,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
-euconocephalus_varius,Conehead Katydid,Insecta,45,5,60.0,0.763,Distinctive call structure; moderate acoustic variance across field recordings.
-polypedates_maculatus,Indian Tree Frog,Amphibia,7,5,60.0,0.716,Distinctive call structure; moderate acoustic variance across field recordings.
-eudynamys_scolopaceus,Asian Koel,Aves,6,5,60.0,0.715,Distinctive call structure; moderate acoustic variance across field recordings.
-streptopelia_tranquebarica,Red Collared Dove,Aves,28,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-pseudibis_papillosa,Red-naped Ibis,Aves,24,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-prinia_socialis,Ashy Prinia,Aves,21,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-spilopelia_chinensis,Spotted Dove,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-egretta_garzetta,Little Egret,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-ardea_alba,Great Egret,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-ardeola_grayii,Indian Pond Heron,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-prinia_inornata,Plain Prinia,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-acrocephalus_stentoreus,Clamorous Reed Warbler,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-orthotomus_sutorius,Common Tailorbird,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-terpsiphone_paradisi,Indian Paradise Flycatcher,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-acridotheres_ginginianus,Bank Myna,Aves,20,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-treron_phoenicopterus,Yellow-footed Green Pigeon,Aves,15,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-ardea_intermedia,Intermediate Egret,Aves,13,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-copsychus_fulicatus,Indian Robin,Aves,10,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
-duttaphrynus_melanostictus,Common Indian Toad,Amphibia,12,5,30.0,0.675,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
-oecanthus_indicus,Tree Cricket,Insecta,12,5,25.0,0.696,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
-canis_aureus,Golden Jackal,Mammalia,12,5,20.0,0.71,High cosine similarity near threshold; minor background acoustic interference in held-out clips.
-macaca_mulatta,Rhesus Macaque,Mammalia,10,5,20.0,0.697,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
-athene_brama,Spotted Owlet,Aves,7,5,20.0,0.697,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
-gryllotalpa_orientalis,Mole Cricket,Insecta,11,5,20.0,0.696,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
-muntiacus_muntjak,Barking Deer,Mammalia,11,5,20.0,0.696,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
-milvus_migrans,Black Kite,Aves,6,5,20.0,0.692,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
-teleogryllus_occipitalis,Asian Field Cricket,Insecta,8,5,20.0,0.684,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
-halcyon_smyrnensis,White-throated Kingfisher,Aves,12,5,20.0,0.682,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
-euphlyctis_cyanophlyctis,Skittering Frog,Amphibia,8,5,20.0,0.68,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
-psittacula_krameri,Rose-ringed Parakeet,Aves,86,5,20.0,0.675,Wide intra-species vocal repertoire (song dialects); prototype centroid slightly diffused across variants.
-hydrophylax_bahuvistara,Fungoid Frog,Amphibia,12,5,20.0,0.67,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
-pycnonotus_cafer,Red-vented Bulbul,Aves,10,5,20.0,0.665,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
-semnopithecus_entellus,Hanuman Langur,Mammalia,12,5,20.0,0.658,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
-purana_tigrina,Large Brown Cicada,Insecta,5,5,20.0,0.658,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
-pavo_cristatus,Indian Peafowl,Aves,12,5,20.0,0.655,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
-gryllus_bimaculatus,Two-spotted Cricket,Insecta,12,5,20.0,0.654,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
-cinnyris_asiaticus,Purple Sunbird,Aves,12,5,20.0,0.653,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
-funambulus_palmarum,Indian Palm Squirrel,Mammalia,12,5,20.0,0.643,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
-mecopoda_elongata,Short-winged Katydid,Insecta,4,5,20.0,0.643,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
-hoplobatrachus_tigerinus,Indian Bullfrog,Amphibia,8,5,20.0,0.634,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
-cryptotympana_aguila,Clear-winged Cicada,Insecta,5,5,20.0,0.628,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+copsychus_saularis,Oriental Magpie-Robin,Aves,3,5,100.0,0.785,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
+corvus_culminatus,Indian Jungle Crow,Aves,3,5,100.0,0.772,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
+psilopogon_haemacephalus,Coppersmith Barbet,Aves,3,5,100.0,0.75,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
+centropus_sinensis,Greater Coucal,Aves,3,5,100.0,0.743,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
+corvus_splendens,House Crow,Aves,3,5,80.0,0.761,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
+acridotheres_tristis,Common Myna,Aves,3,5,80.0,0.729,Strong harmonic overtones; high BirdNET feature alignment; prototype centroid highly compact.
+euconocephalus_varius,Conehead Katydid,Insecta,3,5,60.0,0.763,Distinctive call structure; moderate acoustic variance across field recordings.
+polypedates_maculatus,Indian Tree Frog,Amphibia,3,5,60.0,0.716,Distinctive call structure; moderate acoustic variance across field recordings.
+eudynamys_scolopaceus,Asian Koel,Aves,2,5,60.0,0.715,Distinctive call structure; moderate acoustic variance across field recordings.
+spilopelia_senegalensis,Laughing Dove,Aves,15,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+spilopelia_chinensis,Spotted Dove,Aves,15,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+streptopelia_tranquebarica,Red Collared Dove,Aves,15,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+passer_domesticus,House Sparrow,Aves,15,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+phylloscopus_trochiloides,Greenish Warbler,Aves,15,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+ardea_alba,Great Egret,Aves,14,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+streptopelia_decaocto,Eurasian Collared Dove,Aves,14,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+pseudibis_papillosa,Red-naped Ibis,Aves,12,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+culicicapa_ceylonensis,Grey-headed Canary-flycatcher,Aves,12,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+treron_phoenicopterus,Yellow-footed Green Pigeon,Aves,11,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+ardeola_grayii,Indian Pond Heron,Aves,10,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+prinia_inornata,Plain Prinia,Aves,10,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+acrocephalus_stentoreus,Clamorous Reed Warbler,Aves,10,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+terpsiphone_paradisi,Indian Paradise Flycatcher,Aves,8,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+ardea_intermedia,Intermediate Egret,Aves,8,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+egretta_garzetta,Little Egret,Aves,7,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+cyornis_tickelliae,Tickell's Blue Flycatcher,Aves,7,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+orthotomus_sutorius,Common Tailorbird,Aves,5,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+acridotheres_ginginianus,Bank Myna,Aves,5,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+prinia_socialis,Ashy Prinia,Aves,3,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+copsychus_fulicatus,Indian Robin,Aves,1,5,60.0,0.712,Distinctive call structure; moderate acoustic variance across field recordings.
+duttaphrynus_melanostictus,Common Indian Toad,Amphibia,15,5,30.0,0.675,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
+oecanthus_indicus,Tree Cricket,Insecta,3,5,25.0,0.696,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+canis_aureus,Golden Jackal,Mammalia,3,5,20.0,0.71,High cosine similarity near threshold; minor background acoustic interference in held-out clips.
+athene_brama,Spotted Owlet,Aves,3,5,20.0,0.697,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+macaca_mulatta,Rhesus Macaque,Mammalia,3,5,20.0,0.697,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
+gryllotalpa_orientalis,Mole Cricket,Insecta,3,5,20.0,0.696,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+muntiacus_muntjak,Barking Deer,Mammalia,3,5,20.0,0.696,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
+milvus_migrans,Black Kite,Aves,3,5,20.0,0.692,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+teleogryllus_occipitalis,Asian Field Cricket,Insecta,3,5,20.0,0.684,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+halcyon_smyrnensis,White-throated Kingfisher,Aves,3,5,20.0,0.682,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+euphlyctis_cyanophlyctis,Skittering Frog,Amphibia,3,5,20.0,0.68,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
+psittacula_krameri,Rose-ringed Parakeet,Aves,3,5,20.0,0.675,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+hydrophylax_bahuvistara,Fungoid Frog,Amphibia,3,5,20.0,0.67,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
+pycnonotus_cafer,Red-vented Bulbul,Aves,3,5,20.0,0.665,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+purana_tigrina,Large Brown Cicada,Insecta,3,5,20.0,0.658,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+semnopithecus_entellus,Hanuman Langur,Mammalia,3,5,20.0,0.658,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
+pavo_cristatus,Indian Peafowl,Aves,3,5,20.0,0.655,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+gryllus_bimaculatus,Two-spotted Cricket,Insecta,3,5,20.0,0.654,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+cinnyris_asiaticus,Purple Sunbird,Aves,3,5,20.0,0.653,"Tonal call matches backbone, but requires additional exemplar recordings to tighten prototype radius."
+mecopoda_elongata,Short-winged Katydid,Insecta,3,5,20.0,0.643,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
+funambulus_palmarum,Indian Palm Squirrel,Mammalia,3,5,20.0,0.643,Transient alarm barks / mammalian chitters; low harmonic structure compared to avian feature baseline.
+hoplobatrachus_tigerinus,Indian Bullfrog,Amphibia,3,5,20.0,0.634,Low-frequency pulsed guttural croak; broadband noise-like STFT profile differs from tonal avian whistles.
+cryptotympana_aguila,Clear-winged Cicada,Insecta,3,5,20.0,0.628,High-frequency stridulation (>12 kHz); BirdNET EfficientNet feature maps down-weight ultrasonic chirps.
