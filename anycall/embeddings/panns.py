@@ -190,3 +190,17 @@ class PannsBackbone(BaseAudioEmbeddingBackbone):
         _, raw_embedding = self._at_model.inference(audio_batch)
 
         return raw_embedding.flatten().astype(np.float32)
+
+    def extract_with_logits(
+        self, audio: Union[str, Path, np.ndarray], sr: int = 48000
+    ) -> Tuple[np.ndarray, Optional[np.ndarray]]:
+        """Extracts L2-normalized embedding vector for PANNs backbone."""
+        emb = self.embed(audio, sr=sr)
+        return emb, None
+
+
+# Alias for consistent backbone naming
+PANNsBackbone = PannsBackbone
+
+
+
