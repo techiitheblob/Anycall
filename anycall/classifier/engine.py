@@ -83,8 +83,8 @@ class PrototypicalClassifier:
 
     def __init__(
         self,
-        threshold: float = 0.65,
-        n_subprototypes: int = 3,
+        threshold: float = 0.20,
+        n_subprototypes: int = 5,
         unknown_label: str = "Unknown",
     ) -> None:
         if not 0.0 <= threshold <= 1.0:
@@ -189,7 +189,7 @@ class PrototypicalClassifier:
         return self._bank[label].centroid
 
     def predict(
-        self, query: np.ndarray, threshold: Optional[float] = None, use_mean_centering: bool = False
+        self, query: np.ndarray, threshold: Optional[float] = None, use_mean_centering: bool = True
     ) -> PredictionResult:
         """Classify a query embedding using cosine nearest-centroid matching.
 
