@@ -99,6 +99,12 @@ def main():
                     if sp_id in supp:
                         taxon = supp[sp_id].capitalize()
 
+        # Let classifier handle subclustering
+        from anycall.classifier.engine import PrototypicalClassifier
+        cls_temp = PrototypicalClassifier(n_subprototypes=5, threshold=0.15)
+        cls_temp.enroll(sp_id, embeddings, use_subclustering=True)
+        subs = cls_temp._bank[sp_id].sub_prototypes
+        sub_arr = np.stack(subs) if subs else None
         db_mgr.save_prototype(
             species_id=sp_id,
             common_name=common_name,
@@ -106,6 +112,7 @@ def main():
             prototype=centroid,
             radius=0.18,
             sample_count=len(embeddings),
+            sub_prototypes=sub_arr
         )
 
         taxon_key = taxon if taxon in enrolled_by_taxon else "Other"

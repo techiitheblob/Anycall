@@ -139,7 +139,11 @@ def create_app(
             sp_id = r["species_id"]
             proto_bytes = r["prototype"]
             vec = np.frombuffer(proto_bytes, dtype=np.float32)
-            classifier.enroll(sp_id, [vec])
+            if r.get("sub_prototypes"):
+                subs = np.frombuffer(r["sub_prototypes"], dtype=np.float32).reshape(-1, vec.shape[0])
+                classifier.enroll(sp_id, [subs[i] for i in range(subs.shape[0])])
+            else:
+                classifier.enroll(sp_id, [vec])
         print(f"[Portal] Loaded {len(existing_rows)} enrolled species from {db_path}")
     except Exception as e:
         print(f"[Portal] Note: No existing species loaded: {e}")
@@ -641,6 +645,7 @@ def create_app(
             prototype=cluster.centroid,
             radius=0.15,
             sample_count=cluster.n_samples,
+            sub_prototypes=None
         )
 
         return {

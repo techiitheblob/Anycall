@@ -333,22 +333,25 @@ class DatabaseManager:
         prototype: np.ndarray,
         radius: float = 0.0,
         sample_count: int = 1,
+        sub_prototypes: np.ndarray = None,
     ) -> None:
         proto_bytes = prototype.astype(np.float32).tobytes()
+        sub_bytes = sub_prototypes.astype(np.float32).tobytes() if sub_prototypes is not None else None
         now = _utcnow()
         self._conn.execute(
             """
-            INSERT INTO species (species_id, common_name, taxon, prototype, radius, sample_count, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO species (species_id, common_name, taxon, prototype, radius, sample_count, updated_at, sub_prototypes)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(species_id) DO UPDATE SET
                 common_name  = excluded.common_name,
                 taxon        = excluded.taxon,
                 prototype    = excluded.prototype,
                 radius       = excluded.radius,
+                sub_prototypes = excluded.sub_prototypes,
                 sample_count = excluded.sample_count,
                 updated_at   = excluded.updated_at
             """,
-            (species_id, common_name, taxon, proto_bytes, float(radius), int(sample_count), now),
+            (species_id, common_name, taxon, proto_bytes, float(radius), int(sample_count), now, sub_bytes),
         )
         self._conn.commit()
 
@@ -360,6 +363,8 @@ class DatabaseManager:
             return None
         d = dict(row)
         d["prototype"] = np.frombuffer(d["prototype"], dtype=np.float32)
+        if d.get("sub_prototypes"):
+            d["sub_prototypes"] = np.frombuffer(d["sub_prototypes"], dtype=np.float32)
         return d
 
     def log_detection(
