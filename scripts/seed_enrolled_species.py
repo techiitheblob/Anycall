@@ -56,7 +56,7 @@ def main():
         sp_id = sp_dir.name
         wav_files = sorted(list(sp_dir.glob("*.wav")))
         if not wav_files:
-            print(f"  [{idx:02d}/{len(species_dirs):02d}] ⚠️  {sp_id}: No WAV files found, skipping.")
+            print(f"  [{idx:02d}/{len(species_dirs):02d}] [!] {sp_id}: No WAV files found, skipping.")
             continue
 
         selected_wavs = wav_files[:args.max_samples]
@@ -91,6 +91,13 @@ def main():
         else:
             common_name = sp_id.replace("_", " ").title()
             taxon = "Aves"
+            supp_path = Path("data/supplementary_taxa.json")
+            if supp_path.exists():
+                import json
+                with open(supp_path) as f:
+                    supp = json.load(f)
+                    if sp_id in supp:
+                        taxon = supp[sp_id].capitalize()
 
         db_mgr.save_prototype(
             species_id=sp_id,

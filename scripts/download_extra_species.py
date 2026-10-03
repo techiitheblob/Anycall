@@ -20,12 +20,13 @@ from anycall.audio.standardize import standardize_audio, slice_audio_segments
 PROCESSED_DIR = Path("data/processed")
 RAW_DIR       = Path("data/raw")
 SUPP_JSON     = Path("data/supplementary_taxa.json")
-TARGET        = 15
+TARGET        = 50
 DL_LIMIT      = 40
 
 harvester = XenoCantoHarvester(
     raw_dir=RAW_DIR,
     rate_limit=1.5,
+    api_key="9111e7929e7ba9ff7423561c9435167244de2ce5",
     force_fallback=False,   # use API v3 Mode A (no key = falls back to search)
 )
 

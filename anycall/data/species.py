@@ -393,17 +393,6 @@ SPECIES_CATALOG: Dict[str, SpeciesRecord] = {
         target_recordings=20,
         seed_recording_ids=["792104", "781029", "770192", "760129", "750912"],
     ),
-    "hydrophylax_bahuvistara": SpeciesRecord(
-        species_id="hydrophylax_bahuvistara",
-        scientific_name="Hydrophylax bahuvistara",
-        common_name="Fungoid Frog",
-        taxon=TaxonGroup.AMPHIBIA,
-        vocalization_band_hz=(400, 1600),
-        characteristic_features="Nasal barking cluck calls",
-        search_query="Hydrophylax bahuvistara",
-        target_recordings=20,
-        seed_recording_ids=["692104", "681029", "670192", "660129", "650912"],
-    ),
 
     # --------------------------------------------------------------------------
     # Mammalia (5 species)

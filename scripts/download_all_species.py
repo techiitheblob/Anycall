@@ -22,7 +22,7 @@ from anycall.audio.standardize import standardize_audio, slice_audio_segments
 
 PROCESSED_DIR = Path("data/processed")
 RAW_DIR = Path("data/raw")
-TARGET_PER_SPECIES = 25
+TARGET_PER_SPECIES = 50
 MIN_SEGMENTS = 10  # skip species that already have this many processed WAVs
 
 harvester = XenoCantoHarvester(

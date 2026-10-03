@@ -83,7 +83,7 @@ class PrototypicalClassifier:
 
     def __init__(
         self,
-        threshold: float = 0.20,
+        threshold: float = 0.15,
         n_subprototypes: int = 5,
         unknown_label: str = "Unknown",
     ) -> None:
@@ -131,7 +131,7 @@ class PrototypicalClassifier:
             raise ValueError(f"Cannot enroll '{species_id}' with empty embeddings.")
         self.enroll(species_id, list(embeddings))
 
-    def enroll(self, label: str, embeddings: List[np.ndarray]) -> None:
+    def enroll(self, label: str, embeddings: List[np.ndarray], use_subclustering: Optional[bool] = None) -> None:
         """Compute and store a species prototype from enrollment embeddings.
 
         Parameters
@@ -140,6 +140,8 @@ class PrototypicalClassifier:
             Species label (e.g. "Corvus splendens").
         embeddings : list of np.ndarray
             List of L2-normalized float32 vectors, each of shape (D,).
+        use_subclustering : bool, optional
+            Whether to use K-means subclustering for this species. If None, uses the classifier's default.
         """
         if not embeddings:
             raise ValueError(f"Cannot enroll '{label}' with empty embedding list.")
@@ -155,8 +157,9 @@ class PrototypicalClassifier:
             sum_vector=sum_vec,
         )
 
-        if self._n_sub > 1 and len(embeddings) >= self._n_sub:
-            proto.sub_prototypes = self._kmeans_subprototypes(stack, self._n_sub)
+        do_sub = use_subclustering if use_subclustering is not None else (self._n_sub > 1)
+        if do_sub and len(embeddings) >= self._n_sub:
+            proto.sub_prototypes = self._kmeans_subprototypes(stack, max(2, self._n_sub))
 
         self._bank[label] = proto
 
@@ -456,3 +459,4 @@ class UnidentifiedSoundBank:
         cluster = self._clusters[cluster_id]
         member_embs = [self._embeddings[i] for i in cluster.sample_indices]
         classifier.enroll(species_label, member_embs)
+
