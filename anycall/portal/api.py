@@ -139,7 +139,7 @@ def create_app(
             sp_id = r["species_id"]
             proto_bytes = r["prototype"]
             vec = np.frombuffer(proto_bytes, dtype=np.float32)
-            if r.get("sub_prototypes"):
+            if "sub_prototypes" in r.keys() and r["sub_prototypes"]:
                 subs = np.frombuffer(r["sub_prototypes"], dtype=np.float32).reshape(-1, vec.shape[0])
                 classifier.enroll(sp_id, [subs[i] for i in range(subs.shape[0])])
             else:
@@ -638,14 +638,16 @@ def create_app(
         sound_bank.promote_to_species(req.cluster_id, clean_sp_id, classifier)
 
         # Save to database
+        sub_protos = classifier._bank[clean_sp_id].sub_prototypes if classifier._bank[clean_sp_id].sub_prototypes else None
+        sub_arr = np.stack(sub_protos) if sub_protos else None
         db_mgr.save_prototype(
             species_id=clean_sp_id,
             common_name=req.common_name or clean_sp_id.replace("_", " ").title(),
             taxon=req.taxon or "Unknown",
-            prototype=cluster.centroid,
+            prototype=classifier._bank[clean_sp_id].centroid,
             radius=0.15,
-            sample_count=cluster.n_samples,
-            sub_prototypes=None
+            sample_count=classifier._bank[clean_sp_id].n_support,
+            sub_prototypes=sub_arr
         )
 
         return {

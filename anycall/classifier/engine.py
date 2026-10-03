@@ -458,5 +458,9 @@ class UnidentifiedSoundBank:
             raise KeyError(f"Cluster '{cluster_id}' not found in bank.")
         cluster = self._clusters[cluster_id]
         member_embs = [self._embeddings[i] for i in cluster.sample_indices]
-        classifier.enroll(species_label, member_embs)
+        if species_label in classifier._bank:
+            for emb in member_embs:
+                classifier.update(species_label, emb)
+        else:
+            classifier.enroll(species_label, member_embs)
 
